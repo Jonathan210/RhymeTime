@@ -1,0 +1,3165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>TuneTots 🎵 – Sing, Play &amp; Music Studio</title>
+  <meta name="description"
+    content="TuneTots – 100% Sing-Along &amp; Music Experience for kids! Watch sing-along videos, sing melodic karaoke, tap rhythmic drums, and play the rainbow piano!" />
+  <link rel="icon" href="icons8-musical-note-48.png" type="image/x-icon">
+  <!-- Modern Child-Friendly Fonts: Fredoka & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DYNAMIC CONTENT-BASED THEME & DESIGN TOKENS
+       ============================================================ */
+    :root {
+      /* Default Joyful Rainbow Theme */
+      --theme-primary: #800032;
+      --theme-primary-dark: #5c0024;
+      --theme-primary-light: #b5004a;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #06b6d4;
+      --theme-bg-1: #fef7ff;
+      --theme-bg-2: #f3e8ff;
+      --theme-bg-mesh: radial-gradient(at 0% 0%, #fdf2f8 0, transparent 50%),
+        radial-gradient(at 100% 0%, #ede9fe 0, transparent 50%),
+        radial-gradient(at 100% 100%, #e0f2fe 0, transparent 50%),
+        radial-gradient(at 0% 100%, #fef3c7 0, transparent 50%);
+      --theme-card-bg: rgba(255, 255, 255, 0.88);
+      --theme-card-border: rgba(128, 0, 50, 0.14);
+      --theme-glow: 0 12px 36px rgba(128, 0, 50, 0.18);
+
+      --text-dark: #1e1022;
+      --text-muted: #6b4b66;
+      --text-light: #ffffff;
+
+      --star-gold: #f59e0b;
+      --success-green: #10b981;
+      --danger-red: #ef4444;
+
+      /* Friendly Sizing & Elevation */
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-xl: 36px;
+      --radius-round: 999px;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.09);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.14);
+      --shadow-button: 0 6px 0 rgba(0, 0, 0, 0.18);
+      --shadow-button-press: 0 2px 0 rgba(0, 0, 0, 0.18);
+
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-theme: background 0.6s var(--ease-smooth), color 0.3s ease;
+    }
+
+    /* Content-Driven Dynamic Theme Presets */
+    body[data-song-theme="star"] {
+      --theme-primary: #7c3aed;
+      --theme-primary-dark: #4c1d95;
+      --theme-primary-light: #a78bfa;
+      --theme-accent: #facc15;
+      --theme-accent-2: #38bdf8;
+      --theme-bg-1: #1e1145;
+      --theme-bg-2: #2e1065;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #4c1d95 0, transparent 60%),
+        radial-gradient(at 90% 80%, #701a75 0, transparent 60%),
+        radial-gradient(at 50% 50%, #1e1b4b 0, transparent 80%);
+      --theme-card-bg: rgba(255, 255, 255, 0.94);
+      --theme-card-border: rgba(167, 139, 250, 0.35);
+      --theme-glow: 0 16px 44px rgba(124, 58, 237, 0.35);
+    }
+
+    body[data-song-theme="spider"] {
+      --theme-primary: #059669;
+      --theme-primary-dark: #064e3b;
+      --theme-primary-light: #34d399;
+      --theme-accent: #38bdf8;
+      --theme-accent-2: #fbbf24;
+      --theme-bg-1: #ecfdf5;
+      --theme-bg-2: #d1fae5;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #a7f3d0 0, transparent 60%),
+        radial-gradient(at 90% 90%, #bae6fd 0, transparent 60%),
+        radial-gradient(at 50% 30%, #fef08a 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(5, 150, 105, 0.22);
+      --theme-glow: 0 16px 44px rgba(5, 150, 105, 0.25);
+    }
+
+    body[data-song-theme="egg"] {
+      --theme-primary: #ea580c;
+      --theme-primary-dark: #7c2d12;
+      --theme-primary-light: #fb923c;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #e11d48;
+      --theme-bg-1: #fff7ed;
+      --theme-bg-2: #ffedd5;
+      --theme-bg-mesh: radial-gradient(at 15% 15%, #fed7aa 0, transparent 60%),
+        radial-gradient(at 85% 85%, #fecdd3 0, transparent 60%),
+        radial-gradient(at 50% 50%, #fef08a 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.94);
+      --theme-card-border: rgba(234, 88, 12, 0.22);
+      --theme-glow: 0 16px 44px rgba(234, 88, 12, 0.25);
+    }
+
+    body[data-song-theme="sheep"] {
+      --theme-primary: #0284c7;
+      --theme-primary-dark: #0c4a6e;
+      --theme-primary-light: #38bdf8;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #10b981;
+      --theme-bg-1: #f0f9ff;
+      --theme-bg-2: #e0f2fe;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #bae6fd 0, transparent 60%),
+        radial-gradient(at 90% 80%, #dcfce7 0, transparent 60%),
+        radial-gradient(at 50% 50%, #fef3c7 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(2, 132, 199, 0.22);
+      --theme-glow: 0 16px 44px rgba(2, 132, 199, 0.25);
+    }
+
+    body[data-song-theme="hill"] {
+      --theme-primary: #db2777;
+      --theme-primary-dark: #831843;
+      --theme-primary-light: #f472b6;
+      --theme-accent: #a855f7;
+      --theme-accent-2: #06b6d4;
+      --theme-bg-1: #fdf2f8;
+      --theme-bg-2: #fce7f3;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #fbcfe8 0, transparent 60%),
+        radial-gradient(at 90% 90%, #e9d5ff 0, transparent 60%),
+        radial-gradient(at 50% 50%, #ccfbf1 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(219, 39, 119, 0.22);
+      --theme-glow: 0 16px 44px rgba(219, 39, 119, 0.25);
+    }
+
+    body[data-song-theme="farm"] {
+      --theme-primary: #d97706;
+      --theme-primary-dark: #78350f;
+      --theme-primary-light: #fbbf24;
+      --theme-accent: #16a34a;
+      --theme-accent-2: #ea580c;
+      --theme-bg-1: #fffbeb;
+      --theme-bg-2: #fef3c7;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #fde68a 0, transparent 60%),
+        radial-gradient(at 90% 80%, #bbf7d0 0, transparent 60%),
+        radial-gradient(at 50% 50%, #fed7aa 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(217, 119, 6, 0.22);
+      --theme-glow: 0 16px 44px rgba(217, 119, 6, 0.25);
+    }
+
+    body[data-song-theme="lamb"] {
+      --theme-primary: #ec4899;
+      --theme-primary-dark: #9d174d;
+      --theme-primary-light: #f472b6;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #8b5cf6;
+      --theme-bg-1: #fff1f2;
+      --theme-bg-2: #ffe4e6;
+      --theme-bg-mesh: radial-gradient(at 15% 15%, #fecdd3 0, transparent 60%),
+        radial-gradient(at 85% 85%, #fed7aa 0, transparent 60%),
+        radial-gradient(at 50% 50%, #fbcfe8 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.94);
+      --theme-card-border: rgba(236, 72, 153, 0.22);
+      --theme-glow: 0 16px 44px rgba(236, 72, 153, 0.25);
+    }
+
+    body[data-song-theme="meadow"] {
+      --theme-primary: #16a34a;
+      --theme-primary-dark: #14532d;
+      --theme-primary-light: #4ade80;
+      --theme-accent: #eab308;
+      --theme-accent-2: #0284c7;
+      --theme-bg-1: #f0fdf4;
+      --theme-bg-2: #dcfce7;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #bbf7d0 0, transparent 60%),
+        radial-gradient(at 90% 80%, #fef08a 0, transparent 60%),
+        radial-gradient(at 50% 50%, #bae6fd 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(22, 163, 74, 0.22);
+      --theme-glow: 0 16px 44px rgba(22, 163, 74, 0.25);
+    }
+
+    body[data-song-theme="boat"] {
+      --theme-primary: #0891b2;
+      --theme-primary-dark: #164e63;
+      --theme-primary-light: #22d3ee;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #10b981;
+      --theme-bg-1: #ecfeff;
+      --theme-bg-2: #cffafe;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #a5f3fc 0, transparent 60%),
+        radial-gradient(at 90% 85%, #bbf7d0 0, transparent 60%),
+        radial-gradient(at 50% 50%, #e0f2fe 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.92);
+      --theme-card-border: rgba(8, 145, 178, 0.22);
+      --theme-glow: 0 16px 44px rgba(8, 145, 178, 0.25);
+    }
+
+    body[data-song-theme="happy"] {
+      --theme-primary: #be123c;
+      --theme-primary-dark: #881337;
+      --theme-primary-light: #fb7185;
+      --theme-accent: #f59e0b;
+      --theme-accent-2: #9333ea;
+      --theme-bg-1: #fff1f2;
+      --theme-bg-2: #ffe4e6;
+      --theme-bg-mesh: radial-gradient(at 10% 10%, #fecdd3 0, transparent 60%),
+        radial-gradient(at 90% 90%, #fde68a 0, transparent 60%),
+        radial-gradient(at 50% 50%, #f5d0fe 0, transparent 60%);
+      --theme-card-bg: rgba(255, 255, 255, 0.94);
+      --theme-card-border: rgba(190, 18, 60, 0.22);
+      --theme-glow: 0 16px 44px rgba(190, 18, 60, 0.25);
+    }
+
+    /* Base Reset & Full-Screen Architecture */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      background: var(--theme-bg-1);
+      color: var(--text-dark);
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      transition: var(--transition-theme);
+    }
+
+    /* Ambient Dynamic Backdrop */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--theme-bg-mesh);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 0;
+      transition: var(--transition-theme);
+    }
+
+    /* Floating Interactive Canvas */
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       OCCUPY ALL SPACE: FULL SCREEN FLUID LAYOUT
+       ============================================================ */
+    #app {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 100vw;
+      min-height: 100vh;
+      padding: 16px clamp(14px, 3vw, 42px) 80px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ============================================================
+       TOP HEADER (KID-FRIENDLY & FULL WIDTH)
+       ============================================================ */
+    .site-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 12px clamp(16px, 2.5vw, 32px);
+      background: linear-gradient(135deg, var(--theme-primary-dark) 0%, var(--theme-primary) 55%, var(--theme-primary-light) 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 2px 2px rgba(255, 255, 255, 0.25);
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      transition: var(--transition-theme);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mascot-avatar {
+      font-size: 2.3rem;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+      animation: mascotBounce 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes mascotBounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-7px) rotate(6deg);
+      }
+    }
+
+    .logo-text-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.72rem, 1.2vw, 0.88rem);
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.92);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Child-Friendly Tactile Badges */
+    .stars-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius-round);
+      padding: 8px 18px;
+      color: #ffffff;
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-bounce);
+    }
+
+    .stars-badge:hover {
+      transform: scale(1.06);
+    }
+
+    .stars-badge.bump {
+      animation: starPop 0.5s var(--ease-bounce);
+    }
+
+    .streak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      border: 2px solid #fef08a;
+      border-radius: var(--radius-round);
+      padding: 8px 16px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+      animation: flamePulse 1.8s infinite alternate;
+    }
+
+    @keyframes flamePulse {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px #f59e0b);
+      }
+
+      100% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 12px #f97316);
+      }
+    }
+
+    /* Child-Friendly Tactile Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-round);
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      transition: all 0.15s var(--ease-bounce);
+      box-shadow: var(--shadow-button);
+      position: relative;
+    }
+
+    .btn:active {
+      transform: translateY(4px);
+      box-shadow: var(--shadow-button-press);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.88rem;
+    }
+
+    .btn-lg {
+      padding: 16px 32px;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--theme-accent) 0%, #ea580c 100%);
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-fun {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-fun:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--danger-red);
+      border: 2px solid rgba(239, 68, 68, 0.3);
+      box-shadow: none;
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    /* Audio / Sound Toggle Button in Header */
+    .icon-toggle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .icon-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.1);
+    }
+
+    /* Views container */
+    .view {
+      display: none;
+      width: 100%;
+    }
+
+    .view.active {
+      display: block;
+      animation: viewFadeIn 0.35s ease-out;
+    }
+
+    @keyframes viewFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============================================================
+       DASHBOARD HERO & MASCOT WELCOME
+       ============================================================ */
+    .dashboard-hero {
+      width: 100%;
+      background: var(--theme-card-bg);
+      border: 2.5px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(20px, 3.5vw, 36px);
+      margin: 20px 0 26px;
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-speech {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .mascot-bubble {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: var(--radius-round);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    }
+
+    .dashboard-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--theme-primary-dark);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-hero p {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .hero-quick-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Ambient Theme Selector for Kids */
+    .theme-picker-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 14px;
+      border-radius: var(--radius-round);
+      border: 1.5px solid var(--theme-card-border);
+    }
+
+    .theme-picker-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .theme-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2.5px solid #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s var(--ease-bounce);
+    }
+
+    .theme-pill:hover {
+      transform: scale(1.25);
+    }
+
+    /* Stats Ribbon (Friendly Kid Pills) */
+    .stats-ribbon {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .stat-card {
+      background: var(--theme-card-bg);
+      border: 2px solid var(--theme-card-border);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      color: var(--theme-primary);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Overall Musical Progress Bar */
+    .star-progress-bar-wrap {
+      width: 100%;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: var(--radius-round);
+      margin-bottom: 30px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .star-progress-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-round);
+      background: linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4, #10b981);
+      background-size: 200% 100%;
+      animation: rainbowGleam 4s linear infinite;
+      transition: width 0.8s var(--ease-smooth);
+    }
+
+    @keyframes rainbowGleam {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    /* ============================================================
+       SONGS GRID: OCCUPY ALL SPACE ON ALL DEVICES
+       ============================================================ */
+    .modules-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: clamp(18px, 2.5vw, 28px);
+      margin-bottom: 40px;
+    }
+
+    /* Ultra Child-Friendly Song Card */
+    .module-card {
+      background: var(--theme-card-bg);
+      border: 3px solid var(--card-border-color, var(--theme-card-border));
+      border-radius: var(--radius-xl);
+      padding: 24px 22px 20px;
+      cursor: pointer;
+      transition: all 0.28s var(--ease-bounce);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      user-select: none;
+    }
+
+    /* Colorful Top Accent Ribbon */
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--card-accent, var(--theme-primary));
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .module-card:not(.locked):hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+      border-color: var(--card-accent, var(--theme-primary));
+    }
+
+    .module-card.locked {
+      opacity: 0.65;
+      cursor: not-allowed;
+      filter: grayscale(0.25);
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .card-top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-emoji-bubble {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      transition: transform 0.25s var(--ease-bounce);
+    }
+
+    .module-card:not(.locked):hover .card-emoji-bubble {
+      transform: scale(1.15) rotate(6deg);
+    }
+
+    /* Circular Activity Meter */
+    .ring-wrap {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .ring-wrap svg {
+      transform: rotate(-90deg);
+    }
+
+    .ring-bg {
+      fill: none;
+      stroke: rgba(0, 0, 0, 0.08);
+      stroke-width: 4;
+    }
+
+    .ring-fill {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 125;
+      stroke-dashoffset: 125;
+      transition: stroke-dashoffset 0.8s var(--ease-smooth);
+    }
+
+    .ring-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .card-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .card-tag {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: var(--radius-round);
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-dark);
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .card-topic {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Activity mini checklist */
+    .activity-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .act-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: var(--radius-round);
+      border: 1.5px solid transparent;
+      transition: all 0.25s var(--ease-bounce);
+    }
+
+    .act-badge.done {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #065f46;
+    }
+
+    .act-badge.pending {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: var(--text-muted);
+    }
+
+    .card-footer-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1.5px dashed rgba(0, 0, 0, 0.08);
+    }
+
+    .card-stars-visual {
+      font-size: 1.35rem;
+      letter-spacing: 4px;
+      color: var(--star-gold);
+      filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3));
+    }
+
+    .card-status-pill {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-round);
+    }
+
+    .locked-card-msg {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1.5px dashed rgba(239, 68, 68, 0.3);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--danger-red);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Reset Section */
+    .reset-area-box {
+      width: 100%;
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius-xl);
+      border: 2px dashed rgba(0, 0, 0, 0.12);
+      margin-top: 10px;
+    }
+
+    .reset-area-box p {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* ============================================================
+       STUDIO VIEW: FULL-SCREEN INTERACTIVE PLAYGROUND
+       ============================================================ */
+    #moduleView {
+      width: 100%;
+    }
+
+    /* Studio Header Bar */
+    .studio-nav-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: var(--theme-card-bg);
+      border: 2.5px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: 16px clamp(16px, 2.5vw, 32px);
+      margin-bottom: 22px;
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(12px);
+    }
+
+    .studio-title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .studio-emoji-badge {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+      animation: gentleWiggle 3s ease-in-out infinite;
+    }
+
+    @keyframes gentleWiggle {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-5deg);
+      }
+
+      75% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .studio-text-info h2 {
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      color: var(--theme-primary-dark);
+      line-height: 1.2;
+    }
+
+    .studio-text-info p {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .studio-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Mode Navigation Tabs (Video, Melody, Piano, Rhythm) */
+    .music-mode-tabs {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 2.5px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: 8px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mode-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 12px;
+      border-radius: var(--radius-lg);
+      border: 2px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s var(--ease-bounce);
+    }
+
+    .mode-tab:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--theme-primary);
+    }
+
+    .mode-tab.active {
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: scale(1.02);
+    }
+
+    /* ============================================================
+       STAGE 1: FULL SCREEN VIDEO SING-ALONG
+       ============================================================ */
+    .video-stage-wrap {
+      width: 100%;
+      background: var(--theme-card-bg);
+      border: 3px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(16px, 2.5vw, 32px);
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(14px);
+      margin-bottom: 24px;
+      animation: popIn 0.35s var(--ease-bounce);
+    }
+
+    .video-stage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .video-stage-grid {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+
+    .video-frame-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      /* 16:9 ratio */
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+      border: 3px solid var(--theme-primary-light);
+    }
+
+    .video-frame-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-side-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      border: 2px dashed var(--theme-card-border);
+    }
+
+    .video-lyrics-preview {
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .video-lyric-line {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      padding: 6px 10px;
+      margin-bottom: 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    /* ============================================================
+       STAGE 2: MELODIC KARAOKE (BOUNCING NOTE & TTS SINGER)
+       ============================================================ */
+    .karaoke-stage {
+      width: 100%;
+      background: var(--theme-card-bg);
+      border: 3px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(20px, 3vw, 40px);
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(14px);
+      margin-bottom: 24px;
+      animation: popIn 0.35s var(--ease-bounce);
+    }
+
+    .karaoke-display {
+      min-height: 220px;
+      padding: 30px 20px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+      border: 3px solid var(--theme-card-border);
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bouncing-ball-indicator {
+      font-size: clamp(3rem, 5vw, 4.2rem);
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+      margin-bottom: 14px;
+      animation: kidBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes kidBounce {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        transform: translateY(-18px) scale(1.15) rotate(8deg);
+      }
+    }
+
+    .current-sing-line {
+      font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      word-spacing: 4px;
+    }
+
+    .current-sing-word {
+      display: inline-block;
+      margin: 2px 6px;
+      padding: 4px 14px;
+      border-radius: var(--radius-md);
+      transition: all 0.2s var(--ease-bounce);
+      opacity: 0.8;
+    }
+
+    .current-sing-word.singing {
+      opacity: 1;
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      color: #ffffff;
+      transform: scale(1.28) translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .upcoming-sing-line {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .karaoke-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .music-toggles-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 14px 20px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px solid var(--theme-card-border);
+    }
+
+    .music-select-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .music-select-group select {
+      background: #ffffff;
+      border: 2px solid var(--theme-card-border);
+      color: var(--text-dark);
+      padding: 8px 16px;
+      border-radius: var(--radius-round);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ============================================================
+       STAGE 3: FULL SCREEN RAINBOW PIANO PLAYGROUND
+       ============================================================ */
+    .piano-stage {
+      width: 100%;
+      background: var(--theme-card-bg);
+      border: 3px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(18px, 3vw, 36px);
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(14px);
+      margin-bottom: 24px;
+      animation: popIn 0.35s var(--ease-bounce);
+    }
+
+    .piano-header-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .piano-header-box h3 {
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      color: var(--theme-primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .piano-header-box p {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .piano-hint-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border-radius: var(--radius-round);
+      background: linear-gradient(135deg, var(--theme-accent) 0%, #ea580c 100%);
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.3);
+      margin-top: 12px;
+      animation: pulseGlow 1.5s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+      }
+
+      100% {
+        transform: scale(1.06);
+        box-shadow: 0 8px 28px rgba(234, 88, 12, 0.55);
+      }
+    }
+
+    /* Expansive Full Screen Piano Keyboard */
+    .piano-scroll-outer {
+      width: 100%;
+      overflow-x: auto;
+      padding: 16px 4px 24px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .piano-keys {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(6px, 1.2vw, 14px);
+      width: 100%;
+      min-width: 600px;
+      /* guarantees keys have great touch area */
+      margin: 0 auto;
+    }
+
+    .piano-key {
+      flex: 1;
+      max-width: 110px;
+      height: clamp(170px, 24vw, 250px);
+      border-radius: 0 0 18px 18px;
+      border: 3.5px solid rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.1s var(--ease-bounce);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .piano-key:active,
+    .piano-key.active {
+      transform: translateY(12px) scale(0.97);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .piano-key.highlight {
+      animation: keyRainbowGlow 0.75s infinite alternate;
+      border-color: #ffffff;
+      transform: translateY(-8px);
+      z-index: 10;
+    }
+
+    @keyframes keyRainbowGlow {
+      0% {
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 10px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      100% {
+        box-shadow: 0 0 36px #ffffff, 0 0 50px var(--card-accent, #f59e0b);
+      }
+    }
+
+    .piano-key-note {
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .piano-key-solfege {
+      font-size: clamp(0.8rem, 1.2vw, 1rem);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Vibrant Rainbow Key Gradients */
+    .key-c4 {
+      background: linear-gradient(180deg, #f87171, #dc2626);
+    }
+
+    .key-d4 {
+      background: linear-gradient(180deg, #fb923c, #ea580c);
+    }
+
+    .key-e4 {
+      background: linear-gradient(180deg, #facc15, #ca8a04);
+    }
+
+    .key-f4 {
+      background: linear-gradient(180deg, #4ade80, #16a34a);
+    }
+
+    .key-g4 {
+      background: linear-gradient(180deg, #22d3ee, #0891b2);
+    }
+
+    .key-a4 {
+      background: linear-gradient(180deg, #60a5fa, #2563eb);
+    }
+
+    .key-b4 {
+      background: linear-gradient(180deg, #a78bfa, #7c3aed);
+    }
+
+    .key-c5 {
+      background: linear-gradient(180deg, #f472b6, #db2777);
+    }
+
+    .key-d5 {
+      background: linear-gradient(180deg, #fb7185, #e11d48);
+    }
+
+    .key-e5 {
+      background: linear-gradient(180deg, #fda4af, #f43f5e);
+    }
+
+    /* ============================================================
+       STAGE 4: GIANT RHYTHM DRUM ARENA
+       ============================================================ */
+    .rhythm-box {
+      width: 100%;
+      background: var(--theme-card-bg);
+      border: 3px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(24px, 4vw, 48px);
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: var(--theme-glow);
+      backdrop-filter: blur(14px);
+      animation: popIn 0.35s var(--ease-bounce);
+    }
+
+    .rhythm-box h3 {
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-weight: 700;
+      color: var(--theme-primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .rhythm-box p {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .rhythm-pad-btn {
+      width: clamp(140px, 22vw, 210px);
+      height: clamp(140px, 22vw, 210px);
+      border-radius: 50%;
+      border: 8px solid rgba(255, 255, 255, 0.8);
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      font-size: clamp(3.8rem, 6vw, 5.5rem);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25), inset 0 -8px 12px rgba(0, 0, 0, 0.25);
+      transition: all 0.12s var(--ease-bounce);
+      user-select: none;
+    }
+
+    .rhythm-pad-btn:active {
+      transform: scale(0.88);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .rhythm-pad-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .rhythm-rings {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .rhythm-dot {
+      width: clamp(22px, 3.5vw, 32px);
+      height: clamp(22px, 3.5vw, 32px);
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.08);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s var(--ease-bounce);
+    }
+
+    .rhythm-dot.filled {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      transform: scale(1.35);
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.8);
+      border-color: #ffffff;
+    }
+
+    /* Fun Fact Box */
+    .song-fun-fact {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px dashed var(--theme-card-border);
+      border-radius: var(--radius-lg);
+      padding: 16px 22px;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin-top: 18px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .song-fun-fact strong {
+      color: var(--theme-primary);
+    }
+
+    /* Feedback Toasts */
+    .feedback-toast {
+      text-align: center;
+      padding: 16px 24px;
+      border-radius: var(--radius-lg);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 16px 0;
+      animation: fadeSlideIn 0.3s var(--ease-bounce);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feedback-toast.success {
+      background: #d1fae5;
+      border: 2.5px solid #10b981;
+      color: #065f46;
+    }
+
+    .feedback-toast.info {
+      background: #ede9fe;
+      border: 2.5px solid #8b5cf6;
+      color: #4c1d95;
+    }
+
+    .feedback-toast.error {
+      background: #fee2e2;
+      border: 2.5px solid #ef4444;
+      color: #991b1b;
+    }
+
+    /* Completion Celebration Modal / Card */
+    .completion-card {
+      text-align: center;
+      background: var(--theme-card-bg);
+      border: 4px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 48px);
+      animation: popIn 0.55s var(--ease-bounce);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+    }
+
+    .completion-card h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--theme-primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .completion-card p {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 700;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 20px 0 28px;
+      flex-wrap: wrap;
+    }
+
+    .score-box {
+      background: #ffffff;
+      border: 2.5px solid var(--theme-card-border);
+      border-radius: var(--radius-lg);
+      padding: 16px 26px;
+      min-width: 120px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .score-box .score-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--theme-primary);
+    }
+
+    .score-box .score-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes starPop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.35) rotate(15deg);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(0, 0, 0, 0.1);
+      border-top-color: var(--theme-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 48px auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ============================================================
+       MOBILE & RESPONSIVE TWEAKS
+       ============================================================ */
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 10px 16px;
+        border-radius: var(--radius-lg);
+      }
+
+      .music-mode-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mode-tab {
+        padding: 10px;
+        font-size: 1rem;
+      }
+
+      .dashboard-hero {
+        padding: 20px 16px;
+      }
+
+      .hero-quick-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .piano-key {
+        height: 160px;
+      }
+
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #app {
+        padding: 10px 10px 60px;
+      }
+
+      .logo-title {
+        font-size: 1.35rem;
+      }
+
+      .mascot-avatar {
+        font-size: 1.9rem;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+
+<body data-song-theme="default">
+
+  <!-- Interactive Floating Background Particles -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- FULL SCREEN FLUID APPLICATION -->
+  <div id="app">
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+      <div class="brand-group" onclick="showDashboard()">
+        <span class="mascot-avatar" id="headerMascot">🐥</span>
+        <div class="logo-text-box">
+          <div class="logo-title">TuneTots <span style="font-size:0.6em;">🎵</span></div>
+          <div class="logo-sub">Sing &amp; Music Studio for Kids</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Mute/Sound FX Toggle -->
+        <button class="icon-toggle-btn" id="sfxToggleBtn" title="Sound Effects" onclick="toggleSoundFX()">🔊</button>
+
+        <!-- Streak Badge -->
+        <div class="streak-badge" id="streakBadge" style="display:none;">
+          🔥 <span id="streakCount">0</span> Streak
+        </div>
+
+        <!-- Star Counter -->
+        <div class="stars-badge" id="starsBadge" onclick="playCheer()">
+          ⭐ <span id="totalStars">0</span> Stars
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="btn btn-secondary btn-sm" onclick="showDashboard()">🏠 Songs</button>
+        <a href="admin.html" class="btn btn-secondary btn-sm">⚙️ Teacher Admin</a>
+      </div>
+    </header>
+
+    <!-- ==================== DASHBOARD VIEW ==================== -->
+    <div id="dashboardView" class="view active">
+
+      <!-- Hero / Welcome Mascot Area -->
+      <div class="dashboard-hero">
+        <div class="hero-speech">
+          <div class="mascot-bubble">
+            <span>🐥 Maestro Pip says:</span>
+            <span id="mascotMessage">"Pick a song to sing, play piano, and earn stars!"</span>
+          </div>
+          <h1>🎵 Let's Sing &amp; Play Music!</h1>
+          <p>100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody, play the rainbow
+            piano, and drum the beat!</p>
+        </div>
+
+        <div class="hero-quick-actions">
+          <!-- Interactive Theme / Mood Picker -->
+          <div class="theme-picker-bar" title="Change the background theme mood!">
+            <span class="theme-picker-label">🎨 Mood:</span>
+            <span class="theme-pill" style="background:#7c3aed;" onclick="setManualTheme('star')"
+              title="Cosmic Star"></span>
+            <span class="theme-pill" style="background:#059669;" onclick="setManualTheme('spider')"
+              title="Rainforest Dew"></span>
+            <span class="theme-pill" style="background:#ea580c;" onclick="setManualTheme('egg')"
+              title="Sunny Amber"></span>
+            <span class="theme-pill" style="background:#0284c7;" onclick="setManualTheme('boat')"
+              title="Ocean Blue"></span>
+            <span class="theme-pill" style="background:#db2777;" onclick="setManualTheme('lamb')"
+              title="Pastel Blossom"></span>
+            <span class="theme-pill" style="background:#800032;" onclick="setManualTheme('default')"
+              title="Classic Rainbow"></span>
+          </div>
+
+          <button class="btn btn-primary btn-sm" onclick="playRandomSong()">🎲 Surprise Song!</button>
+        </div>
+      </div>
+
+      <!-- Musical Achievement Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-value" id="statCompleted">0/10</div>
+          <div class="stat-label">Songs Mastered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🌟</div>
+          <div class="stat-value" id="statStarsCount">0</div>
+          <div class="stat-label">Total Stars</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="statPct">0%</div>
+          <div class="stat-label">Music Progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎤</div>
+          <div class="stat-value" id="statAttempts">0</div>
+          <div class="stat-label">Sing Sessions</div>
+        </div>
+      </div>
+
+      <!-- Global Progress Bar -->
+      <div class="star-progress-bar-wrap" title="Musical Star Journey Progress">
+        <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
+      </div>
+
+      <!-- SONGS GRID (Full screen responsive) -->
+      <div class="modules-grid" id="moduleGrid">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Reset Section -->
+      <div class="reset-area-box">
+        <p>Want to start your musical star collection from the beginning?</p>
+        <button class="btn btn-danger btn-sm" onclick="resetProgress()">🔄 Reset All Stars &amp; Progress</button>
+      </div>
+    </div>
+
+    <!-- ==================== STUDIO VIEW ==================== -->
+    <div id="moduleView" class="view">
+      <!-- Studio Header -->
+      <div class="studio-nav-header">
+        <div class="studio-title-group">
+          <span class="studio-emoji-badge" id="moduleEmoji">🎵</span>
+          <div class="studio-text-info">
+            <h2 id="moduleTitle">Song Title</h2>
+            <p id="moduleSubtitle">🎵 Sing-Along · Video · Melody · Piano · Rhythm</p>
+          </div>
+        </div>
+        <div class="studio-nav-actions">
+          <!-- Speak Aloud / Read to Me Button for young kids -->
+          <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()"
+            title="Listen to lyrics read aloud!">🗣️ Read to Me</button>
+          <button class="btn btn-secondary btn-sm" onclick="showDashboard()">← Back to Songs</button>
+        </div>
+      </div>
+
+      <!-- Active Stage Container -->
+      <div id="activityContainer"></div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================
+     APPLICATION LOGIC & SOUND ENGINE
+     ============================================================ -->
+  <script>
+    /* Shared storage keys with admin.html */
+    const SONGS_STORAGE_KEY = 'rhymetime_songs_data_v1';
+    const PROGRESS_KEY = 'rhymetime_progress_v3';
+
+    /* Default 10 Curated Nursery Rhymes with Content Themes */
+    const DEFAULT_RHYMES_DATA = [
+      {
+        id: 1, title: "Twinkle Twinkle Little Star",
+        topic: "Sing-Along & Star Melody", emoji: "⭐", color: "#7c3aed", reqStars: 0,
+        theme: "star", youtubeId: "yCjJyiqpAuU", bpm: 100, instrument: "glockenspiel",
+        funFact: "This melody was composed in 18th-century France and made famous by Mozart!",
+        lyrics: [
+          "Twinkle, twinkle, little star",
+          "How I wonder what you are",
+          "Up above the world so high",
+          "Like a diamond in the sky",
+          "Twinkle, twinkle, little star",
+          "How I wonder what you are"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "C4", "G4", "G4", "A4", "A4", "G4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 1, keys: ["F4", "F4", "E4", "E4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 2, keys: ["G4", "G4", "F4", "F4", "E4", "E4", "D4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 3, keys: ["G4", "G4", "F4", "F4", "E4", "E4", "D4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 4, keys: ["C4", "C4", "G4", "G4", "A4", "A4", "G4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 5, keys: ["F4", "F4", "E4", "E4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] }
+        ]
+      },
+      {
+        id: 2, title: "Itsy Bitsy Spider",
+        topic: "Sing-Along & Spider Rhythm", emoji: "🕷️", color: "#059669", reqStars: 1,
+        theme: "spider", youtubeId: "w_lCi8U49mY", bpm: 110, instrument: "marimba",
+        funFact: "Spiders have 8 legs and spin silky webs that shimmer in the rain!",
+        lyrics: [
+          "The itsy bitsy spider climbed up the waterspout",
+          "Down came the rain and washed the spider out",
+          "Out came the sun and dried up all the rain",
+          "And the itsy bitsy spider climbed up the spout again"
+        ],
+        notes: [
+          { line: 0, keys: ["G4", "C4", "C4", "D4", "E4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] },
+          { line: 1, keys: ["E4", "E4", "F4", "G4", "G4", "F4", "E4", "G4", "E4"], durations: [0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.5, 0.8] },
+          { line: 2, keys: ["C4", "C4", "D4", "E4", "E4", "D4", "C4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.5, 0.8] },
+          { line: 3, keys: ["G4", "C4", "C4", "D4", "E4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] }
+        ]
+      },
+      {
+        id: 3, title: "Humpty Dumpty",
+        topic: "Sing-Along & Bouncing Chimes", emoji: "🥚", color: "#ea580c", reqStars: 3,
+        theme: "egg", youtubeId: "nrv495corBc", bpm: 105, instrument: "musicbox",
+        funFact: "Humpty Dumpty was originally an English riddle before becoming a nursery rhyme!",
+        lyrics: [
+          "Humpty Dumpty sat on a wall",
+          "Humpty Dumpty had a great fall",
+          "All the king's horses and all the king's men",
+          "Couldn't put Humpty together again"
+        ],
+        notes: [
+          { line: 0, keys: ["G4", "E4", "E4", "F4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.4, 0.4, 0.5, 1.0] },
+          { line: 1, keys: ["G4", "E4", "E4", "F4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.4, 0.4, 0.5, 1.0] },
+          { line: 2, keys: ["E4", "E4", "F4", "F4", "G4", "G4", "A4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] },
+          { line: 3, keys: ["G4", "F4", "E4", "D4", "C4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] }
+        ]
+      },
+      {
+        id: 4, title: "Baa Baa Black Sheep",
+        topic: "Sing-Along & Pastoral Bells", emoji: "🐑", color: "#0284c7", reqStars: 5,
+        theme: "sheep", youtubeId: "03X0bf_eUj8", bpm: 100, instrument: "glockenspiel",
+        funFact: "Sheep wool is sheared gently in spring and spun into cozy sweaters and blankets!",
+        lyrics: [
+          "Baa, baa, black sheep, have you any wool?",
+          "Yes, sir, yes, sir, three bags full",
+          "One for the master, and one for the dame",
+          "And one for the little boy who lives down the lane"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "C4", "G4", "G4", "A4", "B4", "C5", "A4", "G4"], durations: [0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4, 1.0] },
+          { line: 1, keys: ["F4", "F4", "E4", "E4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 2, keys: ["G4", "G4", "G4", "F4", "E4", "E4", "D4"], durations: [0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.8] },
+          { line: 3, keys: ["G4", "G4", "F4", "F4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 1.0] }
+        ]
+      },
+      {
+        id: 5, title: "Jack and Jill",
+        topic: "Sing-Along & Hillside Harmony", emoji: "🪣", color: "#db2777", reqStars: 7,
+        theme: "hill", youtubeId: "tmgmR2D0_2A", bpm: 108, instrument: "piano",
+        funFact: "Pails were wooden buckets historically used to carry water from hilltop springs!",
+        lyrics: [
+          "Jack and Jill went up the hill to fetch a pail of water",
+          "Jack fell down and broke his crown and Jill came tumbling after",
+          "Up Jack got and home did trot as fast as he could caper",
+          "To old Dame Dob who patched his knob with vinegar and brown paper"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "D4", "E4", "F4", "G4", "A4", "G4", "F4", "E4", "D4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.4, 0.8] },
+          { line: 1, keys: ["C4", "D4", "E4", "F4", "G4", "A4", "G4", "F4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] },
+          { line: 2, keys: ["G4", "G4", "E4", "F4", "G4", "A4", "G4", "F4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.5, 0.4, 0.4, 0.8] },
+          { line: 3, keys: ["C4", "D4", "E4", "F4", "G4", "A4", "G4", "F4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] }
+        ]
+      },
+      {
+        id: 6, title: "Old MacDonald Had a Farm",
+        topic: "Sing-Along & Barnyard Beats", emoji: "🐄", color: "#d97706", reqStars: 9,
+        theme: "farm", youtubeId: "_6HzoUcx3eo", bpm: 115, instrument: "marimba",
+        funFact: "Cows can recognize their best friends and love listening to cheerful music!",
+        lyrics: [
+          "Old MacDonald had a farm, E-I-E-I-O!",
+          "And on his farm he had a cow, E-I-E-I-O!",
+          "With a moo moo here and a moo moo there",
+          "Here a moo, there a moo, everywhere a moo moo",
+          "Old MacDonald had a farm, E-I-E-I-O!"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "C4", "C4", "G4", "A4", "A4", "G4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.4, 0.8] },
+          { line: 1, keys: ["G4", "C4", "C4", "G4", "A4", "A4", "G4", "E4", "D4", "C4"], durations: [0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.4, 0.8] },
+          { line: 2, keys: ["G4", "G4", "C4", "C4", "G4", "G4", "C4", "C4"], durations: [0.4, 0.4, 0.4, 0.6, 0.4, 0.4, 0.4, 0.6] },
+          { line: 3, keys: ["C4", "C4", "C4", "C4", "C4", "C4", "C4"], durations: [0.4, 0.4, 0.5, 0.4, 0.4, 0.5, 0.8] },
+          { line: 4, keys: ["C4", "C4", "C4", "G4", "A4", "A4", "G4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.4, 0.8] }
+        ]
+      },
+      {
+        id: 7, title: "Mary Had a Little Lamb",
+        topic: "Sing-Along & Gentle Piano", emoji: "🐏", color: "#ec4899", reqStars: 11,
+        theme: "lamb", youtubeId: "7otAJa3jui8", bpm: 105, instrument: "piano",
+        funFact: "This was the very first recorded song in human history by Thomas Edison in 1877!",
+        lyrics: [
+          "Mary had a little lamb, little lamb, little lamb",
+          "Mary had a little lamb, its fleece was white as snow",
+          "And everywhere that Mary went, Mary went, Mary went",
+          "And everywhere that Mary went, the lamb was sure to go!"
+        ],
+        notes: [
+          { line: 0, keys: ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "E4", "G4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.8, 0.4, 0.8] },
+          { line: 1, keys: ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 1.0] },
+          { line: 2, keys: ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "E4", "G4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.8, 0.4, 0.8] },
+          { line: 3, keys: ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "E4", "D4", "D4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 1.0] }
+        ]
+      },
+      {
+        id: 8, title: "Little Bo Peep",
+        topic: "Sing-Along & Meadow Chimes", emoji: "🌿", color: "#16a34a", reqStars: 13,
+        theme: "meadow", youtubeId: "kM2V8dM7r3U", bpm: 105, instrument: "musicbox",
+        funFact: "Bo Peep carried a shepherd's crook with a rounded hook to guide gentle sheep!",
+        lyrics: [
+          "Little Bo Peep has lost her sheep",
+          "And doesn't know where to find them",
+          "Leave them alone, and they'll come home",
+          "Wagging their tails behind them"
+        ],
+        notes: [
+          { line: 0, keys: ["G4", "E4", "F4", "G4", "A4", "B4", "C5"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 1, keys: ["D5", "C5", "B4", "A4", "G4", "F4", "E4"], durations: [0.4, 0.4, 0.5, 0.5, 0.4, 0.5, 1.0] },
+          { line: 2, keys: ["G4", "E4", "F4", "G4", "A4", "B4", "C5"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
+          { line: 3, keys: ["D5", "C5", "B4", "A4", "G4", "E4", "C4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.2] }
+        ]
+      },
+      {
+        id: 9, title: "Row Row Row Your Boat",
+        topic: "Sing-Along & Stream Symphony", emoji: "🚣", color: "#0891b2", reqStars: 15,
+        theme: "boat", youtubeId: "k4f7y1qGj2Y", bpm: 105, instrument: "glockenspiel",
+        funFact: "This song can be sung as a 'round' or canon, where voices start at different times!",
+        lyrics: [
+          "Row, row, row your boat gently down the stream",
+          "Merrily, merrily, merrily, merrily, life is but a dream",
+          "Row, row, row your boat gently down the brook",
+          "If you catch a little fish, let it off the hook!"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "C4", "C4", "D4", "E4", "E4", "D4", "E4", "F4", "G4"], durations: [0.6, 0.6, 0.6, 0.3, 0.5, 0.4, 0.3, 0.4, 0.3, 1.0] },
+          { line: 1, keys: ["C5", "C5", "C5", "G4", "G4", "G4", "E4", "E4", "E4", "C4", "G4", "F4", "E4", "D4", "C4"], durations: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.4, 0.4, 0.4, 0.4, 1.0] },
+          { line: 2, keys: ["C4", "C4", "C4", "D4", "E4", "E4", "D4", "E4", "F4", "G4"], durations: [0.6, 0.6, 0.6, 0.3, 0.5, 0.4, 0.3, 0.4, 0.3, 1.0] },
+          { line: 3, keys: ["C5", "G4", "E4", "C4", "G4", "F4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 1.0] }
+        ]
+      },
+      {
+        id: 10, title: "If You're Happy and You Know It",
+        topic: "Grand Musical Finale & Clap Dance", emoji: "👏", color: "#be123c", reqStars: 17,
+        theme: "happy", youtubeId: "l4WNrvVjiTw", bpm: 118, instrument: "piano",
+        funFact: "Clapping hands to music stimulates joy, rhythm coordination, and motor skills!",
+        lyrics: [
+          "If you're happy and you know it, clap your hands! 👏👏",
+          "If you're happy and you know it, clap your hands! 👏👏",
+          "If you're happy and you know it, and you really want to show it",
+          "If you're happy and you know it, clap your hands! 👏👏"
+        ],
+        notes: [
+          { line: 0, keys: ["C4", "C4", "F4", "F4", "F4", "F4", "E4", "F4", "G4"], durations: [0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.8] },
+          { line: 1, keys: ["C4", "C4", "G4", "G4", "G4", "G4", "F4", "G4", "A4"], durations: [0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.8] },
+          { line: 2, keys: ["F4", "A4", "A4", "A4", "B4", "C5", "A4", "G4", "F4", "E4", "F4", "G4"], durations: [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.6] },
+          { line: 3, keys: ["E4", "D4", "C4", "D4", "E4", "F4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.9] }
+        ]
+      }
+    ];
+
+    function getRhymesData() {
+      try {
+        const raw = localStorage.getItem(SONGS_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) { }
+      return DEFAULT_RHYMES_DATA;
+    }
+
+    let RHYMES_DATA = getRhymesData();
+
+    function getMaxStars() {
+      return (RHYMES_DATA.length || 10) * 4;
+    }
+
+    function isSongComplete(songId) {
+      const acts = (progress.activities || {})[songId] || {};
+      return acts.video && acts.karaoke && acts.piano && acts.rhythm;
+    }
+
+    function getSongActsDone(songId) {
+      const acts = (progress.activities || {})[songId] || {};
+      return Object.values(acts).filter(Boolean).length;
+    }
+
+    function isSongUnlocked(songData, sortedSongs) {
+      const idx = sortedSongs.findIndex(s => s.id === songData.id);
+      if (idx === 0) return true;
+      const prev = sortedSongs[idx - 1];
+      return isSongComplete(prev.id);
+    }
+
+    /* State variables */
+    let progress = { stars: {}, totalStars: 0, attempts: {}, activities: {} };
+    let currentModuleData = null;
+    let currentStreak = 0;
+    let currentMode = 'video';
+    let currentInstrument = 'glockenspiel';
+    let currentTempo = 1.0;
+    let flatMelodyNotes = [];
+    let audioCtx = null;
+    let karaokeTimer = null;
+    let isKaraokePlaying = false;
+    let karaokeStep = 0;
+    let pianoGuideIdx = 0;
+    let rhythmTapCount = 0;
+    let soundFXEnabled = true;
+
+    const NOTE_FREQS = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+      G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25,
+      D5: 587.33, E5: 659.25
+    };
+
+    /* Mascot Encouragement Quotes */
+    const MASCOT_QUOTES = [
+      "Tap any song card to start singing!",
+      "Music makes you smart and happy! 🎵",
+      "Follow the rainbow piano to play your favorite tune!",
+      "Drum the beat to earn golden stars! ⭐",
+      "You're a musical superstar! Keep singing! 🌟",
+      "Listen closely and sing the melody along with me!"
+    ];
+
+    /* Web Audio Context */
+    function getACtx() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    /* Sound FX Player for Kid UI */
+    function playUIBlip(freq = 520, type = 'sine') {
+      if (!soundFXEnabled) return;
+      try {
+        const ctx = getACtx();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, now + 0.08);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.09);
+      } catch (e) { }
+    }
+
+    function toggleSoundFX() {
+      soundFXEnabled = !soundFXEnabled;
+      const btn = document.getElementById('sfxToggleBtn');
+      if (btn) btn.textContent = soundFXEnabled ? '🔊' : '🔇';
+      if (soundFXEnabled) playUIBlip(600);
+    }
+
+    /* Musical Note Synthesizer */
+    function playMusicalNote(noteName, duration = 0.5, instrument = currentInstrument) {
+      try {
+        const ctx = getACtx();
+        const freq = NOTE_FREQS[noteName] || 440;
+        const now = ctx.currentTime;
+        const dur = Math.max(0.15, duration);
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+
+        if (instrument === 'glockenspiel') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          const s = ctx.createOscillator(), sg = ctx.createGain();
+          s.type = 'triangle'; s.frequency.setValueAtTime(freq * 2, now);
+          s.connect(sg); sg.connect(ctx.destination);
+          sg.gain.setValueAtTime(0.1, now); sg.gain.exponentialRampToValueAtTime(0.001, now + dur * 0.8);
+          s.start(now); s.stop(now + dur * 0.8);
+          gain.gain.setValueAtTime(0.3, now); gain.gain.exponentialRampToValueAtTime(0.001, now + dur * 1.2);
+        } else if (instrument === 'musicbox') {
+          osc.type = 'sine'; osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.35, now); gain.gain.exponentialRampToValueAtTime(0.001, now + dur * 0.9);
+        } else if (instrument === 'piano') {
+          osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now);
+          const o2 = ctx.createOscillator(), g2 = ctx.createGain();
+          o2.type = 'sine'; o2.frequency.setValueAtTime(freq * 0.5, now);
+          o2.connect(g2); g2.connect(ctx.destination);
+          g2.gain.setValueAtTime(0.14, now); g2.gain.exponentialRampToValueAtTime(0.001, now + dur);
+          o2.start(now); o2.stop(now + dur);
+          gain.gain.setValueAtTime(0.36, now); gain.gain.exponentialRampToValueAtTime(0.001, now + dur * 1.1);
+        } else {
+          osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.42, now); gain.gain.exponentialRampToValueAtTime(0.001, now + dur * 0.6);
+        }
+        osc.start(now); osc.stop(now + dur * 1.3);
+      } catch (e) { }
+    }
+
+    function playDrumBeat() {
+      try {
+        const ctx = getACtx(), now = ctx.currentTime;
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.frequency.setValueAtTime(180, now); o.frequency.exponentialRampToValueAtTime(45, now + 0.18);
+        g.gain.setValueAtTime(0.65, now); g.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        o.start(now); o.stop(now + 0.24);
+
+        const c = ctx.createOscillator(), cg = ctx.createGain();
+        c.type = 'square'; c.frequency.setValueAtTime(950, now);
+        c.connect(cg); cg.connect(ctx.destination);
+        cg.gain.setValueAtTime(0.2, now); cg.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        c.start(now); c.stop(now + 0.05);
+
+        if (navigator.vibrate) navigator.vibrate(30);
+      } catch (e) { }
+    }
+
+    function playCelebration() {
+      try {
+        const ctx = getACtx(), now = ctx.currentTime;
+        [261.63, 329.63, 392, 523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+          const o = ctx.createOscillator(), g = ctx.createGain();
+          o.connect(g); g.connect(ctx.destination);
+          o.type = 'triangle';
+          const t = now + i * 0.08;
+          o.frequency.setValueAtTime(f, t);
+          g.gain.setValueAtTime(0.24, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.38);
+          o.start(t); o.stop(t + 0.38);
+        });
+      } catch (e) { }
+    }
+
+    function playCheer() {
+      playCelebration();
+      spawnConfetti();
+    }
+
+    function stopAllMusic() {
+      clearTimeout(karaokeTimer); karaokeTimer = null;
+      isKaraokePlaying = false;
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    /* Text to Speech for Young Children */
+    function speakCurrentLyrics() {
+      if (!currentModuleData || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const text = (currentModuleData.lyrics || []).join('. ');
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.88;
+      utterance.pitch = 1.25; // cheerful high tone for kids
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* ============================================================
+       CONTENT-BASED DYNAMIC THEME ENGINE
+       ============================================================ */
+    function applySongTheme(song) {
+      if (!song) {
+        document.body.setAttribute('data-song-theme', 'default');
+        updateParticleSymbols(['♪', '♫', '♬', '🎵', '🎶', '⭐', '✨']);
+        return;
+      }
+
+      // Check predefined theme or derive from emoji/color
+      let themeName = song.theme || 'default';
+      if (!['star', 'spider', 'egg', 'sheep', 'hill', 'farm', 'lamb', 'meadow', 'boat', 'happy'].includes(themeName)) {
+        // If custom theme, set custom CSS variables on root
+        document.documentElement.style.setProperty('--theme-primary', song.color || '#800032');
+        document.documentElement.style.setProperty('--theme-primary-light', song.color ? song.color + 'cc' : '#b5004a');
+        document.documentElement.style.setProperty('--theme-card-border', song.color ? song.color + '44' : 'rgba(128,0,50,0.14)');
+      }
+
+      document.body.setAttribute('data-song-theme', themeName);
+
+      // Content-specific particle emojis
+      const symbolMap = {
+        star: ['⭐', '✨', '🌟', '💫', '🪐', '🌙'],
+        spider: ['💧', '🌧️', '🌱', '🕷️', '🍃', '🌈'],
+        egg: ['🥚', '🏰', '🧱', '✨', '☀️', '👑'],
+        sheep: ['🐑', '☁️', '🧶', '🌾', '✨', '🎵'],
+        hill: ['🪣', '🏔️', '🌸', '🍓', '✨', '🎵'],
+        farm: ['🐄', '🚜', '🌽', '🌾', '✨', '🐥'],
+        lamb: ['🐏', '🌸', '🎀', '💖', '✨', '🌷'],
+        meadow: ['🌿', '🍀', '🦋', '🐑', '✨', '🌼'],
+        boat: ['🚣', '🌊', '🫧', '🐠', '⛵', '✨'],
+        happy: ['👏', '🎉', '🎊', '🎈', '⭐', '🌈'],
+        default: ['♪', '♫', '♬', '🎵', '🎶', '⭐', '✨']
+      };
+
+      updateParticleSymbols(symbolMap[themeName] || [song.emoji, '🎵', '⭐', '✨']);
+    }
+
+    function setManualTheme(name) {
+      document.body.setAttribute('data-song-theme', name);
+      playUIBlip(650);
+    }
+
+    /* ============================================================
+       CANVAS PARTICLE SYSTEM
+       ============================================================ */
+    let activeParticleSymbols = ['♪', '♫', '♬', '🎵', '🎶', '⭐', '✨'];
+    function updateParticleSymbols(symbols) {
+      activeParticleSymbols = symbols || ['♪', '♫', '♬', '🎵', '🎶', '⭐', '✨'];
+    }
+
+    function initFloatingParticles() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [], W, H;
+
+      const resize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; };
+      window.addEventListener('resize', resize);
+      resize();
+
+      const spawn = () => particles.push({
+        x: Math.random() * W,
+        y: H + 30,
+        sym: activeParticleSymbols[Math.floor(Math.random() * activeParticleSymbols.length)],
+        size: 16 + Math.random() * 16,
+        speed: 0.5 + Math.random() * 0.9,
+        drift: (Math.random() - 0.5) * 0.6,
+        alpha: 0.25 + Math.random() * 0.35,
+        rotation: Math.random() * Math.PI,
+        rotSpeed: (Math.random() - 0.5) * 0.02
+      });
+
+      let frame = 0;
+      function tick() {
+        ctx.clearRect(0, 0, W, H);
+        if (++frame % 35 === 0) spawn();
+
+        particles = particles.filter(p => {
+          p.y -= p.speed;
+          p.x += p.drift;
+          p.rotation += p.rotSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.globalAlpha = p.y > H * 0.9 ? 0 : p.alpha;
+          ctx.font = `${p.size}px 'Fredoka', sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.sym, 0, 0);
+          ctx.restore();
+          return p.y > -40;
+        });
+        requestAnimationFrame(tick);
+      }
+      tick();
+    }
+
+    /* Confetti Cannon for Kids */
+    function spawnConfetti() {
+      const colors = ['#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4', '#10b981', '#ef4444', '#fbbf24'];
+      for (let i = 0; i < 70; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        const col = colors[Math.floor(Math.random() * colors.length)];
+        const size = 8 + Math.random() * 12;
+        el.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: -20px;
+      background: ${col};
+      width: ${size}px;
+      height: ${size}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '4px'};
+      animation-duration: ${1.5 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.3}s;
+    `;
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+    }
+
+    /* ============================================================
+       PROGRESS & STORAGE
+       ============================================================ */
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(PROGRESS_KEY);
+        if (saved) {
+          const data = JSON.parse(saved);
+          progress = {
+            stars: data.stars || {},
+            attempts: data.attempts || {},
+            totalStars: data.totalStars || 0,
+            activities: data.activities || {}
+          };
+          RHYMES_DATA.forEach(m => {
+            if (!progress.activities[m.id]) {
+              progress.activities[m.id] = { video: false, karaoke: false, piano: false, rhythm: false };
+              const legacyStars = progress.stars[m.id] || 0;
+              if (legacyStars >= 3) {
+                progress.activities[m.id] = { video: true, karaoke: true, piano: true, rhythm: true };
+              }
+            }
+          });
+          progress.totalStars = Object.values(progress.stars).reduce((a, b) => a + b, 0);
+        }
+      } catch (e) { }
+    }
+
+    function saveProgress(moduleId, mode) {
+      progress.attempts = progress.attempts || {};
+      progress.attempts[moduleId] = (progress.attempts[moduleId] || 0) + 1;
+      progress.activities = progress.activities || {};
+      progress.activities[moduleId] = progress.activities[moduleId] || { video: false, karaoke: false, piano: false, rhythm: false };
+
+      if (mode && !progress.activities[moduleId][mode]) {
+        progress.activities[moduleId][mode] = true;
+      }
+      const actsDone = Object.values(progress.activities[moduleId]).filter(Boolean).length;
+      progress.stars[moduleId] = actsDone;
+      progress.totalStars = Object.values(progress.stars).reduce((a, b) => a + b, 0);
+
+      try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch (e) { }
+      updateStarsDisplay();
+      updateStatsRibbon();
+      return progress;
+    }
+
+    function resetProgress() {
+      if (!confirm('🌟 Reset all your musical stars and progress? You can earn them all again!')) return;
+      stopAllMusic();
+      progress = { stars: {}, totalStars: 0, attempts: {}, activities: {} };
+      try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch (e) { }
+      currentStreak = 0;
+      updateStarsDisplay();
+      updateStreakDisplay();
+      updateStatsRibbon();
+      showDashboard();
+    }
+
+    function updateStarsDisplay() {
+      const el = document.getElementById('totalStars');
+      const badge = document.getElementById('starsBadge');
+      if (el) el.textContent = progress.totalStars;
+      badge?.classList.remove('bump');
+      requestAnimationFrame(() => badge?.classList.add('bump'));
+
+      const maxStars = getMaxStars();
+      const pct = Math.min((progress.totalStars / Math.max(1, maxStars)) * 100, 100);
+      const bar = document.getElementById('progressBarFill');
+      if (bar) bar.style.width = pct + '%';
+    }
+
+    function updateStatsRibbon() {
+      const total = RHYMES_DATA.length;
+      const completed = RHYMES_DATA.filter(m => isSongComplete(m.id)).length;
+      const maxStars = getMaxStars();
+      const pct = Math.round((progress.totalStars / Math.max(1, maxStars)) * 100);
+      const attempts = Object.values(progress.attempts || {}).reduce((a, b) => a + b, 0);
+
+      const cEl = document.getElementById('statCompleted');
+      const sEl = document.getElementById('statStarsCount');
+      const pcEl = document.getElementById('statPct');
+      const aEl = document.getElementById('statAttempts');
+
+      if (cEl) cEl.textContent = `${completed}/${total}`;
+      if (sEl) sEl.textContent = `${progress.totalStars}`;
+      if (pcEl) pcEl.textContent = `${pct}%`;
+      if (aEl) aEl.textContent = attempts;
+    }
+
+    function updateStreakDisplay() {
+      const badge = document.getElementById('streakBadge');
+      const count = document.getElementById('streakCount');
+      if (!badge || !count) return;
+      badge.style.display = currentStreak >= 2 ? 'inline-flex' : 'none';
+      count.textContent = currentStreak;
+    }
+
+    function showView(name) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(name)?.classList.add('active');
+    }
+
+    /* Multi-tab Storage Sync */
+    window.addEventListener('storage', (e) => {
+      if (e.key === SONGS_STORAGE_KEY) {
+        RHYMES_DATA = getRhymesData();
+        showSyncBanner();
+        if (document.getElementById('dashboardView')?.classList.contains('active')) {
+          renderDashboard();
+          updateStatsRibbon();
+          updateStarsDisplay();
+        }
+      }
+    });
+
+    function showSyncBanner() {
+      let banner = document.getElementById('syncBanner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'syncBanner';
+        banner.style.cssText = 'position:fixed;top:85px;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:12px 28px;border-radius:50px;font-weight:800;font-size:1rem;box-shadow:0 6px 25px rgba(16,185,129,0.4);pointer-events:none;transition:opacity 0.4s;';
+        document.body.appendChild(banner);
+      }
+      banner.textContent = '🔄 Songs updated by Teacher Admin!';
+      banner.style.opacity = '1';
+      clearTimeout(banner._t);
+      banner._t = setTimeout(() => { banner.style.opacity = '0'; }, 3000);
+    }
+
+    /* ============================================================
+       DASHBOARD VIEW RENDERER
+       ============================================================ */
+    function showDashboard() {
+      stopAllMusic();
+      applySongTheme(null); // Reset to joyful default theme
+      RHYMES_DATA = getRhymesData();
+      loadProgress();
+      updateStarsDisplay();
+      updateStatsRibbon();
+      renderDashboard();
+      showView('dashboardView');
+
+      // Random encouraging mascot message
+      const msgEl = document.getElementById('mascotMessage');
+      if (msgEl) {
+        msgEl.textContent = `"${MASCOT_QUOTES[Math.floor(Math.random() * MASCOT_QUOTES.length)]}"`;
+      }
+    }
+
+    function playRandomSong() {
+      playUIBlip(700);
+      const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
+      const unlocked = sorted.filter(m => isSongUnlocked(m, sorted));
+      if (unlocked.length > 0) {
+        const pick = unlocked[Math.floor(Math.random() * unlocked.length)];
+        openMusicModule(pick.id);
+      }
+    }
+
+    function renderDashboard() {
+      const grid = document.getElementById('moduleGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
+
+      sorted.forEach(m => {
+        const isUnlocked = isSongUnlocked(m, sorted);
+        const actsDone = getSongActsDone(m.id);
+        const complete = isSongComplete(m.id);
+        const pct = (actsDone / 4) * 100;
+        const circ = 125;
+        const offset = circ - (pct / 100) * circ;
+        const acts = (progress.activities || {})[m.id] || {};
+
+        const card = document.createElement('div');
+        card.className = `module-card ${isUnlocked ? '' : 'locked'}`;
+        card.style.setProperty('--card-accent', m.color || 'var(--theme-primary)');
+        card.style.setProperty('--card-border-color', isUnlocked ? (complete ? '#10b981' : (m.color ? m.color + '55' : 'var(--theme-card-border)')) : 'rgba(0,0,0,0.1)');
+
+        const prevIdx = sorted.findIndex(s => s.id === m.id) - 1;
+        const prevSong = prevIdx >= 0 ? sorted[prevIdx] : null;
+
+        const lockReason = !isUnlocked && prevSong
+          ? `Finish 4 activities in "${prevSong.title}" to unlock!`
+          : '';
+
+        card.innerHTML = `
+      <div class="card-top-header">
+        <div class="card-emoji-bubble">${m.emoji || '🎵'}</div>
+        <div class="ring-wrap">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle class="ring-bg" cx="26" cy="26" r="20"/>
+            <circle class="ring-fill" cx="26" cy="26" r="20" style="stroke:${complete ? '#10b981' : (m.color || 'var(--theme-primary)')};stroke-dashoffset:${offset}"/>
+          </svg>
+          <div class="ring-label">${actsDone}/4</div>
+        </div>
+      </div>
+
+      <div class="card-badge-row">
+        <span class="card-tag">Song #${m.id}</span>
+        <span class="card-tag" style="background:${m.color ? m.color + '18' : 'rgba(0,0,0,0.06)'};color:${m.color || 'inherit'};">🎵 ${m.instrument || 'glockenspiel'}</span>
+      </div>
+
+      <div class="card-title">${m.title}</div>
+      <div class="card-topic">${m.topic || ''}</div>
+
+      ${isUnlocked ? `
+        <div class="activity-badges">
+          <span class="act-badge ${acts.video ? 'done' : 'pending'}">${acts.video ? '✅' : '⬜'} 🎬 Video</span>
+          <span class="act-badge ${acts.karaoke ? 'done' : 'pending'}">${acts.karaoke ? '✅' : '⬜'} 🎵 Melody</span>
+          <span class="act-badge ${acts.piano ? 'done' : 'pending'}">${acts.piano ? '✅' : '⬜'} 🎹 Piano</span>
+          <span class="act-badge ${acts.rhythm ? 'done' : 'pending'}">${acts.rhythm ? '✅' : '⬜'} 🥁 Drum</span>
+        </div>
+      ` : ''}
+
+      <div class="card-footer-box">
+        <div class="card-stars-visual">
+          ${'⭐'.repeat(actsDone)}${'☆'.repeat(4 - actsDone)}
+        </div>
+        ${complete
+            ? '<span class="card-status-pill" style="background:#10b981;color:#fff;">🎉 100% Star!</span>'
+            : `<span class="card-status-pill" style="background:rgba(0,0,0,0.05);color:var(--text-muted);">${actsDone}/4 done</span>`}
+      </div>
+
+      ${!isUnlocked ? `
+        <div class="locked-card-msg">
+          <span>🔒</span>
+          <span>${lockReason || 'Complete previous song first!'}</span>
+        </div>
+      ` : ''}
+    `;
+
+        if (isUnlocked) {
+          card.onclick = () => {
+            playUIBlip(600);
+            openMusicModule(m.id);
+          };
+          // Ambient hover preview
+          card.onmouseenter = () => {
+            if (m.theme) document.body.setAttribute('data-song-theme', m.theme);
+          };
+          card.onmouseleave = () => {
+            document.body.setAttribute('data-song-theme', 'default');
+          };
+        }
+
+        grid.appendChild(card);
+      });
+    }
+
+    /* ============================================================
+       STUDIO VIEW RENDERER (FULL-SCREEN EXPERIENCE)
+       ============================================================ */
+    function openMusicModule(id) {
+      stopAllMusic();
+      showView('moduleView');
+
+      const m = RHYMES_DATA.find(x => x.id === id);
+      if (!m) return;
+
+      currentModuleData = m;
+      currentInstrument = m.instrument || 'glockenspiel';
+      currentMode = 'video';
+      rhythmTapCount = 0;
+      pianoGuideIdx = 0;
+
+      // Apply the dynamic song-specific theme immediately!
+      applySongTheme(m);
+
+      document.getElementById('moduleEmoji').textContent = m.emoji || '🎵';
+      document.getElementById('moduleTitle').textContent = `Song ${m.id}: ${m.title}`;
+      document.getElementById('moduleSubtitle').textContent = `🎵 ${m.topic || 'Sing-Along & Music'} · Instrument: ${m.instrument || 'glockenspiel'}`;
+
+      // Parse flattened melody notes
+      flatMelodyNotes = [];
+      (m.notes || []).forEach(line => {
+        (line.keys || []).forEach((k, i) => {
+          flatMelodyNotes.push({
+            key: k,
+            dur: (line.durations && line.durations[i]) || 0.5,
+            lineIdx: line.line !== undefined ? line.line : 0,
+            noteInLine: i,
+            countInLine: line.keys.length
+          });
+        });
+      });
+
+      renderModuleStudio();
+    }
+
+    function renderModuleStudio() {
+      const container = document.getElementById('activityContainer');
+      if (!container || !currentModuleData) return;
+      const acts = (progress.activities || {})[currentModuleData.id] || {};
+      const totalDone = [acts.video, acts.karaoke, acts.piano, acts.rhythm].filter(Boolean).length;
+
+      const tabCheck = (done) => done ? ' <span style="color:#10b981;">✅</span>' : '';
+
+      container.innerHTML = `
+    <!-- Mode Switcher Tabs -->
+    <div class="music-mode-tabs">
+      <button class="mode-tab ${currentMode === 'video' ? 'active' : ''}" onclick="switchMode('video')">
+        🎬 Video${tabCheck(acts.video)}
+      </button>
+      <button class="mode-tab ${currentMode === 'karaoke' ? 'active' : ''}" onclick="switchMode('karaoke')">
+        🎵 Melody${tabCheck(acts.karaoke)}
+      </button>
+      <button class="mode-tab ${currentMode === 'piano' ? 'active' : ''}" onclick="switchMode('piano')">
+        🎹 Piano${tabCheck(acts.piano)}
+      </button>
+      <button class="mode-tab ${currentMode === 'rhythm' ? 'active' : ''}" onclick="switchMode('rhythm')">
+        🥁 Rhythm${tabCheck(acts.rhythm)}
+      </button>
+    </div>
+
+    <!-- Active Stage -->
+    <div id="studioStage"></div>
+
+    <!-- Fun Fact -->
+    ${currentModuleData.funFact ? `
+      <div class="song-fun-fact">
+        💡 <strong>Did You Know?</strong> ${currentModuleData.funFact}
+      </div>
+    ` : ''}
+  `;
+
+      renderActiveStage();
+    }
+
+    function switchMode(mode) {
+      playUIBlip(650);
+      stopAllMusic();
+      currentMode = mode;
+      document.querySelectorAll('.mode-tab').forEach((b, i) => {
+        const modes = ['video', 'karaoke', 'piano', 'rhythm'];
+        b.classList.toggle('active', modes[i] === mode);
+      });
+      renderActiveStage();
+    }
+
+    function renderActiveStage() {
+      const s = document.getElementById('studioStage');
+      if (!s) return;
+      if (currentMode === 'video') renderVideoStage(s);
+      else if (currentMode === 'karaoke') renderKaraokeStage(s);
+      else if (currentMode === 'piano') renderPianoStage(s);
+      else if (currentMode === 'rhythm') renderRhythmStage(s);
+    }
+
+    /* ==================== 1. VIDEO STAGE ==================== */
+    function renderVideoStage(s) {
+      const d = currentModuleData;
+      const acts = (progress.activities || {})[d.id] || {};
+      const lyricsList = (d.lyrics || []).map(l => `<div class="video-lyric-line">${l}</div>`).join('');
+
+      s.innerHTML = `
+    <div class="video-stage-wrap">
+      <div class="video-stage-grid">
+        <div class="video-frame-container">
+          <iframe src="https://www.youtube-nocookie.com/embed/${d.youtubeId}?rel=0"
+            title="${d.title} Sing-Along Video"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="video-side-card">
+          <div>
+            <h4 style="font-size:1.35rem;font-weight:700;color:var(--theme-primary-dark);margin-bottom:8px;">
+              📖 Sing-Along Lyrics
+            </h4>
+            <div class="video-lyrics-preview">
+              ${lyricsList}
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button class="btn btn-fun btn-lg" onclick="claimMusicStars('video')">
+              🌟 I Finished Singing Along! ✅
+            </button>
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()">🗣️ Read Lyrics Aloud</button>
+              <a href="https://www.youtube.com/watch?v=${d.youtubeId}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">▶ Open YouTube ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    /* ==================== 2. KARAOKE MELODY STAGE ==================== */
+    function renderKaraokeStage(s) {
+      const d = currentModuleData;
+      s.innerHTML = `
+    <div class="karaoke-stage">
+      <div class="karaoke-display" id="karaokeDisplay">
+        <div class="bouncing-ball-indicator" id="bouncingNote">🎵</div>
+        <div class="current-sing-line" id="currentSingLine">${wordsToSpans(d.lyrics[0] || '')}</div>
+        <div class="upcoming-sing-line" id="upcomingSingLine">${d.lyrics[1] ? `Next: "${d.lyrics[1]}"` : ''}</div>
+      </div>
+
+      <div class="karaoke-controls-bar">
+        <button class="btn btn-primary btn-lg" id="karaokePlayBtn" onclick="toggleKaraoke()">▶ Play Melody &amp; Sing!</button>
+        <button class="btn btn-secondary" onclick="stopKaraoke()">⏹ Stop</button>
+        <button class="btn btn-secondary" onclick="restartKaraoke()">🔄 Replay</button>
+        <button class="btn btn-fun" onclick="claimMusicStars('karaoke')">🌟 Done Singing! ✅</button>
+      </div>
+
+      <div class="music-toggles-bar">
+        <div class="music-select-group">
+          <label>🔔 Instrument:</label>
+          <select onchange="changeInstrument(this.value)">
+            <option value="glockenspiel" ${currentInstrument === 'glockenspiel' ? 'selected' : ''}>Glockenspiel 🔔</option>
+            <option value="musicbox"     ${currentInstrument === 'musicbox' ? 'selected' : ''}>Music Box 🎶</option>
+            <option value="piano"        ${currentInstrument === 'piano' ? 'selected' : ''}>Grand Piano 🎹</option>
+            <option value="marimba"      ${currentInstrument === 'marimba' ? 'selected' : ''}>Marimba 🪵</option>
+          </select>
+        </div>
+        <div class="music-select-group">
+          <label>⏱️ Speed:</label>
+          <select onchange="changeTempo(this.value)">
+            <option value="0.8" ${currentTempo === 0.8 ? 'selected' : ''}>Gentle 0.8x 🐢</option>
+            <option value="1.0" ${currentTempo === 1.0 ? 'selected' : ''}>Normal 1.0x 🎵</option>
+            <option value="1.2" ${currentTempo === 1.2 ? 'selected' : ''}>Upbeat 1.2x 🐰</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    function wordsToSpans(line) {
+      return (line || '').split(/\s+/).map((w, i) => `<span class="current-sing-word" id="sw_${i}">${w}</span>`).join(' ');
+    }
+
+    function changeInstrument(v) {
+      currentInstrument = v;
+      playMusicalNote('C4', 0.4, v);
+    }
+
+    function changeTempo(v) {
+      currentTempo = parseFloat(v);
+    }
+
+    function toggleKaraoke() {
+      if (isKaraokePlaying) stopKaraoke();
+      else startKaraoke();
+    }
+
+    function startKaraoke() {
+      stopAllMusic();
+      getACtx();
+      isKaraokePlaying = true;
+      const btn = document.getElementById('karaokePlayBtn');
+      if (btn) btn.innerHTML = '⏸ Pause';
+      karaokeStep = 0;
+      playNextNote();
+    }
+
+    function stopKaraoke() {
+      stopAllMusic();
+      const btn = document.getElementById('karaokePlayBtn');
+      if (btn) btn.innerHTML = '▶ Play Melody &amp; Sing!';
+      document.querySelectorAll('.current-sing-word').forEach(el => el.classList.remove('singing'));
+    }
+
+    function restartKaraoke() {
+      stopKaraoke();
+      startKaraoke();
+    }
+
+    function playNextNote() {
+      if (!isKaraokePlaying) return;
+      const d = currentModuleData;
+
+      if (karaokeStep >= flatMelodyNotes.length) {
+        isKaraokePlaying = false;
+        const btn = document.getElementById('karaokePlayBtn');
+        if (btn) btn.innerHTML = '▶ Sing Again!';
+        const disp = document.getElementById('karaokeDisplay');
+        if (disp) disp.innerHTML = `
+      <div class="bouncing-ball-indicator">🌟</div>
+      <div class="current-sing-line">🎉 Wonderful Singing! Mastered the Melody!</div>
+      <div class="upcoming-sing-line">Tap below to claim your star! ⭐</div>
+    `;
+        claimMusicStars('karaoke');
+        return;
+      }
+
+      const noteObj = flatMelodyNotes[karaokeStep];
+      const lineEl = document.getElementById('currentSingLine');
+      const upEl = document.getElementById('upcomingSingLine');
+
+      if (lineEl && d.lyrics[noteObj.lineIdx]) {
+        lineEl.innerHTML = wordsToSpans(d.lyrics[noteObj.lineIdx]);
+        const nxt = d.lyrics[noteObj.lineIdx + 1];
+        if (upEl) upEl.textContent = nxt ? `Next: "${nxt}"` : '🎶 Finale!';
+      }
+
+      const wordsInLine = (d.lyrics[noteObj.lineIdx] || '').split(/\s+/);
+      const wordIdx = Math.min(Math.floor((noteObj.noteInLine / Math.max(1, noteObj.countInLine)) * wordsInLine.length), wordsInLine.length - 1);
+      document.querySelectorAll('.current-sing-word').forEach(el => el.classList.remove('singing'));
+      document.getElementById(`sw_${wordIdx}`)?.classList.add('singing');
+
+      const ball = document.getElementById('bouncingNote');
+      if (ball) {
+        ball.textContent = ['🎵', '🎶', '⭐', '✨', '🔔', '🎼', '💖'][karaokeStep % 7];
+        ball.style.transform = 'translateY(-20px) scale(1.25) rotate(12deg)';
+        setTimeout(() => { if (ball) ball.style.transform = ''; }, 160);
+      }
+
+      playMusicalNote(noteObj.key, noteObj.dur / currentTempo, currentInstrument);
+      karaokeStep++;
+      karaokeTimer = setTimeout(playNextNote, (noteObj.dur / currentTempo) * 1000);
+    }
+
+    /* ==================== 3. RAINBOW PIANO STAGE ==================== */
+    function renderPianoStage(s) {
+      const keys = [
+        { note: 'C4', label: 'C', sol: 'Do', cls: 'key-c4' },
+        { note: 'D4', label: 'D', sol: 'Re', cls: 'key-d4' },
+        { note: 'E4', label: 'E', sol: 'Mi', cls: 'key-e4' },
+        { note: 'F4', label: 'F', sol: 'Fa', cls: 'key-f4' },
+        { note: 'G4', label: 'G', sol: 'Sol', cls: 'key-g4' },
+        { note: 'A4', label: 'A', sol: 'La', cls: 'key-a4' },
+        { note: 'B4', label: 'B', sol: 'Ti', cls: 'key-b4' },
+        { note: 'C5', label: 'C²', sol: 'Do', cls: 'key-c5' },
+        { note: 'D5', label: 'D²', sol: 'Re', cls: 'key-d5' },
+        { note: 'E5', label: 'E²', sol: 'Mi', cls: 'key-e5' }
+      ];
+
+      const target = flatMelodyNotes[pianoGuideIdx]?.key || 'C4';
+      const keysHTML = keys.map(k => `
+    <button class="piano-key ${k.cls} ${k.note === target ? 'highlight' : ''}" id="pk_${k.note}" onclick="handlePianoKey('${k.note}')">
+      <span class="piano-key-note">${k.label}</span>
+      <span class="piano-key-solfege">${k.sol}</span>
+    </button>
+  `).join('');
+
+      s.innerHTML = `
+    <div class="piano-stage">
+      <div class="piano-header-box">
+        <h3>🎹 Play Along with the Song!</h3>
+        <p>Follow the glowing rainbow key to play "${currentModuleData.title}" note by note!</p>
+        <div class="piano-hint-badge" id="pianoHint">
+          👉 Next Key: <strong>${target}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})
+        </div>
+      </div>
+
+      <div class="piano-scroll-outer">
+        <div class="piano-keys">${keysHTML}</div>
+      </div>
+
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px;">
+        <button class="btn btn-secondary btn-sm" onclick="resetPiano()">🔄 Restart Notes</button>
+        <button class="btn btn-fun btn-sm" onclick="claimMusicStars('piano')">🌟 Done Playing! ✅</button>
+      </div>
+      <div id="pianoFeedback"></div>
+    </div>
+  `;
+    }
+
+    function handlePianoKey(noteName) {
+      getACtx();
+      playMusicalNote(noteName, 0.5, 'piano');
+      const el = document.getElementById(`pk_${noteName}`);
+      if (el) {
+        el.classList.add('active');
+        setTimeout(() => el.classList.remove('active'), 200);
+      }
+
+      const fb = document.getElementById('pianoFeedback');
+      if (flatMelodyNotes[pianoGuideIdx]?.key === noteName) {
+        pianoGuideIdx++;
+        if (pianoGuideIdx >= flatMelodyNotes.length) {
+          if (fb) fb.innerHTML = `<div class="feedback-toast success">🎉 Master Pianist! You played the full melody! ✅</div>`;
+          claimMusicStars('piano');
+          pianoGuideIdx = 0;
+        } else {
+          const next = flatMelodyNotes[pianoGuideIdx].key;
+          const hint = document.getElementById('pianoHint');
+          if (hint) hint.innerHTML = `👉 Next Key: <strong>${next}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})`;
+          document.querySelectorAll('.piano-key').forEach(k => k.classList.remove('highlight'));
+          document.getElementById(`pk_${next}`)?.classList.add('highlight');
+          if (fb) fb.innerHTML = `<div class="feedback-toast info">🎵 <strong>${noteName}</strong> — Beautiful sound!</div>`;
+        }
+      }
+    }
+
+    function resetPiano() {
+      pianoGuideIdx = 0;
+      renderPianoStage(document.getElementById('studioStage'));
+    }
+
+    /* ==================== 4. RHYTHM DRUM STAGE ==================== */
+    function renderRhythmStage(s) {
+      rhythmTapCount = 0;
+      s.innerHTML = `
+    <div class="rhythm-box">
+      <h3>🥁 Rhythm Beat Arena</h3>
+      <p>Tap the big drum in time with the song beat 5× to unlock your rhythm star!</p>
+
+      <button class="rhythm-pad-btn" id="rhythmBtn" onclick="handleRhythmTap()">🥁</button>
+
+      <div class="rhythm-rings" id="rhythmRings">
+        ${[0, 1, 2, 3, 4].map(i => `<div class="rhythm-dot" id="rd_${i}"></div>`).join('')}
+      </div>
+
+      <div id="rhythmFeedback" style="margin-top:20px;"></div>
+    </div>
+  `;
+    }
+
+    function handleRhythmTap() {
+      getACtx();
+      playDrumBeat();
+      rhythmTapCount++;
+      const dot = document.getElementById(`rd_${rhythmTapCount - 1}`);
+      if (dot) dot.classList.add('filled');
+
+      const fb = document.getElementById('rhythmFeedback');
+      if (rhythmTapCount < 5) {
+        if (fb) fb.innerHTML = `<div class="feedback-toast info">🎶 Beat ${rhythmTapCount}/5 – Feel the rhythm!</div>`;
+      } else {
+        playCelebration();
+        spawnConfetti();
+        if (fb) fb.innerHTML = `<div class="feedback-toast success">🎉 Fantastic Drumming! Activity complete! ✅</div>`;
+        document.getElementById('rhythmBtn').disabled = true;
+        claimMusicStars('rhythm');
+      }
+    }
+
+    /* ============================================================
+       CLAIM STAR & CELEBRATION
+       ============================================================ */
+    function claimMusicStars(mode) {
+      stopAllMusic();
+      const acts = (progress.activities || {})[currentModuleData.id] || {};
+      const alreadyDone = acts[mode];
+
+      if (!alreadyDone) {
+        playCelebration();
+        spawnConfetti();
+        currentStreak++;
+        updateStreakDisplay();
+      }
+
+      const saved = saveProgress(currentModuleData.id, mode);
+      const actsDone = getSongActsDone(currentModuleData.id);
+      const complete = isSongComplete(currentModuleData.id);
+
+      setTimeout(() => {
+        const container = document.getElementById('activityContainer');
+        if (!container) return;
+
+        const starsHTML = [...Array(actsDone)].map((_, i) =>
+          `<span style="display:inline-block;animation:starPop 0.5s ${i * 0.15}s cubic-bezier(0.34,1.56,0.64,1) both;">⭐</span>`
+        ).join('');
+
+        const modeLabels = {
+          video: '🎬 Sing-Along Video',
+          karaoke: '🎵 Melody & Sing',
+          piano: '🎹 Piano Play-Along',
+          rhythm: '🥁 Rhythm Beat'
+        };
+
+        const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
+        const nextMod = sorted.find(m => m.id > currentModuleData.id);
+        const nextUnlocked = nextMod && complete;
+
+        container.innerHTML = `
+      <div class="completion-card">
+        <div style="font-size:4.5rem;margin-bottom:12px;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.2));">
+          ${currentModuleData.emoji || '🎵'}
+        </div>
+        <h2>${alreadyDone ? '🎯 Activity Completed!' : (complete ? '🏆 Song Mastered 100%!' : '🌟 Superstar Job!')}</h2>
+        <p>
+          ${alreadyDone
+            ? `You've already earned stars for <strong>${modeLabels[mode]}</strong>! Choose another activity to master this song!`
+            : (complete
+              ? `Hooray! You finished ALL 4 activities for <strong>"${currentModuleData.title}"</strong>! The next song is now unlocked!`
+              : `Awesome singing and playing! Complete all 4 activities to earn a trophy!`)}
+        </p>
+
+        <div style="font-size:2.8rem;margin:16px 0;letter-spacing:10px;">
+          ${starsHTML}
+        </div>
+
+        <div class="score-row">
+          <div class="score-box">
+            <div class="score-num">${actsDone}/4</div>
+            <div class="score-label">Activities Done</div>
+          </div>
+          <div class="score-box">
+            <div class="score-num">${saved.totalStars}/${getMaxStars()}</div>
+            <div class="score-label">Total Stars</div>
+          </div>
+          <div class="score-box">
+            <div class="score-num">🔥 ${currentStreak}</div>
+            <div class="score-label">Streak</div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <button class="btn btn-secondary btn-lg" onclick="openMusicModule(${currentModuleData.id})">🔄 Play Again</button>
+          ${nextMod && nextUnlocked
+            ? `<button class="btn btn-primary btn-lg" onclick="openMusicModule(${nextMod.id})">Next Song: ${nextMod.emoji} ${nextMod.title} →</button>`
+            : `<button class="btn btn-primary btn-lg" onclick="showDashboard()">🏠 More Songs</button>`}
+        </div>
+      </div>
+    `;
+      }, 600);
+    }
+
+    /* ============================================================
+       INITIALIZATION
+       ============================================================ */
+    window.addEventListener('DOMContentLoaded', () => {
+      RHYMES_DATA = getRhymesData();
+      initFloatingParticles();
+      loadProgress();
+      updateStarsDisplay();
+      updateStatsRibbon();
+      showDashboard();
+    });
+  </script>
+</body>
+
+</html>
