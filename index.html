@@ -291,50 +291,44 @@
     }
 
     /* ============================================================
-       TOP HEADER (KID-FRIENDLY & FULL WIDTH)
+       TOP HEADER (PREMIUM, KID-FRIENDLY & FULLY RESPONSIVE NAVBAR)
        ============================================================ */
     .site-header {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      padding: 12px clamp(16px, 2.5vw, 32px);
-      background: linear-gradient(135deg, var(--theme-primary-dark) 0%, var(--theme-primary) 55%, var(--theme-primary-light) 100%);
+      gap: 16px;
+      padding: 10px clamp(14px, 2.5vw, 28px);
+      background: linear-gradient(135deg, var(--theme-primary-dark) 0%, var(--theme-primary) 50%, var(--theme-primary-light) 100%);
       border-radius: var(--radius-xl);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 2px 2px rgba(255, 255, 255, 0.25);
-      position: relative;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(255, 255, 255, 0.3);
+      position: sticky;
+      top: 10px;
       margin-bottom: 22px;
-      z-index: 100;
-      backdrop-filter: blur(12px);
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(255, 255, 255, 0.28);
       transition: var(--transition-theme);
-      overflow: hidden;
     }
 
-    /* Animated shimmer effect across header */
+    /* Animated subtle shimmer effect across header */
     .site-header::after {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
-      width: 60%;
+      width: 50%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-      animation: headerShimmer 5s ease-in-out infinite;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      animation: headerShimmer 6s ease-in-out infinite;
       pointer-events: none;
     }
 
     @keyframes headerShimmer {
-
-      0%,
-      100% {
-        left: -100%;
-      }
-
-      50% {
-        left: 140%;
-      }
+      0%, 100% { left: -100%; }
+      50% { left: 140%; }
     }
 
     .brand-group {
@@ -343,50 +337,94 @@
       gap: 12px;
       cursor: pointer;
       user-select: none;
+      text-decoration: none;
+      transition: transform 0.2s var(--ease-bounce);
+      flex-shrink: 0;
+    }
+
+    .brand-group:hover {
+      transform: scale(1.02);
+    }
+
+    .mascot-avatar-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .mascot-avatar {
       font-size: 2.3rem;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
       animation: mascotBounce 2.5s ease-in-out infinite;
       display: inline-block;
+      transition: transform 0.25s var(--ease-bounce);
+    }
+
+    .mascot-badge-bubble {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: #facc15;
+      color: #713f12;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: var(--radius-round);
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      pointer-events: none;
+      white-space: nowrap;
+      animation: popFloat 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes popFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-3px); }
     }
 
     @keyframes mascotBounce {
-
-      0%,
-      100% {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-7px) rotate(6deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(6deg); }
     }
 
     .logo-text-box {
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
 
     .logo-title {
-      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-size: clamp(1.35rem, 2.5vw, 2.05rem);
       font-weight: 700;
       color: #ffffff;
       letter-spacing: -0.5px;
       text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      line-height: 1.1;
+    }
+
+    .logo-music-note {
+      font-size: 0.75em;
+      display: inline-block;
+      animation: noteSpin 4s ease-in-out infinite;
+    }
+
+    @keyframes noteSpin {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(18deg) scale(1.1); }
     }
 
     .logo-sub {
       font-family: 'Nunito', sans-serif;
-      font-size: clamp(0.72rem, 1.2vw, 0.88rem);
+      font-size: clamp(0.72rem, 1.1vw, 0.85rem);
       font-weight: 800;
-      color: rgba(255, 255, 255, 0.92);
+      color: rgba(255, 255, 255, 0.95);
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      margin-top: 2px;
     }
 
     .header-actions {
@@ -394,6 +432,53 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* Language Switcher Pill: High-contrast Segmented Control */
+    .lang-switch-wrap {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius-round);
+      padding: 3px;
+      gap: 3px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: var(--radius-round);
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s var(--ease-bounce);
+    }
+
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .lang-btn.active {
+      background: #ffffff;
+      color: var(--theme-primary-dark);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
+      transform: scale(1.03);
+    }
+
+    .lang-flag {
+      font-size: 1.15rem;
+      line-height: 1;
     }
 
     /* Child-Friendly Tactile Badges */
@@ -402,20 +487,22 @@
       align-items: center;
       gap: 8px;
       background: rgba(255, 255, 255, 0.22);
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.55);
       border-radius: var(--radius-round);
-      padding: 8px 18px;
+      padding: 8px 16px;
       color: #ffffff;
-      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-size: clamp(0.92rem, 1.4vw, 1.1rem);
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
       backdrop-filter: blur(8px);
       cursor: pointer;
-      transition: transform 0.2s var(--ease-bounce);
+      user-select: none;
+      transition: transform 0.2s var(--ease-bounce), background 0.2s;
     }
 
     .stars-badge:hover {
-      transform: scale(1.06);
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.32);
     }
 
     .stars-badge.bump {
@@ -429,11 +516,11 @@
       background: linear-gradient(135deg, #f59e0b, #ea580c);
       border: 2px solid #fef08a;
       border-radius: var(--radius-round);
-      padding: 8px 16px;
+      padding: 8px 14px;
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.45);
       animation: flamePulse 1.8s infinite alternate;
     }
 
@@ -442,7 +529,6 @@
         transform: scale(1);
         filter: drop-shadow(0 0 4px #f59e0b);
       }
-
       100% {
         transform: scale(1.05);
         filter: drop-shadow(0 0 12px #f97316);
@@ -464,7 +550,7 @@
       cursor: pointer;
       user-select: none;
       text-decoration: none;
-      transition: all 0.15s var(--ease-bounce);
+      transition: all 0.18s var(--ease-bounce);
       box-shadow: var(--shadow-button);
       position: relative;
     }
@@ -488,7 +574,7 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--theme-accent) 0%, #ea580c 100%);
       color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.45);
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
@@ -501,7 +587,7 @@
       background: #ffffff;
       color: var(--text-dark);
       border: 2px solid var(--theme-card-border);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       font-weight: 700;
     }
 
@@ -517,20 +603,21 @@
     .site-header .btn-secondary {
       background: rgba(255, 255, 255, 0.22);
       color: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      box-shadow: none;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
     }
 
     .site-header .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.36);
       color: #ffffff;
       border-color: #ffffff;
+      transform: translateY(-2px);
     }
 
     .btn-fun {
       background: linear-gradient(135deg, #10b981, #059669);
       color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.35);
     }
 
     .btn-fun:hover {
@@ -551,23 +638,29 @@
 
     /* Audio / Sound Toggle Button in Header */
     .icon-toggle-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.22);
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.55);
       color: #fff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s var(--ease-bounce);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .icon-toggle-btn:hover {
-      background: rgba(255, 255, 255, 0.35);
-      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.38);
+      transform: scale(1.12);
+    }
+
+    .icon-toggle-btn.muted {
+      background: rgba(239, 68, 68, 0.35);
+      border-color: rgba(254, 202, 202, 0.7);
     }
 
     /* Views container */
@@ -1018,15 +1111,24 @@
     .card-title {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.3;
+      color: #170724;
+      line-height: 1.25;
+    }
+
+    .card-alt-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: -6px;
+      font-style: italic;
     }
 
     .card-topic {
       font-family: 'Nunito', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #4a2845;
       line-height: 1.4;
     }
 
@@ -2242,8 +2344,8 @@
        Covers: 320px phone → 768px tablet → 1024px laptop → 1440px+ desktop
        ============================================================ */
 
-    /* ---- SMALL PHONES: up to 420px ---- */
-    @media (max-width: 420px) {
+    /* ---- MOBILE PHONES & PHABLETS: up to 540px ---- */
+    @media (max-width: 540px) {
       html {
         font-size: 14px;
       }
@@ -2252,19 +2354,27 @@
         padding: 8px 10px 70px;
       }
 
-      /* Tight header */
+      /* Tight responsive header */
       .site-header {
-        padding: 8px 12px;
+        padding: 8px 10px;
         gap: 8px;
         border-radius: var(--radius-lg);
+        top: 6px;
       }
 
       .mascot-avatar {
         font-size: 1.8rem;
       }
 
+      .mascot-badge-bubble {
+        font-size: 0.6rem;
+        padding: 1px 5px;
+        top: -4px;
+        right: -6px;
+      }
+
       .logo-title {
-        font-size: 1.2rem;
+        font-size: 1.22rem;
       }
 
       .logo-sub {
@@ -2272,22 +2382,43 @@
       }
 
       .header-actions {
-        gap: 6px;
+        gap: 5px;
+      }
+
+      .lang-switch-wrap {
+        padding: 2px;
+        gap: 2px;
+      }
+
+      .lang-btn {
+        padding: 4px 7px;
+        font-size: 0.76rem;
+      }
+
+      .lang-flag {
+        font-size: 0.95rem;
       }
 
       .header-actions .btn-sm {
-        padding: 7px 10px;
-        font-size: 0.8rem;
+        padding: 6px 9px;
+        font-size: 0.78rem;
       }
 
       .stars-badge {
-        padding: 6px 10px;
-        font-size: 0.82rem;
+        padding: 5px 9px;
+        font-size: 0.8rem;
+        gap: 4px;
       }
 
       .streak-badge {
-        padding: 5px 10px;
-        font-size: 0.82rem;
+        padding: 5px 8px;
+        font-size: 0.8rem;
+      }
+
+      .icon-toggle-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.05rem;
       }
 
       /* Hero */
@@ -2567,12 +2698,32 @@
     /* ---- STANDARD MOBILE: 421px – 640px ---- */
     @media (max-width: 640px) {
       .site-header {
-        padding: 10px 16px;
+        padding: 8px 14px;
+        gap: 8px;
         border-radius: var(--radius-lg);
+        top: 6px;
+      }
+
+      .logo-title {
+        font-size: 1.35rem;
       }
 
       .logo-sub {
         display: none;
+      }
+
+      .header-actions {
+        gap: 6px;
+      }
+
+      .lang-btn {
+        padding: 5px 10px;
+        font-size: 0.82rem;
+      }
+
+      .stars-badge {
+        padding: 6px 12px;
+        font-size: 0.88rem;
       }
 
       .stats-ribbon {
@@ -3117,33 +3268,54 @@
     <!-- ==================== HEADER ==================== -->
     <header class="site-header" role="banner">
       <div class="brand-group" onclick="showDashboard()" role="button" tabindex="0" aria-label="Go to song dashboard">
-        <span class="mascot-avatar" id="headerMascot" aria-hidden="true" onclick="handleMascotTap(event)"
-          onmousedown="startMascotHold(event)" onmouseup="cancelMascotHold()" onmouseleave="cancelMascotHold()"
-          ontouchstart="startMascotHold(event)" ontouchend="cancelMascotHold()" title="RhymeTime Mascot">🐥</span>
+        <div class="mascot-avatar-wrap">
+          <span class="mascot-avatar" id="headerMascot" aria-hidden="true" onclick="handleMascotTap(event)"
+            onmousedown="startMascotHold(event)" onmouseup="cancelMascotHold()" onmouseleave="cancelMascotHold()"
+            ontouchstart="startMascotHold(event)" ontouchend="cancelMascotHold()" title="RhymeTime Mascot">🐥</span>
+          <span class="mascot-badge-bubble" id="mascotBubbleBadge" data-i18n="mascotBubbleGreeting">Hi! 👋</span>
+        </div>
         <div class="logo-text-box">
-          <div class="logo-title">RhymeTime <span style="font-size:0.6em;" aria-hidden="true">🎵</span></div>
-          <div class="logo-sub">Sing &amp; Music Studio for Kids</div>
+          <div class="logo-title">
+            <span>RhymeTime</span>
+            <span class="logo-music-note" aria-hidden="true">🎵</span>
+          </div>
+          <div class="logo-sub" id="navLogoSub" data-i18n="logoSub">Sing &amp; Music Studio for Kids</div>
         </div>
       </div>
 
       <div class="header-actions">
+        <!-- Prominent Language Selector Toggle -->
+        <div class="lang-switch-wrap" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" id="langBtnEn" onclick="setLanguage('en')" aria-label="English">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="lang-label">English</span>
+          </button>
+          <button type="button" class="lang-btn" id="langBtnTl" onclick="setLanguage('tl')" aria-label="Tagalog">
+            <span class="lang-flag">🇵🇭</span>
+            <span class="lang-label">Tagalog</span>
+          </button>
+        </div>
+
         <!-- Mute/Sound FX Toggle -->
         <button class="icon-toggle-btn" id="sfxToggleBtn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects"
           onclick="toggleSoundFX()">🔊</button>
 
         <!-- Streak Badge -->
         <div class="streak-badge" id="streakBadge" style="display:none;" role="status" aria-live="polite">
-          🔥 <span id="streakCount">0</span> Streak
+          🔥 <span id="streakCount">0</span> <span data-i18n="streakLabel">Streak</span>
         </div>
 
         <!-- Star Counter -->
         <div class="stars-badge" id="starsBadge" onclick="playCheer()" role="button" tabindex="0"
           aria-label="Total stars earned">
-          ⭐ <span id="totalStars">0</span> Stars
+          ⭐ <span id="totalStars">0</span> <span data-i18n="starsLabel">Stars</span>
         </div>
 
-        <!-- Navigation Buttons: Clean kid-friendly layout with NO admin button visible -->
-        <button class="btn btn-secondary btn-sm" onclick="showDashboard()" aria-label="Go to Songs">🏠 Songs</button>
+        <!-- Navigation Buttons: Songs / Dashboard -->
+        <button class="btn btn-secondary btn-sm" onclick="showDashboard()" aria-label="Go to Songs">
+          <span>🏠</span>
+          <span data-i18n="navSongs">Songs</span>
+        </button>
       </div>
     </header>
 
@@ -3154,35 +3326,35 @@
       <div class="dashboard-hero">
         <div class="hero-speech">
           <div class="mascot-bubble">
-            <span>🐥 Maestro Pip says:</span>
-            <span id="mascotMessage">"Pick a song to sing, play piano, and earn stars!"</span>
+            <span data-i18n="mascotSays">🐥 Maestro Pip says:</span>
+            <span id="mascotMessage" data-i18n="mascotMessage">"Pick a song to sing, play piano, and earn stars!"</span>
           </div>
-          <h1>🎵 Let's Sing &amp; Play Music!</h1>
-          <p>100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody, play the rainbow
+          <h1 data-i18n="heroTitle">🎵 Let's Sing &amp; Play Music!</h1>
+          <p data-i18n="heroDesc">100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody, play the rainbow
             piano, and drum the beat!</p>
         </div>
 
         <div class="hero-quick-actions">
           <!-- Interactive Theme / Mood Picker -->
           <div class="theme-picker-bar" title="Change the background theme mood!">
-            <span class="theme-picker-label">🎨 Mood:</span>
+            <span class="theme-picker-label" data-i18n="moodLabel">🎨 Mood:</span>
             <span class="theme-pill" style="background:#7c3aed;" onclick="setManualTheme('star')"
-              title="Cosmic Star"></span>
+              title="Cosmic Star" data-i18n-title="moodCosmic"></span>
             <span class="theme-pill" style="background:#059669;" onclick="setManualTheme('spider')"
-              title="Rainforest Dew"></span>
+              title="Rainforest Dew" data-i18n-title="moodDew"></span>
             <span class="theme-pill" style="background:#ea580c;" onclick="setManualTheme('egg')"
-              title="Sunny Amber"></span>
+              title="Sunny Amber" data-i18n-title="moodAmber"></span>
             <span class="theme-pill" style="background:#0284c7;" onclick="setManualTheme('boat')"
-              title="Ocean Blue"></span>
+              title="Ocean Blue" data-i18n-title="moodOcean"></span>
             <span class="theme-pill" style="background:#db2777;" onclick="setManualTheme('lamb')"
-              title="Pastel Blossom"></span>
+              title="Pastel Blossom" data-i18n-title="moodBlossom"></span>
             <span class="theme-pill" style="background:#800032;" onclick="setManualTheme('default')"
-              title="Classic Rainbow"></span>
+              title="Classic Rainbow" data-i18n-title="moodClassic"></span>
           </div>
 
           <button class="btn btn-secondary btn-sm" id="btnResumeSong" onclick="resumeLastSong()" style="display:none;"
-            title="Continue where you left off!">▶ Resume Last</button>
-          <button class="btn btn-primary btn-sm" onclick="playRandomSong()">🎲 Surprise Song!</button>
+            title="Continue where you left off!" data-i18n="resumeSong">▶ Resume Last</button>
+          <button class="btn btn-primary btn-sm" onclick="playRandomSong()" data-i18n="surpriseSong">🎲 Surprise Song!</button>
         </div>
       </div>
 
@@ -3191,22 +3363,22 @@
         <div class="stat-card">
           <div class="stat-icon">🏆</div>
           <div class="stat-value" id="statCompleted">0/10</div>
-          <div class="stat-label">Songs Mastered</div>
+          <div class="stat-label" data-i18n="statMastered">Songs Mastered</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">🌟</div>
           <div class="stat-value" id="statStarsCount">0</div>
-          <div class="stat-label">Total Stars</div>
+          <div class="stat-label" data-i18n="statStars">Total Stars</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">🎯</div>
           <div class="stat-value" id="statPct">0%</div>
-          <div class="stat-label">Music Progress</div>
+          <div class="stat-label" data-i18n="statProgress">Music Progress</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">🎤</div>
           <div class="stat-value" id="statAttempts">0</div>
-          <div class="stat-label">Sing Sessions</div>
+          <div class="stat-label" data-i18n="statSessions">Sing Sessions</div>
         </div>
       </div>
 
@@ -3217,7 +3389,7 @@
           <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
         </div>
         <div class="progress-milestones" id="progressMilestones">
-          <div class="progress-milestone" data-pct="0"><span class="milestone-emoji">🎵</span><span>Start</span></div>
+          <div class="progress-milestone" data-pct="0"><span class="milestone-emoji">🎵</span><span data-i18n="milestoneStart">Start</span></div>
           <div class="progress-milestone" data-pct="25"><span class="milestone-emoji">🌟</span><span>25%</span></div>
           <div class="progress-milestone" data-pct="50"><span class="milestone-emoji">🎶</span><span>50%</span></div>
           <div class="progress-milestone" data-pct="75"><span class="milestone-emoji">🏆</span><span>75%</span></div>
@@ -3232,21 +3404,19 @@
             <span class="search-icon" aria-hidden="true">🔍</span>
             <input type="text" id="studentSongSearch" class="student-search-input"
               placeholder="Search songs by title, lyrics, or emoji..." oninput="handleStudentSearch(this.value)"
-              aria-label="Search songs">
+              aria-label="Search songs" data-i18n-ph="searchPlaceholder">
             <button id="clearSearchBtn" class="clear-search-btn" onclick="clearStudentSearch()" style="display:none;"
               title="Clear search" aria-label="Clear search">✕</button>
           </div>
           <div class="student-results-badge" id="studentResultsBadge">Showing 10 songs</div>
         </div>
         <div class="student-category-pills" id="studentCategoryPills" role="tablist" aria-label="Song Categories">
-          <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')">🌈 All Songs</button>
-          <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')">⭐ Free Starters</button>
-          <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')">🐾 Animal Rhymes</button>
-          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')">🌟 Night &amp;
-            Stars</button>
-          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')">👏 Action &amp;
-            Dance</button>
-          <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')">🏆 Mastered</button>
+          <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')" data-i18n="catAll">🌈 All Songs</button>
+          <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')" data-i18n="catStarters">⭐ Free Starters</button>
+          <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')" data-i18n="catAnimals">🐾 Animal Rhymes</button>
+          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')" data-i18n="catLullaby">🌟 Night &amp; Stars</button>
+          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')" data-i18n="catAction">👏 Action &amp; Dance</button>
+          <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')" data-i18n="catMastered">🏆 Mastered</button>
         </div>
       </div>
 
@@ -3257,8 +3427,8 @@
 
       <!-- Reset Section -->
       <div class="reset-area-box">
-        <p>Want to start your musical star collection from the beginning?</p>
-        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress">🔄 Reset All
+        <p data-i18n="resetTitle">Want to start your musical star collection from the beginning?</p>
+        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress" data-i18n="resetBtn">🔄 Reset All
           Stars &amp; Progress</button>
       </div>
 
@@ -3266,11 +3436,11 @@
       <footer class="app-footer">
         <div class="footer-divider"></div>
         <div class="footer-content">
-          <span>🎵 RhymeTime Music Studio</span>
+          <span data-i18n="footerStudio">🎵 RhymeTime Music Studio</span>
           <span>·</span>
-          <span>Made with <span class="footer-heart">❤️</span> for little musicians</span>
+          <span data-i18n="footerMadeWith">Made with <span class="footer-heart">❤️</span> for little musicians</span>
           <span>·</span>
-          <span>🌟 Sing, Play & Learn!</span>
+          <span data-i18n="footerLearn">🌟 Sing, Play &amp; Learn!</span>
         </div>
       </footer>
     </div>
@@ -3281,7 +3451,7 @@
       <div class="studio-nav-header">
         <!-- Breadcrumb Bar -->
         <div class="studio-breadcrumb">
-          <button class="breadcrumb-link" onclick="showDashboard()">← 🏠 All Songs</button>
+          <button class="breadcrumb-link" onclick="showDashboard()" id="breadcrumbBackBtn" data-i18n="allSongsBreadcrumb">← 🏠 All Songs</button>
           <span class="breadcrumb-sep">›</span>
           <span class="breadcrumb-current" id="breadcrumbSongTitle">Twinkle Twinkle</span>
           <span class="breadcrumb-sep">›</span>
@@ -3296,7 +3466,7 @@
               <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
                 <h2 id="moduleTitle">Song Title</h2>
                 <select id="quickSongSelect" class="quick-song-dropdown" onchange="switchSongFromDropdown(this.value)"
-                  title="Quick Switch Song" aria-label="Switch to song"></select>
+                  title="Quick Switch Song" aria-label="Switch to song" data-i18n-title="quickSelectLabel"></select>
               </div>
               <p id="moduleSubtitle">🎵 Sing-Along · Video · Melody · Piano · Rhythm</p>
             </div>
@@ -3305,12 +3475,12 @@
           <!-- Studio Navigation Controls -->
           <div class="studio-nav-actions">
             <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)"
-              title="Previous Song">⏮️ Prev</button>
-            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song">Next
+              title="Previous Song" data-i18n="prevBtn">⏮️ Prev</button>
+            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song" data-i18n="nextBtn">Next
               ⏭️</button>
-            <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()"
-              title="Listen to lyrics read aloud!">🗣️ Read</button>
-            <button class="btn btn-primary btn-sm" onclick="showDashboard()">🏠 Dashboard</button>
+            <button class="btn btn-secondary btn-sm" id="btnReadLyricsStudio" onclick="speakCurrentLyrics()"
+              title="Listen to lyrics read aloud!" data-i18n="readBtn">🗣️ Read</button>
+            <button class="btn btn-primary btn-sm" onclick="showDashboard()" data-i18n="dashboardBtn">🏠 Dashboard</button>
           </div>
         </div>
       </div>
@@ -3326,8 +3496,8 @@
     aria-labelledby="teacherGateTitle" onclick="handleGateOverlayClick(event)">
     <div class="teacher-gate-card" id="teacherGateCard" onclick="event.stopPropagation()">
       <div class="gate-lock-icon">🔒</div>
-      <h3 class="gate-title" id="teacherGateTitle">Teacher &amp; Parent Portal</h3>
-      <p class="gate-desc">
+      <h3 class="gate-title" id="teacherGateTitle" data-i18n="gateTitle">Teacher &amp; Parent Portal</h3>
+      <p class="gate-desc" id="teacherGateDesc" data-i18n="gateDesc">
         This area is reserved for educators and parents. Enter your 4-digit PIN to manage song curriculum, reset
         progress, or edit library songs.
       </p>
@@ -3360,28 +3530,29 @@
       <!-- Math Challenge / Adult Bypass toggle -->
       <div id="mathChallengeBox"
         style="display:none; background:rgba(128,0,50,0.06); padding:12px; border-radius:12px; margin-bottom:14px; border:1px solid var(--theme-card-border);">
-        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;">Adult
+        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;" data-i18n="gateAdultChallenge">Adult
           Verification Challenge:</div>
         <div style="font-size:1.15rem; font-weight:800; color:#1e1022; margin-bottom:8px;" id="mathQuestionText">7 × 8 =
           ?</div>
         <div style="display:flex; justify-content:center; gap:8px;">
           <input type="number" id="mathAnswerInput" placeholder="Answer"
-            style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;">
-          <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()">Submit</button>
+            style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;"
+            data-i18n-ph="mathAnswerPh">
+          <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()" data-i18n="mathSubmit">Submit</button>
         </div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
         <button type="button" onclick="toggleMathChallenge()"
           style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; font-weight:700; text-decoration:underline; cursor:pointer;">
-          <span id="mathToggleLabel">Adult Math Question Instead?</span>
+          <span id="mathToggleLabel" data-i18n="gateAdultToggle">Adult Math Question Instead?</span>
         </button>
-        <small style="color:var(--text-muted); font-size:0.8rem;">Default PIN: <strong>1234</strong></small>
+        <small style="color:var(--text-muted); font-size:0.8rem;" id="defaultPinLabel" data-i18n="gateDefaultPin">Default PIN: 1234</small>
       </div>
 
       <div class="gate-action-buttons">
-        <button type="button" class="btn btn-outline-dark btn-sm" onclick="closeTeacherGateModal()">Cancel</button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="submitGatePin()">Enter Teacher Admin ↗</button>
+        <button type="button" class="btn btn-outline-dark btn-sm" onclick="closeTeacherGateModal()" data-i18n="gateCancel">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="submitGatePin()" data-i18n="gateSubmit">Enter Teacher Admin ↗</button>
       </div>
     </div>
   </div>
@@ -3397,14 +3568,383 @@
     /* Shared storage keys with admin.html */
     const SONGS_STORAGE_KEY = 'rhymetime_songs_data_v1';
     const PROGRESS_KEY = 'rhymetime_progress_v3';
+    const LANG_STORAGE_KEY = 'rhymetime_lang';
 
-    /* Default 10 Curated Nursery Rhymes with Content Themes */
+    /* ============================================================
+       COMPREHENSIVE BILINGUAL TRANSLATION ENGINE (ENGLISH & TAGALOG)
+       ============================================================ */
+    const I18N = {
+      en: {
+        logoTitle: "RhymeTime",
+        logoSub: "Sing & Music Studio for Kids",
+        mascotBubbleGreeting: "Hi! 👋",
+        mascotSays: "🐥 Maestro Pip says:",
+        mascotMessage: "Pick a song to sing, play piano, and earn stars!",
+        heroTitle: "🎵 Let's Sing & Play Music!",
+        heroDesc: "100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody, play the rainbow piano, and drum the beat!",
+        moodLabel: "🎨 Mood:",
+        moodCosmic: "Cosmic Star",
+        moodDew: "Rainforest Dew",
+        moodAmber: "Sunny Amber",
+        moodOcean: "Ocean Blue",
+        moodBlossom: "Pastel Blossom",
+        moodClassic: "Classic Rainbow",
+        resumeSong: "▶ Resume Last",
+        surpriseSong: "🎲 Surprise Song!",
+        statMastered: "Songs Mastered",
+        statStars: "Total Stars",
+        statProgress: "Music Progress",
+        statSessions: "Sing Sessions",
+        milestoneStart: "Start",
+        searchPlaceholder: "Search songs by title, lyrics, or emoji...",
+        clearSearch: "Clear search",
+        showingSongs: (count, total) => `Showing ${count} of ${total} songs`,
+        catAll: "🌈 All Songs",
+        catStarters: "⭐ Free Starters",
+        catAnimals: "🐾 Animal Rhymes",
+        catLullaby: "🌟 Night & Stars",
+        catAction: "👏 Action & Dance",
+        catMastered: "🏆 Mastered",
+        noMatchTitle: "No songs match your search",
+        noMatchDesc: "Try a different keyword or view all songs!",
+        showAllBtn: "🌈 Show All Songs",
+        songPrefix: "Song #",
+        actVideo: "🎬 Video",
+        actMelody: "🎵 Melody",
+        actPiano: "🎹 Piano",
+        actDrum: "🥁 Drum",
+        starComplete: "🎉 100% Star!",
+        actsDonePill: (done) => `${done}/4 done`,
+        lockReason: (title) => `Finish 4 activities in "${title}" to unlock!`,
+        lockDefault: "Complete previous song first!",
+        resetTitle: "Want to start your musical star collection from the beginning?",
+        resetBtn: "🔄 Reset All Stars & Progress",
+        resetConfirm: "🌟 Reset all your musical stars and progress? You can earn them all again!",
+        footerStudio: "🎵 RhymeTime Music Studio",
+        footerMadeWith: "Made with ❤️ for little musicians",
+        footerLearn: "🌟 Sing, Play & Learn!",
+        streakLabel: "Streak",
+        starsLabel: "Stars",
+        navSongs: "Songs",
+        sfxTitle: "Toggle Sound Effects",
+        sfxOn: "Sound: ON",
+        sfxOff: "Sound: OFF (Muted)",
+        allSongsBreadcrumb: "← 🏠 All Songs",
+        quickSelectLabel: "Quick Switch Song",
+        prevBtn: "⏮️ Prev",
+        nextBtn: "Next ⏭️",
+        readBtn: "🗣️ Read",
+        dashboardBtn: "🏠 Dashboard",
+        tabVideo: "🎬 Video",
+        tabMelody: "🎵 Melody",
+        tabPiano: "🎹 Piano",
+        tabRhythm: "🥁 Rhythm",
+        modeVideoTitle: "🎬 Sing-Along Video",
+        modeKaraokeTitle: "🎵 Melody Karaoke",
+        modePianoTitle: "🎹 Rainbow Piano",
+        modeRhythmTitle: "🥁 Rhythm Drum",
+        funFactTitle: "Did You Know?",
+        singAlongLyrics: "📖 Sing-Along Lyrics",
+        btnFinishedSinging: "🌟 I Finished Singing Along! ✅",
+        btnReadAloud: "🗣️ Read Lyrics Aloud",
+        btnOpenYoutube: "▶ Open in YouTube ↗",
+        youtubeLocalNotice: "💡 If YouTube playback is restricted on local files, tap 'Open in YouTube' above or play Melody, Piano & Drum!",
+        playMelodyBtn: "▶ Play Melody & Sing!",
+        pauseBtn: "⏸ Pause",
+        stopBtn: "⏹ Stop",
+        replayBtn: "🔄 Replay",
+        singDoneBtn: "🌟 Done Singing! ✅",
+        instrumentLabel: "🔔 Instrument:",
+        speedLabel: "⏱️ Speed:",
+        instGlock: "Glockenspiel 🔔",
+        instMusicBox: "Music Box 🎶",
+        instPiano: "Grand Piano 🎹",
+        instMarimba: "Marimba 🪵",
+        speedGentle: "Gentle 0.8x 🐢",
+        speedNormal: "Normal 1.0x 🎵",
+        speedUpbeat: "Upbeat 1.2x 🐰",
+        nextLyricPrefix: "Next:",
+        finaleLyric: "🎶 Finale!",
+        karaokeMasteredTitle: "🎉 Wonderful Singing! Mastered the Melody!",
+        karaokeClaimPrompt: "Tap below to claim your star! ⭐",
+        singAgainBtn: "▶ Sing Again!",
+        pianoHeaderTitle: "🎹 Play Along with the Song!",
+        pianoHeaderDesc: (title) => `Follow the glowing rainbow key to play "${title}" note by note!`,
+        pianoNextKey: "👉 Next Key:",
+        pianoRestartBtn: "🔄 Restart Notes",
+        pianoDoneBtn: "🌟 Done Playing! ✅",
+        pianoSuccessToast: "🎉 Master Pianist! You played the full melody! ✅",
+        pianoNoteSoundToast: (note) => `🎵 <strong>${note}</strong> — Beautiful sound!`,
+        rhythmHeaderTitle: "🥁 Rhythm Beat Arena",
+        rhythmHeaderDesc: "Tap the big drum in time with the song beat 5× to unlock your rhythm star!",
+        rhythmBeatToast: (count) => `🎶 Beat ${count}/5 – Feel the rhythm!`,
+        rhythmSuccessToast: "🎉 Fantastic Drumming! Activity complete! ✅",
+        actCompletedTitle: "🎯 Activity Completed!",
+        songMasteredTitle: "🏆 Song Mastered 100%!",
+        superstarTitle: "🌟 Superstar Job!",
+        actAlreadyDoneMsg: (mode) => `You've already earned stars for <strong>${mode}</strong>! Choose another activity to master this song!`,
+        songCompleteAllMsg: (title) => `Hooray! You finished ALL 4 activities for <strong>"${title}"</strong>! The next song is now unlocked!`,
+        awesomeJobMsg: "Awesome singing and playing! Complete all 4 activities to earn a trophy!",
+        activitiesDoneLabel: "Activities Done",
+        playAgainBtn: "🔄 Play Again",
+        nextSongBtn: (emoji, title) => `Next Song: ${emoji} ${title} →`,
+        moreSongsBtn: "🏠 More Songs",
+        gateTitle: "Teacher & Parent Portal",
+        gateDesc: "This area is reserved for educators and parents. Enter your 4-digit PIN to manage song curriculum, reset progress, or edit library songs.",
+        gateAdultChallenge: "Adult Verification Challenge:",
+        gateAdultToggle: "Adult Math Question Instead?",
+        gatePinToggle: "Switch back to PIN pad",
+        gateDefaultPin: "Default PIN: 1234",
+        gateCancel: "Cancel",
+        gateSubmit: "Enter Teacher Admin ↗",
+        gateAccessGranted: "✅ Access Granted! Redirecting to Teacher Portal...",
+        gateWrongPin: "❌ Incorrect passcode. Please try again.",
+        gateVerified: "✅ Verified! Redirecting to Teacher Portal...",
+        gateWrongMath: "❌ Incorrect answer. Try again.",
+        mathSubmit: "Submit",
+        mathAnswerPh: "Answer"
+      },
+      tl: {
+        logoTitle: "RhymeTime",
+        logoSub: "Sing & Music Studio para sa mga Bata",
+        mascotBubbleGreeting: "Kumusta! 👋",
+        mascotSays: "🐥 Sabi ni Maestro Pip:",
+        mascotMessage: "Pumili ng kanta para kumanta, mag-piyano, at kumuha ng mga bituin!",
+        heroTitle: "🎵 Halina't Kumanta at Tumugtog!",
+        heroDesc: "100% pambatang sing-along: manood ng makukulay na video, sumabay sa tumatalbog na melodiya, tumugtog ng bahagharing piyano, at tumambol sa kumpas!",
+        moodLabel: "🎨 Tema:",
+        moodCosmic: "Mahiwagang Bituin",
+        moodDew: "Luntiang Kagubatan",
+        moodAmber: "Maliwanag na Araw",
+        moodOcean: "Bughaw na Dagat",
+        moodBlossom: "Rosas na Bulaklak",
+        moodClassic: "Klasikong Bahaghari",
+        resumeSong: "▶ Ituloy ang Huli",
+        surpriseSong: "🎲 Sorpresang Kanta!",
+        statMastered: "Mga Kantang Natutunan",
+        statStars: "Kabuuang Bituin",
+        statProgress: "Progreso sa Musika",
+        statSessions: "Mga Sesyon sa Pagkanta",
+        milestoneStart: "Simula",
+        searchPlaceholder: "Maghanap ng kanta ayon sa pamagat, liriko, o emoji...",
+        clearSearch: "Burahin ang paghahanap",
+        showingSongs: (count, total) => `Ipinapakita ang ${count} sa ${total} na kanta`,
+        catAll: "🌈 Lahat ng Kanta",
+        catStarters: "⭐ Libreng Simula",
+        catAnimals: "🐾 Kanta ng Hayop",
+        catLullaby: "🌟 Gabi at Bituin",
+        catAction: "👏 Aksyon at Sayaw",
+        catMastered: "🏆 Natutunan Na",
+        noMatchTitle: "Walang kantang tumugma sa paghahanap",
+        noMatchDesc: "Subukan ang ibang salita o tingnan ang lahat ng kanta!",
+        showAllBtn: "🌈 Ipakita Lahat ng Kanta",
+        songPrefix: "Kanta #",
+        actVideo: "🎬 Video",
+        actMelody: "🎵 Melodiya",
+        actPiano: "🎹 Piyano",
+        actDrum: "🥁 Tambol",
+        starComplete: "🎉 100% Bituin!",
+        actsDonePill: (done) => `${done}/4 tapos na`,
+        lockReason: (title) => `Tapusin ang 4 na gawain sa "${title}" para mabuksan!`,
+        lockDefault: "Tapusin muna ang naunang kanta!",
+        resetTitle: "Gusto mo bang simulan ang koleksyon ng bituin mula sa simula?",
+        resetBtn: "🔄 I-reset Lahat ng Bituin at Progreso",
+        resetConfirm: "🌟 I-reset ang lahat ng bituin at progreso? Maaari mo itong kolektahing muli!",
+        footerStudio: "🎵 RhymeTime Music Studio",
+        footerMadeWith: "Gawa nang may ❤️ para sa munting musiko",
+        footerLearn: "🌟 Kumanta, Tumugtog at Matuto!",
+        streakLabel: "Araw-araw",
+        starsLabel: "Bituin",
+        navSongs: "Mga Kanta",
+        sfxTitle: "I-toggle ang Tunog",
+        sfxOn: "Tunog: BUKAS",
+        sfxOff: "Tunog: NAKA-MUTE",
+        allSongsBreadcrumb: "← 🏠 Lahat ng Kanta",
+        quickSelectLabel: "Mabilisang Pagpalit ng Kanta",
+        prevBtn: "⏮️ Nakaraan",
+        nextBtn: "Susunod ⏭️",
+        readBtn: "🗣️ Basahin",
+        dashboardBtn: "🏠 Dashboard",
+        tabVideo: "🎬 Video",
+        tabMelody: "🎵 Melodiya",
+        tabPiano: "🎹 Piyano",
+        tabRhythm: "🥁 Ritmo",
+        modeVideoTitle: "🎬 Video sa Pagkanta",
+        modeKaraokeTitle: "🎵 Melodiya ng Karaoke",
+        modePianoTitle: "🎹 Bahagharing Piyano",
+        modeRhythmTitle: "🥁 Tambol ng Ritmo",
+        funFactTitle: "Alam Mo Ba?",
+        singAlongLyrics: "📖 Mga Liriko sa Pagkanta",
+        btnFinishedSinging: "🌟 Natapos Ko Nang Kantahin! ✅",
+        btnReadAloud: "🗣️ Basahin Nang Malakas",
+        btnOpenYoutube: "▶ Buksan sa YouTube ↗",
+        youtubeLocalNotice: "💡 Kung pinaghihigpitan ng YouTube ang playback sa lokal na computer, pindutin ang 'Buksan sa YouTube' o magsaya sa Melodiya, Piyano at Tambol!",
+        playMelodyBtn: "▶ Patugtugin ang Melodiya at Kumanta!",
+        pauseBtn: "⏸ I-pause",
+        stopBtn: "⏹ Itigil",
+        replayBtn: "🔄 Ulitin",
+        singDoneBtn: "🌟 Tapos Nang Kumanta! ✅",
+        instrumentLabel: "🔔 Instrumento:",
+        speedLabel: "⏱️ Bilis:",
+        instGlock: "Glockenspiel 🔔",
+        instMusicBox: "Kahon ng Musika 🎶",
+        instPiano: "Grand Piano 🎹",
+        instMarimba: "Marimba 🪵",
+        speedGentle: "Mabagal 0.8x 🐢",
+        speedNormal: "Katamtaman 1.0x 🎵",
+        speedUpbeat: "Mabilis 1.2x 🐰",
+        nextLyricPrefix: "Susunod:",
+        finaleLyric: "🎶 Katapusan!",
+        karaokeMasteredTitle: "🎉 Napakagaling Kumanta! Natutunan ang Melodiya!",
+        karaokeClaimPrompt: "Pindutin sa ibaba para makuha ang bituin! ⭐",
+        singAgainBtn: "▶ Kumanta Muli!",
+        pianoHeaderTitle: "🎹 Tumugtog Kasabay ng Kanta!",
+        pianoHeaderDesc: (title) => `Sundan ang umiilaw na tiklado upang tugtugin ang "${title}" bawat nota!`,
+        pianoNextKey: "👉 Susunod na Tiklado:",
+        pianoRestartBtn: "🔄 Simulan Muli ang mga Nota",
+        pianoDoneBtn: "🌟 Tapos Nang Tumugtog! ✅",
+        pianoSuccessToast: "🎉 Mahusay na Piyanista! Natugtog mo ang buong melodiya! ✅",
+        pianoNoteSoundToast: (note) => `🎵 <strong>${note}</strong> — Napakagandang tunog!`,
+        rhythmHeaderTitle: "🥁 Arena ng Kumpas at Ritmo",
+        rhythmHeaderDesc: "Pindutin ang malaking tambol kasabay ng kumpas nang 5 beses para makuha ang bituin ng ritmo!",
+        rhythmBeatToast: (count) => `🎶 Kumpas ${count}/5 – Damhin ang ritmo!`,
+        rhythmSuccessToast: "🎉 Napakagaling Tumambol! Tapos na ang gawain! ✅",
+        actCompletedTitle: "🎯 Tapos Na ang Gawain!",
+        songMasteredTitle: "🏆 100% Natutunan ang Kanta!",
+        superstarTitle: "🌟 Napakagaling na Gawain!",
+        actAlreadyDoneMsg: (mode) => `Nakuha mo na ang mga bituin para sa <strong>${mode}</strong>! Pumili ng ibang gawain para matutunan ang kantang ito!`,
+        songCompleteAllMsg: (title) => `Mabuhay! Natapos mo ang LAHAT ng 4 na gawain para sa <strong>"${title}"</strong>! Bukas na ang susunod na kanta!`,
+        awesomeJobMsg: "Napakagaling kumanta at tumugtog! Tapusin ang lahat ng 4 na gawain upang makakuha ng tropeo!",
+        activitiesDoneLabel: "Natapos na Gawain",
+        playAgainBtn: "🔄 Laruin Muli",
+        nextSongBtn: (emoji, title) => `Susunod na Kanta: ${emoji} ${title} →`,
+        moreSongsBtn: "🏠 Marami Pang Kanta",
+        gateTitle: "Portal ng Guro at Magulang",
+        gateDesc: "Ang bahaging ito ay para lamang sa mga guro at magulang. Ilagay ang iyong 4-digit PIN upang pamahalaan ang kurikulum, i-reset ang progreso, o mag-edit ng mga kanta.",
+        gateAdultChallenge: "Hamon ng Pagsusuri para sa Matanda:",
+        gateAdultToggle: "Tanong sa Matematika sa Halip?",
+        gatePinToggle: "Bumalik sa PIN pad",
+        gateDefaultPin: "Default na PIN: 1234",
+        gateCancel: "Kanselahin",
+        gateSubmit: "Pumasok sa Admin ng Guro ↗",
+        gateAccessGranted: "✅ Pinahintulutan ang Pagpasok! Papunta sa Portal ng Guro...",
+        gateWrongPin: "❌ Maling passcode. Pakisubukang muli.",
+        gateVerified: "✅ Na-verify! Papunta sa Portal ng Guro...",
+        gateWrongMath: "❌ Maling sagot. Pakisubukang muli.",
+        mathSubmit: "Ipasa",
+        mathAnswerPh: "Sagot"
+      }
+    };
+
+    let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
+
+    function t(key, ...args) {
+      const dict = I18N[currentLang] || I18N.en;
+      const val = dict[key] !== undefined ? dict[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
+      if (typeof val === 'function') return val(...args);
+      return val;
+    }
+
+    function getSongTitle(song) {
+      if (!song) return '';
+      return (currentLang === 'tl' && song.tagalogTitle) ? song.tagalogTitle : song.title;
+    }
+
+    function getSongAltTitle(song) {
+      if (!song) return '';
+      return currentLang === 'tl' ? song.title : (song.tagalogTitle || '');
+    }
+
+    function getSongTopic(song) {
+      if (!song) return '';
+      return (currentLang === 'tl' && song.tagalogTopic) ? song.tagalogTopic : (song.topic || '');
+    }
+
+    function getSongFunFact(song) {
+      if (!song) return '';
+      return (currentLang === 'tl' && song.tagalogFunFact) ? song.tagalogFunFact : (song.funFact || '');
+    }
+
+    function getSongLyrics(song) {
+      if (!song) return [];
+      return (currentLang === 'tl' && song.tagalogLyrics && song.tagalogLyrics.length) ? song.tagalogLyrics : (song.lyrics || []);
+    }
+
+    function setLanguage(lang) {
+      if (lang !== 'en' && lang !== 'tl') lang = 'en';
+      currentLang = lang;
+      try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) { }
+      document.documentElement.lang = lang;
+
+      // Update button active state
+      const btnEn = document.getElementById('langBtnEn');
+      const btnTl = document.getElementById('langBtnTl');
+      if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+      if (btnTl) btnTl.classList.toggle('active', lang === 'tl');
+
+      playUIBlip(lang === 'tl' ? 680 : 540);
+
+      // Translate static DOM strings
+      applyStaticTranslations();
+
+      // Refresh dynamic UI elements
+      updateStarsDisplay();
+      updateStatsRibbon();
+      updateResumeButton();
+
+      const msgEl = document.getElementById('mascotMessage');
+      if (msgEl) {
+        const quotes = MASCOT_QUOTES[currentLang] || MASCOT_QUOTES.en;
+        msgEl.textContent = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+      }
+
+      if (document.getElementById('dashboardView')?.classList.contains('active')) {
+        renderDashboard();
+      } else if (currentModuleData) {
+        const titleText = getSongTitle(currentModuleData);
+        const altText = getSongAltTitle(currentModuleData);
+        const topicText = getSongTopic(currentModuleData);
+        const modTitleEl = document.getElementById('moduleTitle');
+        if (modTitleEl) modTitleEl.textContent = `${t('songPrefix')}${currentModuleData.id}: ${titleText}`;
+        const modSubEl = document.getElementById('moduleSubtitle');
+        if (modSubEl) modSubEl.textContent = `🎵 ${topicText} ${altText ? `(${altText})` : ''} · ${t('instrumentLabel')} ${currentModuleData.instrument || 'glockenspiel'}`;
+
+        updateStudioNavButtons();
+        renderModuleStudio();
+      }
+    }
+
+    function applyStaticTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const trans = t(key);
+        if (trans) el.innerHTML = trans;
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        const trans = t(key);
+        if (trans) el.placeholder = trans;
+      });
+
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        const trans = t(key);
+        if (trans) el.title = trans;
+      });
+    }
+
+    /* Default 10 Curated Nursery Rhymes with Content Themes & Authentic Tagalog Translations */
     const DEFAULT_RHYMES_DATA = [
       {
         id: 1, title: "Twinkle Twinkle Little Star",
-        topic: "Sing-Along & Star Melody", emoji: "⭐", color: "#7c3aed", reqStars: 0,
+        tagalogTitle: "Kumislap, Kumislap Munting Bituin",
+        topic: "Sing-Along & Star Melody",
+        tagalogTopic: "Kantahan at Melodiya ng Bituin",
+        emoji: "⭐", color: "#7c3aed", reqStars: 0,
         theme: "star", youtubeId: "yCjJyiqpAuU", bpm: 100, instrument: "glockenspiel",
         funFact: "This melody was composed in 18th-century France and made famous by Mozart!",
+        tagalogFunFact: "Ang himig na ito ay nilikha sa Pransya noong ika-18 siglo at pinasikat ng dakilang Mozart!",
         lyrics: [
           "Twinkle, twinkle, little star",
           "How I wonder what you are",
@@ -3412,6 +3952,14 @@
           "Like a diamond in the sky",
           "Twinkle, twinkle, little star",
           "How I wonder what you are"
+        ],
+        tagalogLyrics: [
+          "Kumislap, kumislap, munting bituin",
+          "Nais kong malaman kung ano ka man",
+          "Sa itaas ng mundo kay taas",
+          "Parang dyamante sa kalangitan",
+          "Kumislap, kumislap, munting bituin",
+          "Nais kong malaman kung ano ka man"
         ],
         notes: [
           { line: 0, keys: ["C4", "C4", "G4", "G4", "A4", "A4", "G4"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
@@ -3424,14 +3972,24 @@
       },
       {
         id: 2, title: "Itsy Bitsy Spider",
-        topic: "Sing-Along & Spider Rhythm", emoji: "🕷️", color: "#059669", reqStars: 1,
+        tagalogTitle: "Ang Maliit na Gagamba",
+        topic: "Sing-Along & Spider Rhythm",
+        tagalogTopic: "Kantahan at Ritmo ng Gagamba",
+        emoji: "🕷️", color: "#059669", reqStars: 1,
         theme: "spider", youtubeId: "w_lCi8U49mY", bpm: 110, instrument: "marimba",
         funFact: "Spiders have 8 legs and spin silky webs that shimmer in the rain!",
+        tagalogFunFact: "Ang mga gagamba ay may 8 paa at humahabi ng malasutlang sapot na kumikinang sa ulan!",
         lyrics: [
           "The itsy bitsy spider climbed up the waterspout",
           "Down came the rain and washed the spider out",
           "Out came the sun and dried up all the rain",
           "And the itsy bitsy spider climbed up the spout again"
+        ],
+        tagalogLyrics: [
+          "Ang maliit na gagamba umakyat sa sanga",
+          "Bumuhos ang ulan at inanod siya",
+          "Sumikat ang araw, natuyo ang lupa",
+          "Ang maliit na gagamba umakyat muli siya"
         ],
         notes: [
           { line: 0, keys: ["G4", "C4", "C4", "D4", "E4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8] },
@@ -3442,14 +4000,24 @@
       },
       {
         id: 3, title: "Humpty Dumpty",
-        topic: "Sing-Along & Bouncing Chimes", emoji: "🥚", color: "#ea580c", reqStars: 3,
+        tagalogTitle: "Si Humpty Dumpty",
+        topic: "Sing-Along & Bouncing Chimes",
+        tagalogTopic: "Kantahan at Tumatalbog na Tunog",
+        emoji: "🥚", color: "#ea580c", reqStars: 3,
         theme: "egg", youtubeId: "nrv495corBc", bpm: 105, instrument: "musicbox",
         funFact: "Humpty Dumpty was originally an English riddle before becoming a nursery rhyme!",
+        tagalogFunFact: "Si Humpty Dumpty ay orihinal na isang bugtong sa Inglatera bago naging tanyag na awit!",
         lyrics: [
           "Humpty Dumpty sat on a wall",
           "Humpty Dumpty had a great fall",
           "All the king's horses and all the king's men",
           "Couldn't put Humpty together again"
+        ],
+        tagalogLyrics: [
+          "Si Humpty Dumpty umupo sa pader",
+          "Si Humpty Dumpty ay biglang nahulog",
+          "Lahat ng kabayo at tauhan ng hari",
+          "Hindi na muling nabuo si Humpty"
         ],
         notes: [
           { line: 0, keys: ["G4", "E4", "E4", "F4", "D4", "D4", "C4"], durations: [0.5, 0.5, 0.5, 0.4, 0.4, 0.5, 1.0] },
@@ -3460,14 +4028,24 @@
       },
       {
         id: 4, title: "Baa Baa Black Sheep",
-        topic: "Sing-Along & Pastoral Bells", emoji: "🐑", color: "#0284c7", reqStars: 5,
+        tagalogTitle: "Baa Baa Maitim na Tupa",
+        topic: "Sing-Along & Pastoral Bells",
+        tagalogTopic: "Kantahan at Kampana sa Parang",
+        emoji: "🐑", color: "#0284c7", reqStars: 5,
         theme: "sheep", youtubeId: "03X0bf_eUj8", bpm: 100, instrument: "glockenspiel",
         funFact: "Sheep wool is sheared gently in spring and spun into cozy sweaters and blankets!",
+        tagalogFunFact: "Ang balahibo ng tupa ay marahang ginugupit sa tagsibol at hinahabi bilang maiinit na damit!",
         lyrics: [
           "Baa, baa, black sheep, have you any wool?",
           "Yes, sir, yes, sir, three bags full",
           "One for the master, and one for the dame",
           "And one for the little boy who lives down the lane"
+        ],
+        tagalogLyrics: [
+          "Baa, baa, itim na tupa, may balahibo ka ba?",
+          "Opo ginoo, opo ginoo, may tatlong sako",
+          "Isa sa amo, at isa sa ginang",
+          "At isa para sa batang nasa may daan"
         ],
         notes: [
           { line: 0, keys: ["C4", "C4", "G4", "G4", "A4", "B4", "C5", "A4", "G4"], durations: [0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4, 1.0] },
@@ -3478,14 +4056,24 @@
       },
       {
         id: 5, title: "Jack and Jill",
-        topic: "Sing-Along & Hillside Harmony", emoji: "🪣", color: "#db2777", reqStars: 7,
+        tagalogTitle: "Si Jack at si Jill",
+        topic: "Sing-Along & Hillside Harmony",
+        tagalogTopic: "Kantahan at Himig sa Burol",
+        emoji: "🪣", color: "#db2777", reqStars: 7,
         theme: "hill", youtubeId: "tmgmR2D0_2A", bpm: 108, instrument: "piano",
         funFact: "Pails were wooden buckets historically used to carry water from hilltop springs!",
+        tagalogFunFact: "Ang mga timba noon ay gawa sa kahoy at ginagamit para mag-igib ng tubig sa bukal!",
         lyrics: [
           "Jack and Jill went up the hill to fetch a pail of water",
           "Jack fell down and broke his crown and Jill came tumbling after",
           "Up Jack got and home did trot as fast as he could caper",
           "To old Dame Dob who patched his knob with vinegar and brown paper"
+        ],
+        tagalogLyrics: [
+          "Si Jack at si Jill umakyat sa burol upang mag-igib",
+          "Nahulog si Jack at nabagok ang ulo, gumulong din si Jill",
+          "Tumayo si Jack at tumakbo pauwi nang buong bilis",
+          "Kay Matandang Dob na gumamot sa kanya ng suka at papel"
         ],
         notes: [
           { line: 0, keys: ["C4", "D4", "E4", "F4", "G4", "A4", "G4", "F4", "E4", "D4"], durations: [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.4, 0.8] },
@@ -3496,15 +4084,26 @@
       },
       {
         id: 6, title: "Old MacDonald Had a Farm",
-        topic: "Sing-Along & Barnyard Beats", emoji: "🐄", color: "#d97706", reqStars: 9,
+        tagalogTitle: "May Bukid si Matandang MacDonald",
+        topic: "Sing-Along & Barnyard Beats",
+        tagalogTopic: "Kantahan at Kumpas sa Bukid",
+        emoji: "🐄", color: "#d97706", reqStars: 9,
         theme: "farm", youtubeId: "_6HzoUcx3eo", bpm: 115, instrument: "marimba",
         funFact: "Cows can recognize their best friends and love listening to cheerful music!",
+        tagalogFunFact: "Nakikilala ng mga baka ang kanilang matatalik na kaibigan at masayang nakikinig sa musika!",
         lyrics: [
           "Old MacDonald had a farm, E-I-E-I-O!",
           "And on his farm he had a cow, E-I-E-I-O!",
           "With a moo moo here and a moo moo there",
           "Here a moo, there a moo, everywhere a moo moo",
           "Old MacDonald had a farm, E-I-E-I-O!"
+        ],
+        tagalogLyrics: [
+          "May bukid si Matandang MacDonald, E-I-E-I-O!",
+          "At sa kanyang bukid may baka siya, E-I-E-I-O!",
+          "May unga-unga dito at unga-unga doon",
+          "Dito ay unga, doon ay unga, kahit saan ay unga-unga",
+          "May bukid si Matandang MacDonald, E-I-E-I-O!"
         ],
         notes: [
           { line: 0, keys: ["C4", "C4", "C4", "G4", "A4", "A4", "G4", "E4", "D4", "C4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.4, 0.8] },
@@ -3516,14 +4115,24 @@
       },
       {
         id: 7, title: "Mary Had a Little Lamb",
-        topic: "Sing-Along & Gentle Piano", emoji: "🐏", color: "#ec4899", reqStars: 11,
+        tagalogTitle: "May Munting Kordero si Mary",
+        topic: "Sing-Along & Gentle Piano",
+        tagalogTopic: "Kantahan at Malumanay na Piyano",
+        emoji: "🐏", color: "#ec4899", reqStars: 11,
         theme: "lamb", youtubeId: "7otAJa3jui8", bpm: 105, instrument: "piano",
         funFact: "This was the very first recorded song in human history by Thomas Edison in 1877!",
+        tagalogFunFact: "Ito ang kauna-unahang kantang nai-record sa kasaysayan ng tao ni Thomas Edison noong 1877!",
         lyrics: [
           "Mary had a little lamb, little lamb, little lamb",
           "Mary had a little lamb, its fleece was white as snow",
           "And everywhere that Mary went, Mary went, Mary went",
           "And everywhere that Mary went, the lamb was sure to go!"
+        ],
+        tagalogLyrics: [
+          "May munting kordero si Mary, munting kordero, munting kordero",
+          "May munting kordero si Mary, balahibo'y puti gaya ng yelo",
+          "Kahit saan magpunta si Mary, si Mary, si Mary",
+          "Kahit saan magpunta si Mary, sumusunod ang kordero!"
         ],
         notes: [
           { line: 0, keys: ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "E4", "G4"], durations: [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.8, 0.4, 0.8, 0.4, 0.8] },
@@ -3534,14 +4143,24 @@
       },
       {
         id: 8, title: "Little Bo Peep",
-        topic: "Sing-Along & Meadow Chimes", emoji: "🌿", color: "#16a34a", reqStars: 13,
+        tagalogTitle: "Ang Munting si Bo Peep",
+        topic: "Sing-Along & Meadow Chimes",
+        tagalogTopic: "Kantahan at Tunog sa Halamanan",
+        emoji: "🌿", color: "#16a34a", reqStars: 13,
         theme: "meadow", youtubeId: "kM2V8dM7r3U", bpm: 105, instrument: "musicbox",
         funFact: "Bo Peep carried a shepherd's crook with a rounded hook to guide gentle sheep!",
+        tagalogFunFact: "May dalang tungkod na pabilog ang pastol upang marahang alagaan ang mga tupa!",
         lyrics: [
           "Little Bo Peep has lost her sheep",
           "And doesn't know where to find them",
           "Leave them alone, and they'll come home",
           "Wagging their tails behind them"
+        ],
+        tagalogLyrics: [
+          "Nawala ng munting Bo Peep ang kanyang mga tupa",
+          "At hindi niya alam kung saan hahanapin",
+          "Hayaan mo sila, sila ay uuwi rin",
+          "Ikinakawag ang kanilang mga buntot"
         ],
         notes: [
           { line: 0, keys: ["G4", "E4", "F4", "G4", "A4", "B4", "C5"], durations: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0] },
@@ -3552,14 +4171,24 @@
       },
       {
         id: 9, title: "Row Row Row Your Boat",
-        topic: "Sing-Along & Stream Symphony", emoji: "🚣", color: "#0891b2", reqStars: 15,
+        tagalogTitle: "Sagwan, Sagwan, Sagwan ang Bangka",
+        topic: "Sing-Along & Stream Symphony",
+        tagalogTopic: "Kantahan at Simponya sa Ilog",
+        emoji: "🚣", color: "#0891b2", reqStars: 15,
         theme: "boat", youtubeId: "k4f7y1qGj2Y", bpm: 105, instrument: "glockenspiel",
         funFact: "This song can be sung as a 'round' or canon, where voices start at different times!",
+        tagalogFunFact: "Maaaring kantahin ang awiting ito nang sabay-sabay o sunud-sunod sa iba-ibang oras!",
         lyrics: [
           "Row, row, row your boat gently down the stream",
           "Merrily, merrily, merrily, merrily, life is but a dream",
           "Row, row, row your boat gently down the brook",
           "If you catch a little fish, let it off the hook!"
+        ],
+        tagalogLyrics: [
+          "Sagwan, sagwan, sagwan ang bangka marahan sa ilog",
+          "Masayang, masayang, masayang, masaya, ang buhay ay parang pangarap",
+          "Sagwan, sagwan, sagwan ang bangka marahan sa batis",
+          "Kung makahuli ng munting isda, hayaan mong lumangoy!"
         ],
         notes: [
           { line: 0, keys: ["C4", "C4", "C4", "D4", "E4", "E4", "D4", "E4", "F4", "G4"], durations: [0.6, 0.6, 0.6, 0.3, 0.5, 0.4, 0.3, 0.4, 0.3, 1.0] },
@@ -3570,14 +4199,24 @@
       },
       {
         id: 10, title: "If You're Happy and You Know It",
-        topic: "Grand Musical Finale & Clap Dance", emoji: "👏", color: "#be123c", reqStars: 17,
+        tagalogTitle: "Kung Ikaw ay Masaya at Alam Mo",
+        topic: "Grand Musical Finale & Clap Dance",
+        tagalogTopic: "Kantahan at Sayaw ng Palakpak",
+        emoji: "👏", color: "#be123c", reqStars: 17,
         theme: "happy", youtubeId: "l4WNrvVjiTw", bpm: 118, instrument: "piano",
         funFact: "Clapping hands to music stimulates joy, rhythm coordination, and motor skills!",
+        tagalogFunFact: "Ang pagpalakpak sa kumpas ng musika ay nagdudulot ng galak, koordinasyon, at sigla sa katawan!",
         lyrics: [
           "If you're happy and you know it, clap your hands! 👏👏",
           "If you're happy and you know it, clap your hands! 👏👏",
           "If you're happy and you know it, and you really want to show it",
           "If you're happy and you know it, clap your hands! 👏👏"
+        ],
+        tagalogLyrics: [
+          "Kung ikaw ay masaya, pumalakpak! 👏👏",
+          "Kung ikaw ay masaya, pumalakpak! 👏👏",
+          "Kung ikaw ay masaya at nais mong ipakita",
+          "Kung ikaw ay masaya, pumalakpak! 👏👏"
         ],
         notes: [
           { line: 0, keys: ["C4", "C4", "F4", "F4", "F4", "F4", "E4", "F4", "G4"], durations: [0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.8] },
@@ -3593,7 +4232,20 @@
         const raw = localStorage.getItem(SONGS_STORAGE_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed.map(s => {
+              const def = DEFAULT_RHYMES_DATA.find(d => d.id === s.id);
+              if (!def) return s;
+              return {
+                ...def,
+                ...s,
+                tagalogTitle: s.tagalogTitle || def.tagalogTitle,
+                tagalogTopic: s.tagalogTopic || def.tagalogTopic,
+                tagalogFunFact: s.tagalogFunFact || def.tagalogFunFact,
+                tagalogLyrics: (s.tagalogLyrics && s.tagalogLyrics.length) ? s.tagalogLyrics : def.tagalogLyrics
+              };
+            });
+          }
         }
       } catch (e) { }
       return DEFAULT_RHYMES_DATA;
@@ -3644,15 +4296,25 @@
       D5: 587.33, E5: 659.25
     };
 
-    /* Mascot Encouragement Quotes */
-    const MASCOT_QUOTES = [
-      "Tap any song card to start singing!",
-      "Music makes you smart and happy! 🎵",
-      "Follow the rainbow piano to play your favorite tune!",
-      "Drum the beat to earn golden stars! ⭐",
-      "You're a musical superstar! Keep singing! 🌟",
-      "Listen closely and sing the melody along with me!"
-    ];
+    /* Bilingual Mascot Encouragement Quotes */
+    const MASCOT_QUOTES = {
+      en: [
+        "Tap any song card to start singing!",
+        "Music makes you smart and happy! 🎵",
+        "Follow the rainbow piano to play your favorite tune!",
+        "Drum the beat to earn golden stars! ⭐",
+        "You're a musical superstar! Keep singing! 🌟",
+        "Listen closely and sing the melody along with me!"
+      ],
+      tl: [
+        "Pindutin ang anumang kanta para magsimulang kumanta!",
+        "Ang musika ay nagbibigay ng talino at saya! 🎵",
+        "Sundan ang bahagharing piyano para sa paboritong himig!",
+        "Tumambol sa kumpas para kumita ng gintong bituin! ⭐",
+        "Isa kang superstar sa musika! Ipagpatuloy ang pagkanta! 🌟",
+        "Makinig nang mabuti at sumabay sa melodiya!"
+      ]
+    };
 
     /* Web Audio Context */
     function getACtx() {
@@ -3684,7 +4346,11 @@
     function toggleSoundFX() {
       soundFXEnabled = !soundFXEnabled;
       const btn = document.getElementById('sfxToggleBtn');
-      if (btn) btn.textContent = soundFXEnabled ? '🔊' : '🔇';
+      if (btn) {
+        btn.textContent = soundFXEnabled ? '🔊' : '🔇';
+        btn.classList.toggle('muted', !soundFXEnabled);
+        btn.title = soundFXEnabled ? t('sfxOn') : t('sfxOff');
+      }
       if (soundFXEnabled) playUIBlip(600);
     }
 
@@ -3772,14 +4438,24 @@
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
-    /* Text to Speech for Young Children */
+    /* Bilingual Text to Speech for Young Children */
     function speakCurrentLyrics() {
       if (!currentModuleData || !('speechSynthesis' in window)) return;
       window.speechSynthesis.cancel();
-      const text = (currentModuleData.lyrics || []).join('. ');
+      const lyrics = getSongLyrics(currentModuleData);
+      const text = lyrics.join('. ');
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 0.88;
       utterance.pitch = 1.25; // cheerful high tone for kids
+
+      if (currentLang === 'tl') {
+        utterance.lang = 'fil-PH';
+        const voices = window.speechSynthesis.getVoices();
+        const filVoice = voices.find(v => v.lang.startsWith('fil') || v.lang.startsWith('tl'));
+        if (filVoice) utterance.voice = filVoice;
+      } else {
+        utterance.lang = 'en-US';
+      }
       window.speechSynthesis.speak(utterance);
     }
 
@@ -4077,7 +4753,8 @@
         const song = RHYMES_DATA.find(s => s.id === id);
         if (song) {
           btn.style.display = 'inline-flex';
-          btn.innerHTML = `▶ Resume "${song.emoji || '🎵'} ${song.title.slice(0, 16)}..."`;
+          const title = getSongTitle(song);
+          btn.innerHTML = `▶ ${currentLang === 'tl' ? 'Ituloy' : 'Resume'} "${song.emoji || '🎵'} ${title.slice(0, 16)}..."`;
           return;
         }
       }
@@ -4104,14 +4781,14 @@
       if (btnPrev) {
         btnPrev.disabled = !prevSong;
         btnPrev.style.opacity = prevSong ? '1' : '0.45';
-        btnPrev.title = prevSong ? `Previous Song: ${prevSong.title}` : 'First song';
+        btnPrev.title = prevSong ? `${t('prevBtn')}: ${getSongTitle(prevSong)}` : (currentLang === 'tl' ? 'Unang kanta' : 'First song');
       }
 
       const btnNext = document.getElementById('btnNextSong');
       if (btnNext) {
         btnNext.disabled = !nextSong || !nextUnlocked;
         btnNext.style.opacity = (nextSong && nextUnlocked) ? '1' : '0.45';
-        btnNext.title = nextSong ? (nextUnlocked ? `Next Song: ${nextSong.title}` : 'Next song locked') : 'Last song!';
+        btnNext.title = nextSong ? (nextUnlocked ? `${t('nextBtn')}: ${getSongTitle(nextSong)}` : t('lockDefault')) : (currentLang === 'tl' ? 'Huling kanta!' : 'Last song!');
       }
 
       const sel = document.getElementById('quickSongSelect');
@@ -4119,15 +4796,15 @@
         sel.innerHTML = sorted.map(s => {
           const unlocked = isSongUnlocked(s, sorted);
           return `<option value="${s.id}" ${s.id === currentModuleData.id ? 'selected' : ''} ${!unlocked ? 'disabled' : ''}>
-            ${unlocked ? '' : '🔒 '}${s.emoji || '🎵'} #${s.id} ${s.title}
+            ${unlocked ? '' : '🔒 '}${s.emoji || '🎵'} #${s.id} ${getSongTitle(s)}
           </option>`;
         }).join('');
       }
 
       const bTitle = document.getElementById('breadcrumbSongTitle');
-      if (bTitle) bTitle.textContent = currentModuleData.title;
+      if (bTitle) bTitle.textContent = getSongTitle(currentModuleData);
       const bMode = document.getElementById('breadcrumbActiveMode');
-      const modeLabels = { video: '🎬 Video', karaoke: '🎵 Melody', piano: '🎹 Piano', rhythm: '🥁 Drum' };
+      const modeLabels = { video: t('tabVideo'), karaoke: t('tabMelody'), piano: t('tabPiano'), rhythm: t('tabRhythm') };
       if (bMode) bMode.textContent = modeLabels[currentMode] || currentMode;
     }
 
@@ -4162,7 +4839,8 @@
 
       const msgEl = document.getElementById('mascotMessage');
       if (msgEl) {
-        msgEl.textContent = `"${MASCOT_QUOTES[Math.floor(Math.random() * MASCOT_QUOTES.length)]}"`;
+        const quotes = MASCOT_QUOTES[currentLang] || MASCOT_QUOTES.en;
+        msgEl.textContent = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
       }
     }
 
@@ -4187,25 +4865,31 @@
       const filtered = sorted.filter(m => {
         if (currentStudentSearch) {
           const q = currentStudentSearch;
-          const match = m.title.toLowerCase().includes(q) ||
-            (m.topic && m.topic.toLowerCase().includes(q)) ||
+          const titleEn = (m.title || '').toLowerCase();
+          const titleTl = (m.tagalogTitle || '').toLowerCase();
+          const topicEn = (m.topic || '').toLowerCase();
+          const topicTl = (m.tagalogTopic || '').toLowerCase();
+          const lyricsEn = (m.lyrics || []).join(' ').toLowerCase();
+          const lyricsTl = (m.tagalogLyrics || []).join(' ').toLowerCase();
+          const match = titleEn.includes(q) || titleTl.includes(q) ||
+            topicEn.includes(q) || topicTl.includes(q) ||
             (m.emoji && m.emoji.includes(q)) ||
-            (m.lyrics && m.lyrics.join(' ').toLowerCase().includes(q));
+            lyricsEn.includes(q) || lyricsTl.includes(q);
           if (!match) return false;
         }
 
         if (currentStudentCategory === 'starters') return (m.reqStars || 0) === 0;
         if (currentStudentCategory === 'animals') {
           return ['spider', 'sheep', 'farm', 'lamb', 'meadow'].includes(m.theme) ||
-            /spider|sheep|cow|lamb|farm|duck|animal/i.test(m.title + ' ' + (m.topic || ''));
+            /spider|sheep|cow|lamb|farm|duck|animal|gagamba|tupa|baka|kordero|bukid|hayop/i.test(m.title + ' ' + (m.tagalogTitle || '') + ' ' + (m.topic || '') + ' ' + (m.tagalogTopic || ''));
         }
         if (currentStudentCategory === 'lullaby') {
           return ['star', 'boat', 'egg'].includes(m.theme) ||
-            /star|night|boat|sleep|dream/i.test(m.title + ' ' + (m.topic || ''));
+            /star|night|boat|sleep|dream|bituin|gabi|bangka|tulog|pangarap/i.test(m.title + ' ' + (m.tagalogTitle || '') + ' ' + (m.topic || '') + ' ' + (m.tagalogTopic || ''));
         }
         if (currentStudentCategory === 'action') {
           return ['happy', 'hill', 'spider', 'boat'].includes(m.theme) ||
-            /happy|clap|jump|hill|climb|row/i.test(m.title + ' ' + (m.topic || ''));
+            /happy|clap|jump|hill|climb|row|masaya|palakpak|talon|burol|akyat|sagwan/i.test(m.title + ' ' + (m.tagalogTitle || '') + ' ' + (m.topic || '') + ' ' + (m.tagalogTopic || ''));
         }
         if (currentStudentCategory === 'mastered') {
           return isSongComplete(m.id);
@@ -4216,16 +4900,16 @@
       // Update badge
       const badge = document.getElementById('studentResultsBadge');
       if (badge) {
-        badge.textContent = `Showing ${filtered.length} of ${sorted.length} songs`;
+        badge.textContent = t('showingSongs', filtered.length, sorted.length);
       }
 
       if (filtered.length === 0) {
         grid.innerHTML = `
           <div style="grid-column:1/-1; text-align:center; padding:48px 20px; background:var(--theme-card-bg); border-radius:var(--radius-xl); border:2.5px dashed var(--theme-card-border);">
             <div style="font-size:3.2rem; margin-bottom:10px;">🔍</div>
-            <h3 style="color:var(--theme-primary-dark); font-weight:700; font-size:1.4rem;">No songs match your search</h3>
-            <p style="color:var(--text-muted); margin:8px 0 18px; font-weight:600;">Try a different keyword or view all songs!</p>
-            <button class="btn btn-primary btn-sm" onclick="clearStudentSearch(); setStudentCategory('all');">🌈 Show All Songs</button>
+            <h3 style="color:var(--theme-primary-dark); font-weight:700; font-size:1.4rem;">${t('noMatchTitle')}</h3>
+            <p style="color:var(--text-muted); margin:8px 0 18px; font-weight:600;">${t('noMatchDesc')}</p>
+            <button class="btn btn-primary btn-sm" onclick="clearStudentSearch(); setStudentCategory('all');">${t('showAllBtn')}</button>
           </div>
         `;
         return;
@@ -4249,8 +4933,12 @@
         const prevSong = prevIdx >= 0 ? sorted[prevIdx] : null;
 
         const lockReason = !isUnlocked && prevSong
-          ? `Finish 4 activities in "${prevSong.title}" to unlock!`
-          : '';
+          ? t('lockReason', getSongTitle(prevSong))
+          : t('lockDefault');
+
+        const titleText = getSongTitle(m);
+        const altTitleText = getSongAltTitle(m);
+        const topicText = getSongTopic(m);
 
         card.innerHTML = `
       <div class="card-top-header">
@@ -4265,19 +4953,20 @@
       </div>
 
       <div class="card-badge-row">
-        <span class="card-tag">Song #${m.id}</span>
+        <span class="card-tag">${t('songPrefix')}${m.id}</span>
         <span class="card-tag" style="background:${m.color ? m.color + '18' : 'rgba(0,0,0,0.06)'};color:${m.color || 'inherit'};">🎵 ${m.instrument || 'glockenspiel'}</span>
       </div>
 
-      <div class="card-title">${m.title}</div>
-      <div class="card-topic">${m.topic || ''}</div>
+      <div class="card-title">${titleText}</div>
+      ${altTitleText ? `<div class="card-alt-title">${altTitleText}</div>` : ''}
+      <div class="card-topic">${topicText}</div>
 
       ${isUnlocked ? `
         <div class="activity-badges">
-          <span class="act-badge ${acts.video ? 'done' : 'pending'}">${acts.video ? '✅' : '⬜'} 🎬 Video</span>
-          <span class="act-badge ${acts.karaoke ? 'done' : 'pending'}">${acts.karaoke ? '✅' : '⬜'} 🎵 Melody</span>
-          <span class="act-badge ${acts.piano ? 'done' : 'pending'}">${acts.piano ? '✅' : '⬜'} 🎹 Piano</span>
-          <span class="act-badge ${acts.rhythm ? 'done' : 'pending'}">${acts.rhythm ? '✅' : '⬜'} 🥁 Drum</span>
+          <span class="act-badge ${acts.video ? 'done' : 'pending'}">${acts.video ? '✅' : '⬜'} ${t('actVideo')}</span>
+          <span class="act-badge ${acts.karaoke ? 'done' : 'pending'}">${acts.karaoke ? '✅' : '⬜'} ${t('actMelody')}</span>
+          <span class="act-badge ${acts.piano ? 'done' : 'pending'}">${acts.piano ? '✅' : '⬜'} ${t('actPiano')}</span>
+          <span class="act-badge ${acts.rhythm ? 'done' : 'pending'}">${acts.rhythm ? '✅' : '⬜'} ${t('actDrum')}</span>
         </div>
       ` : ''}
 
@@ -4286,14 +4975,14 @@
           ${'⭐'.repeat(actsDone)}${'☆'.repeat(4 - actsDone)}
         </div>
         ${complete
-            ? '<span class="card-status-pill" style="background:#10b981;color:#fff;">🎉 100% Star!</span>'
-            : `<span class="card-status-pill" style="background:rgba(0,0,0,0.05);color:var(--text-muted);">${actsDone}/4 done</span>`}
+            ? `<span class="card-status-pill" style="background:#10b981;color:#fff;">${t('starComplete')}</span>`
+            : `<span class="card-status-pill" style="background:rgba(0,0,0,0.05);color:var(--text-muted);">${t('actsDonePill', actsDone)}</span>`}
       </div>
 
       ${!isUnlocked ? `
         <div class="locked-card-msg">
           <span>🔒</span>
-          <span>${lockReason || 'Complete previous song first!'}</span>
+          <span>${lockReason}</span>
         </div>
       ` : ''}
     `;
@@ -4337,9 +5026,13 @@
       // Apply dynamic song-specific theme
       applySongTheme(m);
 
+      const titleText = getSongTitle(m);
+      const altText = getSongAltTitle(m);
+      const topicText = getSongTopic(m);
+
       document.getElementById('moduleEmoji').textContent = m.emoji || '🎵';
-      document.getElementById('moduleTitle').textContent = `Song ${m.id}: ${m.title}`;
-      document.getElementById('moduleSubtitle').textContent = `🎵 ${m.topic || 'Sing-Along & Music'} · Instrument: ${m.instrument || 'glockenspiel'}`;
+      document.getElementById('moduleTitle').textContent = `${t('songPrefix')}${m.id}: ${titleText}`;
+      document.getElementById('moduleSubtitle').textContent = `🎵 ${topicText} ${altText ? `(${altText})` : ''} · ${t('instrumentLabel')} ${m.instrument || 'glockenspiel'}`;
 
       // Update studio navigation & controls
       updateStudioNavButtons();
@@ -4365,24 +5058,23 @@
       const container = document.getElementById('activityContainer');
       if (!container || !currentModuleData) return;
       const acts = (progress.activities || {})[currentModuleData.id] || {};
-      const totalDone = [acts.video, acts.karaoke, acts.piano, acts.rhythm].filter(Boolean).length;
-
       const tabCheck = (done) => done ? ' <span style="color:#10b981;">✅</span>' : '';
+      const fact = getSongFunFact(currentModuleData);
 
       container.innerHTML = `
     <!-- Mode Switcher Tabs -->
     <div class="music-mode-tabs">
       <button class="mode-tab ${currentMode === 'video' ? 'active' : ''}" onclick="switchMode('video')">
-        🎬 Video${tabCheck(acts.video)}
+        ${t('tabVideo')}${tabCheck(acts.video)}
       </button>
       <button class="mode-tab ${currentMode === 'karaoke' ? 'active' : ''}" onclick="switchMode('karaoke')">
-        🎵 Melody${tabCheck(acts.karaoke)}
+        ${t('tabMelody')}${tabCheck(acts.karaoke)}
       </button>
       <button class="mode-tab ${currentMode === 'piano' ? 'active' : ''}" onclick="switchMode('piano')">
-        🎹 Piano${tabCheck(acts.piano)}
+        ${t('tabPiano')}${tabCheck(acts.piano)}
       </button>
       <button class="mode-tab ${currentMode === 'rhythm' ? 'active' : ''}" onclick="switchMode('rhythm')">
-        🥁 Rhythm${tabCheck(acts.rhythm)}
+        ${t('tabRhythm')}${tabCheck(acts.rhythm)}
       </button>
     </div>
 
@@ -4390,9 +5082,9 @@
     <div id="studioStage"></div>
 
     <!-- Fun Fact -->
-    ${currentModuleData.funFact ? `
+    ${fact ? `
       <div class="song-fun-fact">
-        💡 <strong>Did You Know?</strong> ${currentModuleData.funFact}
+        💡 <strong>${t('funFactTitle')}</strong> ${fact}
       </div>
     ` : ''}
   `;
@@ -4409,7 +5101,12 @@
         b.classList.toggle('active', modes[i] === mode);
       });
       const bMode = document.getElementById('breadcrumbActiveMode');
-      const modeLabels = { video: '🎬 Sing-Along Video', karaoke: '🎵 Melody Karaoke', piano: '🎹 Rainbow Piano', rhythm: '🥁 Rhythm Drum' };
+      const modeLabels = {
+        video: t('modeVideoTitle'),
+        karaoke: t('modeKaraokeTitle'),
+        piano: t('modePianoTitle'),
+        rhythm: t('modeRhythmTitle')
+      };
       if (bMode) bMode.textContent = modeLabels[mode] || mode;
       renderActiveStage();
     }
@@ -4426,15 +5123,16 @@
     /* ==================== 1. VIDEO STAGE ==================== */
     function renderVideoStage(s) {
       const d = currentModuleData;
-      const acts = (progress.activities || {})[d.id] || {};
-      const lyricsList = (d.lyrics || []).map(l => `<div class="video-lyric-line">${l}</div>`).join('');
+      const lyrics = getSongLyrics(d);
+      const lyricsList = lyrics.map(l => `<div class="video-lyric-line">${l}</div>`).join('');
+      const isFileProtocol = window.location.protocol === 'file:';
 
       s.innerHTML = `
     <div class="video-stage-wrap">
       <div class="video-stage-grid">
         <div class="video-frame-container">
           <iframe src="https://www.youtube-nocookie.com/embed/${d.youtubeId}?rel=0"
-            title="${d.title} Sing-Along Video"
+            title="${getSongTitle(d)} Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
@@ -4442,20 +5140,25 @@
         <div class="video-side-card">
           <div>
             <h4 style="font-size:1.35rem;font-weight:700;color:var(--theme-primary-dark);margin-bottom:8px;">
-              📖 Sing-Along Lyrics
+              ${t('singAlongLyrics')}
             </h4>
             <div class="video-lyrics-preview">
               ${lyricsList}
             </div>
+            ${isFileProtocol ? `
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.03);border-radius:var(--radius-sm);line-height:1.4;">
+                ${t('youtubeLocalNotice')}
+              </div>
+            ` : ''}
           </div>
 
           <div style="display:flex;flex-direction:column;gap:10px;">
             <button class="btn btn-fun btn-lg" onclick="claimMusicStars('video')">
-              🌟 I Finished Singing Along! ✅
+              ${t('btnFinishedSinging')}
             </button>
-            <div style="display:flex;gap:8px;justify-content:center;">
-              <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()">🗣️ Read Lyrics Aloud</button>
-              <a href="https://www.youtube.com/watch?v=${d.youtubeId}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">▶ Open YouTube ↗</a>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+              <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()">${t('btnReadAloud')}</button>
+              <a href="https://www.youtube.com/watch?v=${d.youtubeId}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">${t('btnOpenYoutube')}</a>
             </div>
           </div>
         </div>
@@ -4467,37 +5170,38 @@
     /* ==================== 2. KARAOKE MELODY STAGE ==================== */
     function renderKaraokeStage(s) {
       const d = currentModuleData;
+      const lyrics = getSongLyrics(d);
       s.innerHTML = `
     <div class="karaoke-stage">
       <div class="karaoke-display" id="karaokeDisplay">
         <div class="bouncing-ball-indicator" id="bouncingNote">🎵</div>
-        <div class="current-sing-line" id="currentSingLine">${wordsToSpans(d.lyrics[0] || '')}</div>
-        <div class="upcoming-sing-line" id="upcomingSingLine">${d.lyrics[1] ? `Next: "${d.lyrics[1]}"` : ''}</div>
+        <div class="current-sing-line" id="currentSingLine">${wordsToSpans(lyrics[0] || '')}</div>
+        <div class="upcoming-sing-line" id="upcomingSingLine">${lyrics[1] ? `${t('nextLyricPrefix')} "${lyrics[1]}"` : ''}</div>
       </div>
 
       <div class="karaoke-controls-bar">
-        <button class="btn btn-primary btn-lg" id="karaokePlayBtn" onclick="toggleKaraoke()">▶ Play Melody &amp; Sing!</button>
-        <button class="btn btn-secondary" onclick="stopKaraoke()">⏹ Stop</button>
-        <button class="btn btn-secondary" onclick="restartKaraoke()">🔄 Replay</button>
-        <button class="btn btn-fun" onclick="claimMusicStars('karaoke')">🌟 Done Singing! ✅</button>
+        <button class="btn btn-primary btn-lg" id="karaokePlayBtn" onclick="toggleKaraoke()">${t('playMelodyBtn')}</button>
+        <button class="btn btn-secondary" onclick="stopKaraoke()">${t('stopBtn')}</button>
+        <button class="btn btn-secondary" onclick="restartKaraoke()">${t('replayBtn')}</button>
+        <button class="btn btn-fun" onclick="claimMusicStars('karaoke')">${t('singDoneBtn')}</button>
       </div>
 
       <div class="music-toggles-bar">
         <div class="music-select-group">
-          <label>🔔 Instrument:</label>
+          <label>${t('instrumentLabel')}</label>
           <select onchange="changeInstrument(this.value)">
-            <option value="glockenspiel" ${currentInstrument === 'glockenspiel' ? 'selected' : ''}>Glockenspiel 🔔</option>
-            <option value="musicbox"     ${currentInstrument === 'musicbox' ? 'selected' : ''}>Music Box 🎶</option>
-            <option value="piano"        ${currentInstrument === 'piano' ? 'selected' : ''}>Grand Piano 🎹</option>
-            <option value="marimba"      ${currentInstrument === 'marimba' ? 'selected' : ''}>Marimba 🪵</option>
+            <option value="glockenspiel" ${currentInstrument === 'glockenspiel' ? 'selected' : ''}>${t('instGlock')}</option>
+            <option value="musicbox"     ${currentInstrument === 'musicbox' ? 'selected' : ''}>${t('instMusicBox')}</option>
+            <option value="piano"        ${currentInstrument === 'piano' ? 'selected' : ''}>${t('instPiano')}</option>
+            <option value="marimba"      ${currentInstrument === 'marimba' ? 'selected' : ''}>${t('instMarimba')}</option>
           </select>
         </div>
         <div class="music-select-group">
-          <label>⏱️ Speed:</label>
+          <label>${t('speedLabel')}</label>
           <select onchange="changeTempo(this.value)">
-            <option value="0.8" ${currentTempo === 0.8 ? 'selected' : ''}>Gentle 0.8x 🐢</option>
-            <option value="1.0" ${currentTempo === 1.0 ? 'selected' : ''}>Normal 1.0x 🎵</option>
-            <option value="1.2" ${currentTempo === 1.2 ? 'selected' : ''}>Upbeat 1.2x 🐰</option>
+            <option value="0.8" ${currentTempo === 0.8 ? 'selected' : ''}>${t('speedGentle')}</option>
+            <option value="1.0" ${currentTempo === 1.0 ? 'selected' : ''}>${t('speedNormal')}</option>
+            <option value="1.2" ${currentTempo === 1.2 ? 'selected' : ''}>${t('speedUpbeat')}</option>
           </select>
         </div>
       </div>
@@ -4528,7 +5232,7 @@
       getACtx();
       isKaraokePlaying = true;
       const btn = document.getElementById('karaokePlayBtn');
-      if (btn) btn.innerHTML = '⏸ Pause';
+      if (btn) btn.innerHTML = t('pauseBtn');
       karaokeStep = 0;
       playNextNote();
     }
@@ -4536,7 +5240,7 @@
     function stopKaraoke() {
       stopAllMusic();
       const btn = document.getElementById('karaokePlayBtn');
-      if (btn) btn.innerHTML = '▶ Play Melody &amp; Sing!';
+      if (btn) btn.innerHTML = t('playMelodyBtn');
       document.querySelectorAll('.current-sing-word').forEach(el => el.classList.remove('singing'));
     }
 
@@ -4548,16 +5252,17 @@
     function playNextNote() {
       if (!isKaraokePlaying) return;
       const d = currentModuleData;
+      const lyrics = getSongLyrics(d);
 
       if (karaokeStep >= flatMelodyNotes.length) {
         isKaraokePlaying = false;
         const btn = document.getElementById('karaokePlayBtn');
-        if (btn) btn.innerHTML = '▶ Sing Again!';
+        if (btn) btn.innerHTML = t('singAgainBtn');
         const disp = document.getElementById('karaokeDisplay');
         if (disp) disp.innerHTML = `
       <div class="bouncing-ball-indicator">🌟</div>
-      <div class="current-sing-line">🎉 Wonderful Singing! Mastered the Melody!</div>
-      <div class="upcoming-sing-line">Tap below to claim your star! ⭐</div>
+      <div class="current-sing-line">${t('karaokeMasteredTitle')}</div>
+      <div class="upcoming-sing-line">${t('karaokeClaimPrompt')}</div>
     `;
         claimMusicStars('karaoke');
         return;
@@ -4567,13 +5272,13 @@
       const lineEl = document.getElementById('currentSingLine');
       const upEl = document.getElementById('upcomingSingLine');
 
-      if (lineEl && d.lyrics[noteObj.lineIdx]) {
-        lineEl.innerHTML = wordsToSpans(d.lyrics[noteObj.lineIdx]);
-        const nxt = d.lyrics[noteObj.lineIdx + 1];
-        if (upEl) upEl.textContent = nxt ? `Next: "${nxt}"` : '🎶 Finale!';
+      if (lineEl && lyrics[noteObj.lineIdx]) {
+        lineEl.innerHTML = wordsToSpans(lyrics[noteObj.lineIdx]);
+        const nxt = lyrics[noteObj.lineIdx + 1];
+        if (upEl) upEl.textContent = nxt ? `${t('nextLyricPrefix')} "${nxt}"` : t('finaleLyric');
       }
 
-      const wordsInLine = (d.lyrics[noteObj.lineIdx] || '').split(/\s+/);
+      const wordsInLine = (lyrics[noteObj.lineIdx] || '').split(/\s+/);
       const wordIdx = Math.min(Math.floor((noteObj.noteInLine / Math.max(1, noteObj.countInLine)) * wordsInLine.length), wordsInLine.length - 1);
       document.querySelectorAll('.current-sing-word').forEach(el => el.classList.remove('singing'));
       document.getElementById(`sw_${wordIdx}`)?.classList.add('singing');
@@ -4616,10 +5321,10 @@
       s.innerHTML = `
     <div class="piano-stage">
       <div class="piano-header-box">
-        <h3>🎹 Play Along with the Song!</h3>
-        <p>Follow the glowing rainbow key to play "${currentModuleData.title}" note by note!</p>
+        <h3>${t('pianoHeaderTitle')}</h3>
+        <p>${t('pianoHeaderDesc', getSongTitle(currentModuleData))}</p>
         <div class="piano-hint-badge" id="pianoHint">
-          👉 Next Key: <strong>${target}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})
+          ${t('pianoNextKey')} <strong>${target}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})
         </div>
       </div>
 
@@ -4628,8 +5333,8 @@
       </div>
 
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px;">
-        <button class="btn btn-secondary btn-sm" onclick="resetPiano()">🔄 Restart Notes</button>
-        <button class="btn btn-fun btn-sm" onclick="claimMusicStars('piano')">🌟 Done Playing! ✅</button>
+        <button class="btn btn-secondary btn-sm" onclick="resetPiano()">${t('pianoRestartBtn')}</button>
+        <button class="btn btn-fun btn-sm" onclick="claimMusicStars('piano')">${t('pianoDoneBtn')}</button>
       </div>
       <div id="pianoFeedback"></div>
     </div>
@@ -4649,16 +5354,16 @@
       if (flatMelodyNotes[pianoGuideIdx]?.key === noteName) {
         pianoGuideIdx++;
         if (pianoGuideIdx >= flatMelodyNotes.length) {
-          if (fb) fb.innerHTML = `<div class="feedback-toast success">🎉 Master Pianist! You played the full melody! ✅</div>`;
+          if (fb) fb.innerHTML = `<div class="feedback-toast success">${t('pianoSuccessToast')}</div>`;
           claimMusicStars('piano');
           pianoGuideIdx = 0;
         } else {
           const next = flatMelodyNotes[pianoGuideIdx].key;
           const hint = document.getElementById('pianoHint');
-          if (hint) hint.innerHTML = `👉 Next Key: <strong>${next}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})`;
+          if (hint) hint.innerHTML = `${t('pianoNextKey')} <strong>${next}</strong> (${pianoGuideIdx + 1}/${flatMelodyNotes.length})`;
           document.querySelectorAll('.piano-key').forEach(k => k.classList.remove('highlight'));
           document.getElementById(`pk_${next}`)?.classList.add('highlight');
-          if (fb) fb.innerHTML = `<div class="feedback-toast info">🎵 <strong>${noteName}</strong> — Beautiful sound!</div>`;
+          if (fb) fb.innerHTML = `<div class="feedback-toast info">${t('pianoNoteSoundToast', noteName)}</div>`;
         }
       }
     }
@@ -4673,8 +5378,8 @@
       rhythmTapCount = 0;
       s.innerHTML = `
     <div class="rhythm-box">
-      <h3>🥁 Rhythm Beat Arena</h3>
-      <p>Tap the big drum in time with the song beat 5× to unlock your rhythm star!</p>
+      <h3>${t('rhythmHeaderTitle')}</h3>
+      <p>${t('rhythmHeaderDesc')}</p>
 
       <button class="rhythm-pad-btn" id="rhythmBtn" onclick="handleRhythmTap()">🥁</button>
 
@@ -4696,11 +5401,11 @@
 
       const fb = document.getElementById('rhythmFeedback');
       if (rhythmTapCount < 5) {
-        if (fb) fb.innerHTML = `<div class="feedback-toast info">🎶 Beat ${rhythmTapCount}/5 – Feel the rhythm!</div>`;
+        if (fb) fb.innerHTML = `<div class="feedback-toast info">${t('rhythmBeatToast', rhythmTapCount)}</div>`;
       } else {
         playCelebration();
         spawnConfetti();
-        if (fb) fb.innerHTML = `<div class="feedback-toast success">🎉 Fantastic Drumming! Activity complete! ✅</div>`;
+        if (fb) fb.innerHTML = `<div class="feedback-toast success">${t('rhythmSuccessToast')}</div>`;
         document.getElementById('rhythmBtn').disabled = true;
         claimMusicStars('rhythm');
       }
@@ -4734,29 +5439,30 @@
         ).join('');
 
         const modeLabels = {
-          video: '🎬 Sing-Along Video',
-          karaoke: '🎵 Melody & Sing',
-          piano: '🎹 Piano Play-Along',
-          rhythm: '🥁 Rhythm Beat'
+          video: t('tabVideo'),
+          karaoke: t('tabMelody'),
+          piano: t('tabPiano'),
+          rhythm: t('tabRhythm')
         };
 
         const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
         const nextMod = sorted.find(m => m.id > currentModuleData.id);
         const nextUnlocked = nextMod && complete;
 
+        const headerTitle = alreadyDone ? t('actCompletedTitle') : (complete ? t('songMasteredTitle') : t('superstarTitle'));
+        const subMsg = alreadyDone
+          ? t('actAlreadyDoneMsg', modeLabels[mode] || mode)
+          : (complete
+            ? t('songCompleteAllMsg', getSongTitle(currentModuleData))
+            : t('awesomeJobMsg'));
+
         container.innerHTML = `
       <div class="completion-card">
         <div style="font-size:4.5rem;margin-bottom:12px;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.2));">
           ${currentModuleData.emoji || '🎵'}
         </div>
-        <h2>${alreadyDone ? '🎯 Activity Completed!' : (complete ? '🏆 Song Mastered 100%!' : '🌟 Superstar Job!')}</h2>
-        <p>
-          ${alreadyDone
-            ? `You've already earned stars for <strong>${modeLabels[mode]}</strong>! Choose another activity to master this song!`
-            : (complete
-              ? `Hooray! You finished ALL 4 activities for <strong>"${currentModuleData.title}"</strong>! The next song is now unlocked!`
-              : `Awesome singing and playing! Complete all 4 activities to earn a trophy!`)}
-        </p>
+        <h2>${headerTitle}</h2>
+        <p>${subMsg}</p>
 
         <div style="font-size:2.8rem;margin:16px 0;letter-spacing:10px;">
           ${starsHTML}
@@ -4765,23 +5471,23 @@
         <div class="score-row">
           <div class="score-box">
             <div class="score-num">${actsDone}/4</div>
-            <div class="score-label">Activities Done</div>
+            <div class="score-label">${t('activitiesDoneLabel')}</div>
           </div>
           <div class="score-box">
             <div class="score-num">${saved.totalStars}/${getMaxStars()}</div>
-            <div class="score-label">Total Stars</div>
+            <div class="score-label">${t('statStars')}</div>
           </div>
           <div class="score-box">
             <div class="score-num">🔥 ${currentStreak}</div>
-            <div class="score-label">Streak</div>
+            <div class="score-label">${t('streakLabel')}</div>
           </div>
         </div>
 
         <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <button class="btn btn-secondary btn-lg" onclick="openMusicModule(${currentModuleData.id})">🔄 Play Again</button>
+          <button class="btn btn-secondary btn-lg" onclick="openMusicModule(${currentModuleData.id})">${t('playAgainBtn')}</button>
           ${nextMod && nextUnlocked
-            ? `<button class="btn btn-primary btn-lg" onclick="openMusicModule(${nextMod.id})">Next Song: ${nextMod.emoji} ${nextMod.title} →</button>`
-            : `<button class="btn btn-primary btn-lg" onclick="showDashboard()">🏠 More Songs</button>`}
+            ? `<button class="btn btn-primary btn-lg" onclick="openMusicModule(${nextMod.id})">${t('nextSongBtn', nextMod.emoji || '🎵', getSongTitle(nextMod))}</button>`
+            : `<button class="btn btn-primary btn-lg" onclick="showDashboard()">${t('moreSongsBtn')}</button>`}
         </div>
       </div>
     `;
@@ -4822,7 +5528,7 @@
       const mathBox = document.getElementById('mathChallengeBox');
       if (mathBox) mathBox.style.display = 'none';
       const label = document.getElementById('mathToggleLabel');
-      if (label) label.textContent = 'Adult Math Question Instead?';
+      if (label) label.textContent = t('gateAdultToggle');
     }
 
     function handleGateOverlayClick(e) {
@@ -4875,7 +5581,7 @@
         sessionStorage.setItem(TEACHER_AUTH_KEY, 'true');
         if (err) {
           err.style.color = '#059669';
-          err.textContent = '✅ Access Granted! Redirecting to Teacher Portal...';
+          err.textContent = t('gateAccessGranted');
         }
         setTimeout(() => {
           window.location.href = 'admin.html';
@@ -4884,7 +5590,7 @@
         triggerGateShake();
         if (err) {
           err.style.color = '#ef4444';
-          err.textContent = '❌ Incorrect passcode. Please try again.';
+          err.textContent = t('gateWrongPin');
         }
         if (input) {
           input.value = '';
@@ -4910,12 +5616,12 @@
       if (isHidden) {
         generateMathChallenge();
         box.style.display = 'block';
-        if (label) label.textContent = 'Switch back to PIN pad';
+        if (label) label.textContent = t('gatePinToggle');
         const ans = document.getElementById('mathAnswerInput');
         if (ans) ans.focus();
       } else {
         box.style.display = 'none';
-        if (label) label.textContent = 'Adult Math Question Instead?';
+        if (label) label.textContent = t('gateAdultToggle');
         const pinInp = document.getElementById('teacherGatePinInput');
         if (pinInp) pinInp.focus();
       }
@@ -4929,7 +5635,7 @@
         sessionStorage.setItem(TEACHER_AUTH_KEY, 'true');
         if (err) {
           err.style.color = '#059669';
-          err.textContent = '✅ Verified! Redirecting to Teacher Portal...';
+          err.textContent = t('gateVerified');
         }
         setTimeout(() => {
           window.location.href = 'admin.html';
@@ -4938,7 +5644,7 @@
         triggerGateShake();
         if (err) {
           err.style.color = '#ef4444';
-          err.textContent = '❌ Incorrect answer. Try again.';
+          err.textContent = t('gateWrongMath');
         }
         generateMathChallenge();
       }
@@ -5032,8 +5738,7 @@
       RHYMES_DATA = getRhymesData();
       initFloatingParticles();
       loadProgress();
-      updateStarsDisplay();
-      updateStatsRibbon();
+      setLanguage(currentLang);
       showDashboard();
 
       // Check covert access via URL hash or query string
