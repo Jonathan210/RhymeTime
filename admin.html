@@ -3,14 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="theme-color" content="#800032" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>TuneTots ⚙️ Admin – Song &amp; Music Studio Management</title>
+  <title>RhymeTime ⚙️ Admin – Song &amp; Music Studio Management</title>
   <meta name="description"
-    content="TuneTots Admin Studio — Professional, responsive curriculum and song library management with instant sync to the student player." />
+    content="RhymeTime Admin Studio — Professional, responsive curriculum and song library management with instant sync to the student player." />
   <link rel="icon" href="icons8-musical-note-48.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1142,7 +1143,9 @@
 
     /* ---- MOBILE FIRST: Base improvements for all small screens ---- */
     @media (max-width: 640px) {
-      html { font-size: 15px; }
+      html {
+        font-size: 15px;
+      }
 
       #app {
         padding: 10px 12px 100px;
@@ -1156,10 +1159,23 @@
         border-radius: var(--radius-lg);
       }
 
-      .logo-icon { font-size: 1.7rem; }
-      .logo-title { font-size: 1.2rem; }
-      .studio-tag { display: none; } /* hide tag to save space */
-      .header-song-count-pill { font-size: 0.7rem; padding: 2px 8px; }
+      .logo-icon {
+        font-size: 1.7rem;
+      }
+
+      .logo-title {
+        font-size: 1.2rem;
+      }
+
+      .studio-tag {
+        display: none;
+      }
+
+      /* hide tag to save space */
+      .header-song-count-pill {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+      }
 
       /* Nav toolbar wraps into 2 rows on mobile */
       .header-nav-toolbar {
@@ -1174,9 +1190,17 @@
       }
 
       /* Dashboard heading */
-      .dashboard-heading { margin: 16px 0 14px; }
-      .dashboard-heading h2 { font-size: 1.5rem; }
-      .dashboard-heading p { font-size: 0.9rem; }
+      .dashboard-heading {
+        margin: 16px 0 14px;
+      }
+
+      .dashboard-heading h2 {
+        font-size: 1.5rem;
+      }
+
+      .dashboard-heading p {
+        font-size: 0.9rem;
+      }
 
       /* Stats row: 2 columns on small mobile */
       .stats-row {
@@ -1184,9 +1208,18 @@
         gap: 10px;
         margin-bottom: 18px;
       }
-      .stat-pill { padding: 12px 14px; }
-      .stat-num { font-size: 1.5rem; }
-      .stat-label { font-size: 0.72rem; }
+
+      .stat-pill {
+        padding: 12px 14px;
+      }
+
+      .stat-num {
+        font-size: 1.5rem;
+      }
+
+      .stat-label {
+        font-size: 0.72rem;
+      }
 
       /* Subnav tabs: horizontal scroll on mobile */
       .admin-subnav-tabs {
@@ -1198,7 +1231,11 @@
         scrollbar-width: none;
         margin-bottom: 14px;
       }
-      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
+
+      .admin-subnav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
       .subnav-tab {
         white-space: nowrap;
         flex-shrink: 0;
@@ -1211,22 +1248,49 @@
         padding: 14px;
         gap: 12px;
       }
-      .search-input-wrap { min-width: 0; }
-      .filters-wrap { gap: 8px; }
-      .filter-select { font-size: 0.82rem; padding: 9px 12px; }
+
+      .search-input-wrap {
+        min-width: 0;
+      }
+
+      .filters-wrap {
+        gap: 8px;
+      }
+
+      .filter-select {
+        font-size: 0.82rem;
+        padding: 9px 12px;
+      }
 
       /* View switcher */
-      .view-switcher-group { flex-shrink: 0; }
-      .view-mode-btn { padding: 7px 10px; font-size: 0.8rem; }
+      .view-switcher-group {
+        flex-shrink: 0;
+      }
+
+      .view-mode-btn {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+      }
 
       /* Song cards: full width */
       .song-list-grid {
         grid-template-columns: 1fr;
         gap: 14px;
       }
-      .admin-song-card { padding: 16px 14px; }
-      .card-actions-row { flex-wrap: wrap; gap: 7px; }
-      .card-actions-row .btn-sm { padding: 7px 11px; font-size: 0.8rem; }
+
+      .admin-song-card {
+        padding: 16px 14px;
+      }
+
+      .card-actions-row {
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .card-actions-row .btn-sm {
+        padding: 7px 11px;
+        font-size: 0.8rem;
+      }
 
       /* Table: horizontally scrollable on mobile */
       .songs-table-wrap {
@@ -1234,7 +1298,10 @@
         -webkit-overflow-scrolling: touch;
         border-radius: var(--radius-lg);
       }
-      .admin-data-table { min-width: 720px; }
+
+      .admin-data-table {
+        min-width: 720px;
+      }
 
       /* Modals: full screen on tiny phones */
       .modal-card {
@@ -1247,6 +1314,7 @@
         left: 0;
         margin: 0;
       }
+
       .modal-overlay {
         align-items: flex-end;
       }
@@ -1264,6 +1332,7 @@
         right: 16px;
         gap: 8px;
       }
+
       .floating-btn {
         width: 46px;
         height: 46px;
@@ -1275,23 +1344,42 @@
         padding: 28px 20px 22px;
         border-radius: var(--radius-lg);
       }
-      .admin-lock-title { font-size: 1.25rem; }
+
+      .admin-lock-title {
+        font-size: 1.25rem;
+      }
 
       /* Mini piano in modal */
-      .mini-piano { gap: 4px; }
-      .mini-piano-key { padding: 7px 6px; font-size: 0.8rem; }
+      .mini-piano {
+        gap: 4px;
+      }
+
+      .mini-piano-key {
+        padding: 7px 6px;
+        font-size: 0.8rem;
+      }
 
       /* Progress stat card */
-      .progress-stat-card { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .progress-stat-card {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
     }
 
     /* ---- TABLET: 641px – 1023px ---- */
     @media (min-width: 641px) and (max-width: 1023px) {
-      #app { padding: 14px 20px 90px; }
+      #app {
+        padding: 14px 20px 90px;
+      }
 
-      .site-header { padding: 12px 20px; }
+      .site-header {
+        padding: 12px 20px;
+      }
 
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       .admin-subnav-tabs {
         flex-wrap: nowrap;
@@ -1300,8 +1388,15 @@
         padding-bottom: 6px;
         scrollbar-width: none;
       }
-      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
-      .subnav-tab { white-space: nowrap; flex-shrink: 0; }
+
+      .admin-subnav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .subnav-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
 
       .song-list-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1311,64 +1406,124 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
-      .admin-data-table { min-width: 700px; }
 
-      .modal-card { max-width: 90vw; }
+      .admin-data-table {
+        min-width: 700px;
+      }
 
-      .header-nav-toolbar { gap: 8px; flex-wrap: wrap; }
-      .header-nav-toolbar .btn-sm { font-size: 0.83rem; padding: 7px 12px; }
+      .modal-card {
+        max-width: 90vw;
+      }
+
+      .header-nav-toolbar {
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .header-nav-toolbar .btn-sm {
+        font-size: 0.83rem;
+        padding: 7px 12px;
+      }
     }
 
     /* ---- LARGE DESKTOP: 1440px+ ---- */
     @media (min-width: 1440px) {
-      #app { padding: 20px 48px 80px; }
+      #app {
+        padding: 20px 48px 80px;
+      }
 
       .song-list-grid {
         grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       }
 
-      .stats-row { grid-template-columns: repeat(4, 1fr); }
+      .stats-row {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     /* ---- ULTRA WIDE: 1920px+ ---- */
     @media (min-width: 1920px) {
-      #app { padding: 24px 72px 80px; }
+      #app {
+        padding: 24px 72px 80px;
+      }
     }
 
     /* ---- Touch device optimizations ---- */
     @media (hover: none) and (pointer: coarse) {
-      .btn:hover, .subnav-tab:hover, .stat-pill:hover,
-      .dropdown-item:hover, .admin-song-card:hover {
+
+      .btn:hover,
+      .subnav-tab:hover,
+      .stat-pill:hover,
+      .dropdown-item:hover,
+      .admin-song-card:hover {
         transform: none;
         filter: none;
       }
-      .btn:active { transform: translateY(2px); }
-      .subnav-tab:active { transform: scale(0.97); }
+
+      .btn:active {
+        transform: translateY(2px);
+      }
+
+      .subnav-tab:active {
+        transform: scale(0.97);
+      }
 
       /* Larger tap targets on touch */
-      .btn-sm { min-height: 40px; }
-      .icon-toggle-btn { width: 44px; height: 44px; }
-      .reorder-btn { min-width: 36px; min-height: 36px; }
-      .dropdown-item { padding: 12px 14px; }
-      .gate-key { min-height: 52px; }
+      .btn-sm {
+        min-height: 40px;
+      }
+
+      .icon-toggle-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      .reorder-btn {
+        min-width: 36px;
+        min-height: 36px;
+      }
+
+      .dropdown-item {
+        padding: 12px 14px;
+      }
+
+      .gate-key {
+        min-height: 52px;
+      }
     }
 
     /* ---- Landscape phone orientation ---- */
     @media (max-width: 900px) and (orientation: landscape) {
-      .site-header { top: 6px; padding: 8px 16px; }
+      .site-header {
+        top: 6px;
+        padding: 8px 16px;
+      }
+
       .admin-subnav-tabs {
         flex-wrap: nowrap;
         overflow-x: auto;
         scrollbar-width: none;
       }
-      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
-      .modal-card { max-height: 92dvh; }
-      .admin-lock-box { padding: 16px 20px; }
+
+      .admin-subnav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .modal-card {
+        max-height: 92dvh;
+      }
+
+      .admin-lock-box {
+        padding: 16px 20px;
+      }
     }
 
     /* ---- Reduced motion ---- */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.15s !important;
       }
@@ -1418,8 +1573,15 @@
     }
 
     @keyframes dropdownPop {
-      from { opacity: 0; transform: translateY(-8px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     body.dark-mode .admin-dropdown-menu {
@@ -1619,10 +1781,27 @@
     }
 
     @keyframes gateShake {
-      10%, 90% { transform: translate3d(-2px, 0, 0); }
-      20%, 80% { transform: translate3d(4px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-      40%, 60% { transform: translate3d(6px, 0, 0); }
+
+      10%,
+      90% {
+        transform: translate3d(-2px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(4px, 0, 0);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-6px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(6px, 0, 0);
+      }
     }
   </style>
 </head>
@@ -1635,7 +1814,8 @@
       <div style="font-size:3.5rem; margin-bottom:10px;">🔒</div>
       <h2 class="admin-lock-title">Teacher Admin Authentication</h2>
       <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:20px; line-height:1.45;">
-        This portal is restricted to authorized educators. Enter your teacher passcode to manage songs, curriculum, and student progress.
+        This portal is restricted to authorized educators. Enter your teacher passcode to manage songs, curriculum, and
+        student progress.
       </p>
 
       <div style="margin-bottom:12px;">
@@ -1644,14 +1824,17 @@
           onkeydown="if(event.key==='Enter') unlockAdminPage()">
       </div>
 
-      <div id="adminLockError" style="min-height:22px; font-size:0.88rem; font-weight:700; color:#ef4444; margin-bottom:16px;"></div>
+      <div id="adminLockError"
+        style="min-height:22px; font-size:0.88rem; font-weight:700; color:#ef4444; margin-bottom:16px;"></div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
         <span style="font-size:0.82rem; color:var(--text-muted);">Default passcode: <strong>1234</strong></span>
-        <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='index.html'">← Return to Student Player</button>
+        <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='index.html'">← Return to Student
+          Player</button>
       </div>
 
-      <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;" onclick="unlockAdminPage()">
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;"
+        onclick="unlockAdminPage()">
         Unlock Teacher Dashboard ↗
       </button>
     </div>
@@ -1680,7 +1863,8 @@
 
         <!-- Data & Backup Dropdown Menu -->
         <div class="admin-dropdown-wrap">
-          <button class="btn btn-secondary btn-sm" id="btnLibraryTools" onclick="toggleLibraryMenu(event)">💾 Tools ▾</button>
+          <button class="btn btn-secondary btn-sm" id="btnLibraryTools" onclick="toggleLibraryMenu(event)">💾 Tools
+            ▾</button>
           <div class="admin-dropdown-menu" id="libraryToolsMenu">
             <button class="dropdown-item" onclick="exportSongsJSON()">💾 Export Library (JSON)</button>
             <button class="dropdown-item" onclick="triggerImportJSON()">📂 Import JSON File</button>
@@ -1692,12 +1876,16 @@
 
         <!-- Student Views -->
         <a href="index.html" class="btn btn-secondary btn-sm" title="Go to Student Player">🎵 Player</a>
-        <a href="index.html" target="_blank" class="btn btn-secondary btn-sm" title="Open student view in new tab">👁️ Live ↗</a>
+        <a href="index.html" target="_blank" class="btn btn-secondary btn-sm" title="Open student view in new tab">👁️
+          Live ↗</a>
 
         <!-- Security & Dark Mode -->
-        <button class="btn btn-outline-dark btn-sm" onclick="openChangePinModal()" title="Change Teacher Passcode">🔑 PIN</button>
-        <button class="btn btn-secondary btn-sm" onclick="adminLockAndExit()" title="Lock session & return to student player">🔒 Exit</button>
-        <button class="icon-toggle-btn" id="themeModeToggleBtn" onclick="toggleThemeMode()" title="Toggle Dark/Light Mode">🌙</button>
+        <button class="btn btn-outline-dark btn-sm" onclick="openChangePinModal()" title="Change Teacher Passcode">🔑
+          PIN</button>
+        <button class="btn btn-secondary btn-sm" onclick="adminLockAndExit()"
+          title="Lock session & return to student player">🔒 Exit</button>
+        <button class="icon-toggle-btn" id="themeModeToggleBtn" onclick="toggleThemeMode()"
+          title="Toggle Dark/Light Mode">🌙</button>
       </nav>
     </header>
 
@@ -3215,7 +3403,8 @@
   <!-- Floating Quick Actions for Easy Navigation -->
   <div class="floating-admin-actions">
     <button class="floating-btn floating-btn-add" onclick="openCreateModal()" title="Add New Song">➕</button>
-    <button class="floating-btn floating-btn-top" id="adminScrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to Top">⬆️</button>
+    <button class="floating-btn floating-btn-top" id="adminScrollTopBtn"
+      onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to Top">⬆️</button>
   </div>
 </body>
 
