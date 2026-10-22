@@ -3,14 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="theme-color" content="#800032" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>TuneTots 🎵 – Sing, Play &amp; Music Studio</title>
+  <title>RhymeTime 🎵 – Sing, Play &amp; Music Studio</title>
   <meta name="description"
-    content="TuneTots – 100% Sing-Along &amp; Music Experience for kids! Watch sing-along videos, sing melodic karaoke, tap rhythmic drums, and play the rainbow piano!" />
+    content="RhymeTime – 100% Sing-Along &amp; Music Experience for kids! Watch sing-along videos, sing melodic karaoke, tap rhythmic drums, and play the rainbow piano!" />
   <link rel="icon" href="icons8-musical-note-48.png" type="image/x-icon">
   <!-- Modern Child-Friendly Fonts: Fredoka & Nunito -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -319,14 +320,21 @@
       left: -100%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
       animation: headerShimmer 5s ease-in-out infinite;
       pointer-events: none;
     }
 
     @keyframes headerShimmer {
-      0%, 100% { left: -100%; }
-      50% { left: 140%; }
+
+      0%,
+      100% {
+        left: -100%;
+      }
+
+      50% {
+        left: 140%;
+      }
     }
 
     .brand-group {
@@ -744,13 +752,18 @@
       left: -50%;
       width: 50%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       animation: progressShimmer 2s ease-in-out infinite;
     }
 
     @keyframes progressShimmer {
-      0% { left: -50%; }
-      100% { left: 150%; }
+      0% {
+        left: -50%;
+      }
+
+      100% {
+        left: 150%;
+      }
     }
 
     .progress-milestones {
@@ -819,22 +832,52 @@
       animation: cardEnter 0.5s var(--ease-bounce) both;
     }
 
-    .module-card:nth-child(1)  { animation-delay: 0.02s; }
-    .module-card:nth-child(2)  { animation-delay: 0.06s; }
-    .module-card:nth-child(3)  { animation-delay: 0.10s; }
-    .module-card:nth-child(4)  { animation-delay: 0.14s; }
-    .module-card:nth-child(5)  { animation-delay: 0.18s; }
-    .module-card:nth-child(6)  { animation-delay: 0.22s; }
-    .module-card:nth-child(7)  { animation-delay: 0.26s; }
-    .module-card:nth-child(8)  { animation-delay: 0.30s; }
-    .module-card:nth-child(9)  { animation-delay: 0.34s; }
-    .module-card:nth-child(10) { animation-delay: 0.38s; }
+    .module-card:nth-child(1) {
+      animation-delay: 0.02s;
+    }
+
+    .module-card:nth-child(2) {
+      animation-delay: 0.06s;
+    }
+
+    .module-card:nth-child(3) {
+      animation-delay: 0.10s;
+    }
+
+    .module-card:nth-child(4) {
+      animation-delay: 0.14s;
+    }
+
+    .module-card:nth-child(5) {
+      animation-delay: 0.18s;
+    }
+
+    .module-card:nth-child(6) {
+      animation-delay: 0.22s;
+    }
+
+    .module-card:nth-child(7) {
+      animation-delay: 0.26s;
+    }
+
+    .module-card:nth-child(8) {
+      animation-delay: 0.30s;
+    }
+
+    .module-card:nth-child(9) {
+      animation-delay: 0.34s;
+    }
+
+    .module-card:nth-child(10) {
+      animation-delay: 0.38s;
+    }
 
     @keyframes cardEnter {
       from {
         opacity: 0;
         transform: translateY(32px) scale(0.92);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -875,13 +918,22 @@
       transform: translate(-50%, -50%);
       font-size: 2.5rem;
       z-index: 5;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
       animation: lockPulse 2s ease-in-out infinite;
     }
 
     @keyframes lockPulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+      }
     }
 
     .card-top-header {
@@ -1813,8 +1865,15 @@
     }
 
     @keyframes drumRipple {
-      0% { transform: scale(0.8); opacity: 0.7; }
-      100% { transform: scale(1.5); opacity: 0; }
+      0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
     }
 
     .rhythm-pad-btn:active {
@@ -1853,9 +1912,17 @@
     }
 
     @keyframes dotPop {
-      0% { transform: scale(0.4); }
-      50% { transform: scale(1.5); }
-      100% { transform: scale(1.35); }
+      0% {
+        transform: scale(0.4);
+      }
+
+      50% {
+        transform: scale(1.5);
+      }
+
+      100% {
+        transform: scale(1.35);
+      }
     }
 
     /* Fun Fact Box */
@@ -2052,14 +2119,14 @@
       border-radius: 50%;
       background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
       color: #fff;
-      border: 3px solid rgba(255,255,255,0.5);
+      border: 3px solid rgba(255, 255, 255, 0.5);
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 90;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
       transition: all 0.3s var(--ease-bounce);
       opacity: 0;
       pointer-events: none;
@@ -2111,8 +2178,15 @@
     }
 
     @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
     }
 
     /* Karaoke active line sweep */
@@ -2134,16 +2208,21 @@
     }
 
     @keyframes sweepLine {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
     }
 
     /* Keyboard hint badges on piano */
     .piano-key-shortcut {
       font-size: 0.72rem;
       font-weight: 700;
-      color: rgba(255,255,255,0.65);
-      background: rgba(0,0,0,0.2);
+      color: rgba(255, 255, 255, 0.65);
+      background: rgba(0, 0, 0, 0.2);
       padding: 2px 8px;
       border-radius: var(--radius-sm);
       margin-top: 6px;
@@ -2157,9 +2236,13 @@
 
     /* ---- SMALL PHONES: up to 420px ---- */
     @media (max-width: 420px) {
-      html { font-size: 14px; }
+      html {
+        font-size: 14px;
+      }
 
-      #app { padding: 8px 10px 70px; }
+      #app {
+        padding: 8px 10px 70px;
+      }
 
       /* Tight header */
       .site-header {
@@ -2167,90 +2250,296 @@
         gap: 8px;
         border-radius: var(--radius-lg);
       }
-      .mascot-avatar { font-size: 1.8rem; }
-      .logo-title { font-size: 1.2rem; }
-      .logo-sub { display: none; }
-      .header-actions { gap: 6px; }
-      .header-actions .btn-sm { padding: 7px 10px; font-size: 0.8rem; }
-      .stars-badge { padding: 6px 10px; font-size: 0.82rem; }
-      .streak-badge { padding: 5px 10px; font-size: 0.82rem; }
+
+      .mascot-avatar {
+        font-size: 1.8rem;
+      }
+
+      .logo-title {
+        font-size: 1.2rem;
+      }
+
+      .logo-sub {
+        display: none;
+      }
+
+      .header-actions {
+        gap: 6px;
+      }
+
+      .header-actions .btn-sm {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+      }
+
+      .stars-badge {
+        padding: 6px 10px;
+        font-size: 0.82rem;
+      }
+
+      .streak-badge {
+        padding: 5px 10px;
+        font-size: 0.82rem;
+      }
 
       /* Hero */
-      .dashboard-hero { padding: 16px 12px; gap: 12px; }
-      .hero-speech h1 { font-size: 1.5rem; }
-      .hero-speech p { font-size: 0.9rem; }
-      .mascot-bubble { font-size: 0.85rem; padding: 8px 12px; }
-      .theme-picker-bar { gap: 6px; }
-      .theme-pill { width: 24px; height: 24px; }
-      .hero-quick-actions { gap: 8px; flex-wrap: wrap; justify-content: center; }
+      .dashboard-hero {
+        padding: 16px 12px;
+        gap: 12px;
+      }
+
+      .hero-speech h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-speech p {
+        font-size: 0.9rem;
+      }
+
+      .mascot-bubble {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
+
+      .theme-picker-bar {
+        gap: 6px;
+      }
+
+      .theme-pill {
+        width: 24px;
+        height: 24px;
+      }
+
+      .hero-quick-actions {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       /* Stats ribbon: 2x2 */
-      .stats-ribbon { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .stat-card { padding: 12px 10px; }
-      .stat-value { font-size: 1.4rem; }
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 12px 10px;
+      }
+
+      .stat-value {
+        font-size: 1.4rem;
+      }
 
       /* Search bar */
-      .student-nav-bar { padding: 12px 14px; gap: 10px; border-radius: var(--radius-lg); }
-      .student-search-input { font-size: 0.92rem; padding: 10px 38px 10px 44px; }
-      .student-category-pills { gap: 6px; }
-      .cat-pill { padding: 6px 12px; font-size: 0.82rem; }
-      .student-results-badge { font-size: 0.78rem; margin-left: 0; width: 100%; }
+      .student-nav-bar {
+        padding: 12px 14px;
+        gap: 10px;
+        border-radius: var(--radius-lg);
+      }
+
+      .student-search-input {
+        font-size: 0.92rem;
+        padding: 10px 38px 10px 44px;
+      }
+
+      .student-category-pills {
+        gap: 6px;
+      }
+
+      .cat-pill {
+        padding: 6px 12px;
+        font-size: 0.82rem;
+      }
+
+      .student-results-badge {
+        font-size: 0.78rem;
+        margin-left: 0;
+        width: 100%;
+      }
 
       /* Song grid: single col */
       .modules-grid {
         grid-template-columns: 1fr;
         gap: 12px;
       }
-      .module-card { padding: 18px 16px 16px; }
-      .card-emoji-bubble { width: 52px; height: 52px; font-size: 2.1rem; }
-      .card-title { font-size: 1.2rem; }
-      .card-topic { font-size: 0.85rem; }
-      .act-badge { font-size: 0.72rem; padding: 4px 9px; }
+
+      .module-card {
+        padding: 18px 16px 16px;
+      }
+
+      .card-emoji-bubble {
+        width: 52px;
+        height: 52px;
+        font-size: 2.1rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .card-topic {
+        font-size: 0.85rem;
+      }
+
+      .act-badge {
+        font-size: 0.72rem;
+        padding: 4px 9px;
+      }
 
       /* Mode tabs: 2 columns */
-      .music-mode-tabs { grid-template-columns: repeat(2, 1fr); gap: 7px; padding: 6px; }
-      .mode-tab { padding: 11px 8px; font-size: 0.9rem; gap: 5px; }
+      .music-mode-tabs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+        padding: 6px;
+      }
+
+      .mode-tab {
+        padding: 11px 8px;
+        font-size: 0.9rem;
+        gap: 5px;
+      }
 
       /* Studio header */
-      .studio-nav-header { padding: 14px; gap: 10px; }
-      .studio-title-group { gap: 10px; }
-      .studio-emoji-badge { font-size: 2rem; }
-      .studio-text-info h2 { font-size: 1.2rem; }
-      .studio-text-info p { font-size: 0.82rem; }
-      .studio-nav-actions { gap: 7px; }
-      .studio-nav-actions .btn-sm { padding: 7px 10px; font-size: 0.78rem; }
-      .breadcrumb-link { padding: 4px 10px; font-size: 0.78rem; }
-      .quick-song-dropdown { font-size: 0.82rem; padding: 5px 10px; max-width: 160px; }
+      .studio-nav-header {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .studio-title-group {
+        gap: 10px;
+      }
+
+      .studio-emoji-badge {
+        font-size: 2rem;
+      }
+
+      .studio-text-info h2 {
+        font-size: 1.2rem;
+      }
+
+      .studio-text-info p {
+        font-size: 0.82rem;
+      }
+
+      .studio-nav-actions {
+        gap: 7px;
+      }
+
+      .studio-nav-actions .btn-sm {
+        padding: 7px 10px;
+        font-size: 0.78rem;
+      }
+
+      .breadcrumb-link {
+        padding: 4px 10px;
+        font-size: 0.78rem;
+      }
+
+      .quick-song-dropdown {
+        font-size: 0.82rem;
+        padding: 5px 10px;
+        max-width: 160px;
+      }
 
       /* Karaoke */
-      .karaoke-display { min-height: 160px; padding: 20px 12px; }
-      .bouncing-ball-indicator { font-size: 2.5rem; }
-      .current-sing-line { font-size: 1.3rem; }
-      .upcoming-sing-line { font-size: 0.9rem; }
-      .karaoke-controls-bar { gap: 8px; }
-      .music-toggles-bar { gap: 10px; padding: 12px 14px; }
-      .music-select-group { font-size: 0.88rem; }
+      .karaoke-display {
+        min-height: 160px;
+        padding: 20px 12px;
+      }
+
+      .bouncing-ball-indicator {
+        font-size: 2.5rem;
+      }
+
+      .current-sing-line {
+        font-size: 1.3rem;
+      }
+
+      .upcoming-sing-line {
+        font-size: 0.9rem;
+      }
+
+      .karaoke-controls-bar {
+        gap: 8px;
+      }
+
+      .music-toggles-bar {
+        gap: 10px;
+        padding: 12px 14px;
+      }
+
+      .music-select-group {
+        font-size: 0.88rem;
+      }
 
       /* Piano */
-      .piano-key { height: 130px; border-radius: 0 0 12px 12px; }
-      .piano-key-note { font-size: 1rem; }
-      .piano-key-solfege { font-size: 0.7rem; }
-      .piano-key-shortcut { display: none; }
-      .piano-hint-badge { font-size: 0.95rem; padding: 8px 18px; }
+      .piano-key {
+        height: 130px;
+        border-radius: 0 0 12px 12px;
+      }
+
+      .piano-key-note {
+        font-size: 1rem;
+      }
+
+      .piano-key-solfege {
+        font-size: 0.7rem;
+      }
+
+      .piano-key-shortcut {
+        display: none;
+      }
+
+      .piano-hint-badge {
+        font-size: 0.95rem;
+        padding: 8px 18px;
+      }
 
       /* Rhythm stage */
-      .scroll-top-btn { bottom: 12px; right: 12px; width: 42px; height: 42px; font-size: 1.2rem; }
+      .scroll-top-btn {
+        bottom: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+      }
 
       /* Completion card */
-      .completion-card { padding: 24px 14px; }
-      .score-row { gap: 10px; }
-      .score-box { padding: 12px 16px; min-width: 100px; }
+      .completion-card {
+        padding: 24px 14px;
+      }
+
+      .score-row {
+        gap: 10px;
+      }
+
+      .score-box {
+        padding: 12px 16px;
+        min-width: 100px;
+      }
 
       /* Gate modal */
-      .teacher-gate-card { padding: 24px 18px 18px; max-width: 100%; border-radius: var(--radius-lg); }
-      .gate-keypad { gap: 8px; max-width: 240px; }
-      .gate-key { height: 44px; font-size: 1.2rem; }
-      .pin-input-field { width: 180px; font-size: 1.6rem; height: 46px; }
+      .teacher-gate-card {
+        padding: 24px 18px 18px;
+        max-width: 100%;
+        border-radius: var(--radius-lg);
+      }
+
+      .gate-keypad {
+        gap: 8px;
+        max-width: 240px;
+      }
+
+      .gate-key {
+        height: 44px;
+        font-size: 1.2rem;
+      }
+
+      .pin-input-field {
+        width: 180px;
+        font-size: 1.6rem;
+        height: 46px;
+      }
     }
 
     /* ---- STANDARD MOBILE: 421px – 640px ---- */
@@ -2260,7 +2549,9 @@
         border-radius: var(--radius-lg);
       }
 
-      .logo-sub { display: none; }
+      .logo-sub {
+        display: none;
+      }
 
       .stats-ribbon {
         grid-template-columns: repeat(2, 1fr);
@@ -2272,7 +2563,10 @@
         gap: 8px;
       }
 
-      .mode-tab { padding: 12px 10px; font-size: 1rem; }
+      .mode-tab {
+        padding: 12px 10px;
+        font-size: 1rem;
+      }
 
       .modules-grid {
         grid-template-columns: 1fr;
@@ -2287,27 +2581,63 @@
         padding-bottom: 4px;
         scrollbar-width: none;
       }
-      .student-category-pills::-webkit-scrollbar { display: none; }
-      .cat-pill { white-space: nowrap; flex-shrink: 0; }
 
-      .piano-key { height: 150px; }
-      .piano-key-shortcut { display: none; }
+      .student-category-pills::-webkit-scrollbar {
+        display: none;
+      }
 
-      .scroll-top-btn { bottom: 14px; right: 14px; width: 44px; height: 44px; }
+      .cat-pill {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
 
-      .studio-nav-header { padding: 14px 16px; }
-      .studio-nav-actions { gap: 7px; flex-wrap: wrap; }
-      .studio-nav-actions .btn-sm { font-size: 0.82rem; padding: 7px 11px; }
+      .piano-key {
+        height: 150px;
+      }
 
-      .karaoke-display { min-height: 180px; }
-      .current-sing-line { font-size: 1.4rem; }
+      .piano-key-shortcut {
+        display: none;
+      }
 
-      .music-mode-tabs { border-radius: var(--radius-lg); }
+      .scroll-top-btn {
+        bottom: 14px;
+        right: 14px;
+        width: 44px;
+        height: 44px;
+      }
+
+      .studio-nav-header {
+        padding: 14px 16px;
+      }
+
+      .studio-nav-actions {
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+
+      .studio-nav-actions .btn-sm {
+        font-size: 0.82rem;
+        padding: 7px 11px;
+      }
+
+      .karaoke-display {
+        min-height: 180px;
+      }
+
+      .current-sing-line {
+        font-size: 1.4rem;
+      }
+
+      .music-mode-tabs {
+        border-radius: var(--radius-lg);
+      }
     }
 
     /* ---- TABLET: 641px – 900px ---- */
     @media (min-width: 641px) and (max-width: 900px) {
-      .stats-ribbon { grid-template-columns: repeat(2, 1fr); }
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       .modules-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2321,15 +2651,32 @@
         scrollbar-width: none;
         padding-bottom: 4px;
       }
-      .student-category-pills::-webkit-scrollbar { display: none; }
-      .cat-pill { white-space: nowrap; flex-shrink: 0; }
 
-      .music-mode-tabs { grid-template-columns: repeat(2, 1fr); }
-      .mode-tab { font-size: 1.05rem; }
+      .student-category-pills::-webkit-scrollbar {
+        display: none;
+      }
 
-      .studio-nav-actions .btn-sm { font-size: 0.85rem; padding: 8px 12px; }
+      .cat-pill {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
 
-      .karaoke-display { min-height: 200px; }
+      .music-mode-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mode-tab {
+        font-size: 1.05rem;
+      }
+
+      .studio-nav-actions .btn-sm {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
+
+      .karaoke-display {
+        min-height: 200px;
+      }
     }
 
     /* ---- LANDSCAPE TABLET / SMALL LAPTOP: 901px – 1024px ---- */
@@ -2338,69 +2685,173 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .stats-ribbon { grid-template-columns: repeat(4, 1fr); }
+      .stats-ribbon {
+        grid-template-columns: repeat(4, 1fr);
+      }
 
-      .music-mode-tabs { grid-template-columns: repeat(4, 1fr); }
+      .music-mode-tabs {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     /* ---- LARGE DESKTOP: 1440px+ ---- */
     @media (min-width: 1440px) {
-      #app { padding: 20px 48px 80px; }
-      .modules-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      #app {
+        padding: 20px 48px 80px;
+      }
+
+      .modules-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
     }
 
     /* ---- ULTRA WIDE: 1920px+ ---- */
     @media (min-width: 1920px) {
-      #app { padding: 24px 80px 80px; }
-      .modules-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+      #app {
+        padding: 24px 80px 80px;
+      }
+
+      .modules-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
     }
 
     /* ---- Touch device optimizations ---- */
     @media (hover: none) and (pointer: coarse) {
+
       /* Remove desktop hover transforms on touch */
-      .module-card:not(.locked):hover { transform: none; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-      .cat-pill:hover { transform: none; }
-      .btn:hover { transform: none; filter: none; }
+      .module-card:not(.locked):hover {
+        transform: none;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .cat-pill:hover {
+        transform: none;
+      }
+
+      .btn:hover {
+        transform: none;
+        filter: none;
+      }
 
       /* Confirm taps with active state */
-      .module-card:not(.locked):active { transform: scale(0.97); }
-      .btn:active { transform: translateY(2px); }
-      .cat-pill:active { transform: scale(0.96); }
-      .piano-key:active { transform: translateY(10px) scale(0.97); }
-      .gate-key:active { transform: scale(0.92); background: var(--theme-primary); color: #fff; }
-      .mode-tab:hover { background: transparent; color: var(--text-muted); }
-      .mode-tab:active { background: rgba(255,255,255,0.9); color: var(--theme-primary); }
+      .module-card:not(.locked):active {
+        transform: scale(0.97);
+      }
+
+      .btn:active {
+        transform: translateY(2px);
+      }
+
+      .cat-pill:active {
+        transform: scale(0.96);
+      }
+
+      .piano-key:active {
+        transform: translateY(10px) scale(0.97);
+      }
+
+      .gate-key:active {
+        transform: scale(0.92);
+        background: var(--theme-primary);
+        color: #fff;
+      }
+
+      .mode-tab:hover {
+        background: transparent;
+        color: var(--text-muted);
+      }
+
+      .mode-tab:active {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--theme-primary);
+      }
 
       /* Larger tap targets */
-      .btn-sm { min-height: 40px; }
-      .cat-pill { min-height: 36px; }
-      .mode-tab { min-height: 44px; }
-      .gate-key { min-height: 48px; }
+      .btn-sm {
+        min-height: 40px;
+      }
+
+      .cat-pill {
+        min-height: 36px;
+      }
+
+      .mode-tab {
+        min-height: 44px;
+      }
+
+      .gate-key {
+        min-height: 48px;
+      }
     }
 
     /* ---- Landscape phone ---- */
     @media (max-width: 900px) and (orientation: landscape) {
-      .site-header { padding: 8px 16px; border-radius: var(--radius-lg); }
-      .dashboard-hero { padding: 14px 16px; }
-      .hero-speech h1 { font-size: 1.5rem; }
-      .stats-ribbon { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-      .music-mode-tabs { grid-template-columns: repeat(4, 1fr); }
-      .karaoke-display { min-height: 150px; }
-      .piano-key { height: 130px; }
-      .teacher-gate-card { padding: 16px 20px; }
-      .gate-keypad { max-width: 220px; gap: 6px; }
-      .gate-key { height: 40px; }
+      .site-header {
+        padding: 8px 16px;
+        border-radius: var(--radius-lg);
+      }
+
+      .dashboard-hero {
+        padding: 14px 16px;
+      }
+
+      .hero-speech h1 {
+        font-size: 1.5rem;
+      }
+
+      .stats-ribbon {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .music-mode-tabs {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .karaoke-display {
+        min-height: 150px;
+      }
+
+      .piano-key {
+        height: 130px;
+      }
+
+      .teacher-gate-card {
+        padding: 16px 20px;
+      }
+
+      .gate-keypad {
+        max-width: 220px;
+        gap: 6px;
+      }
+
+      .gate-key {
+        height: 40px;
+      }
     }
 
     /* ---- Reduced motion ---- */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.15s !important;
       }
-      .star-progress-bar-fill { animation: none; }
-      .bouncing-ball-indicator { animation: none; }
-      .footer-heart { animation: none; }
+
+      .star-progress-bar-fill {
+        animation: none;
+      }
+
+      .bouncing-ball-indicator {
+        animation: none;
+      }
+
+      .footer-heart {
+        animation: none;
+      }
     }
 
 
@@ -2467,7 +2918,7 @@
       justify-content: center;
       font-size: 2.4rem;
       margin-bottom: 12px;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
     }
 
     .gate-title {
@@ -2498,7 +2949,7 @@
       margin: 0 auto;
       outline: none;
       transition: all 0.2s;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
     }
 
     .pin-input-field:focus {
@@ -2519,7 +2970,7 @@
       height: 48px;
       border-radius: var(--radius-sm);
       background: #f8f5fa;
-      border: 1.5px solid rgba(0,0,0,0.08);
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
       font-family: 'Fredoka', sans-serif;
       font-size: 1.35rem;
       font-weight: 700;
@@ -2573,10 +3024,27 @@
     }
 
     @keyframes gateShake {
-      10%, 90% { transform: translate3d(-2px, 0, 0); }
-      20%, 80% { transform: translate3d(4px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-      40%, 60% { transform: translate3d(6px, 0, 0); }
+
+      10%,
+      90% {
+        transform: translate3d(-2px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(4px, 0, 0);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-6px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(6px, 0, 0);
+      }
     }
 
     .gate-action-buttons {
@@ -2609,14 +3077,9 @@
     <!-- ==================== HEADER ==================== -->
     <header class="site-header" role="banner">
       <div class="brand-group" onclick="showDashboard()" role="button" tabindex="0" aria-label="Go to song dashboard">
-        <span class="mascot-avatar" id="headerMascot" aria-hidden="true"
-          onclick="handleMascotTap(event)"
-          onmousedown="startMascotHold(event)"
-          onmouseup="cancelMascotHold()"
-          onmouseleave="cancelMascotHold()"
-          ontouchstart="startMascotHold(event)"
-          ontouchend="cancelMascotHold()"
-          title="TuneTots Mascot">🐥</span>
+        <span class="mascot-avatar" id="headerMascot" aria-hidden="true" onclick="handleMascotTap(event)"
+          onmousedown="startMascotHold(event)" onmouseup="cancelMascotHold()" onmouseleave="cancelMascotHold()"
+          ontouchstart="startMascotHold(event)" ontouchend="cancelMascotHold()" title="TuneTots Mascot">🐥</span>
         <div class="logo-text-box">
           <div class="logo-title">TuneTots <span style="font-size:0.6em;" aria-hidden="true">🎵</span></div>
           <div class="logo-sub">Sing &amp; Music Studio for Kids</div>
@@ -2625,7 +3088,8 @@
 
       <div class="header-actions">
         <!-- Mute/Sound FX Toggle -->
-        <button class="icon-toggle-btn" id="sfxToggleBtn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects" onclick="toggleSoundFX()">🔊</button>
+        <button class="icon-toggle-btn" id="sfxToggleBtn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects"
+          onclick="toggleSoundFX()">🔊</button>
 
         <!-- Streak Badge -->
         <div class="streak-badge" id="streakBadge" style="display:none;" role="status" aria-live="polite">
@@ -2633,7 +3097,8 @@
         </div>
 
         <!-- Star Counter -->
-        <div class="stars-badge" id="starsBadge" onclick="playCheer()" role="button" tabindex="0" aria-label="Total stars earned">
+        <div class="stars-badge" id="starsBadge" onclick="playCheer()" role="button" tabindex="0"
+          aria-label="Total stars earned">
           ⭐ <span id="totalStars">0</span> Stars
         </div>
 
@@ -2675,7 +3140,8 @@
               title="Classic Rainbow"></span>
           </div>
 
-          <button class="btn btn-secondary btn-sm" id="btnResumeSong" onclick="resumeLastSong()" style="display:none;" title="Continue where you left off!">▶ Resume Last</button>
+          <button class="btn btn-secondary btn-sm" id="btnResumeSong" onclick="resumeLastSong()" style="display:none;"
+            title="Continue where you left off!">▶ Resume Last</button>
           <button class="btn btn-primary btn-sm" onclick="playRandomSong()">🎲 Surprise Song!</button>
         </div>
       </div>
@@ -2706,7 +3172,8 @@
 
       <!-- Global Progress Bar with Milestones -->
       <div class="progress-section">
-        <div class="star-progress-bar-wrap" title="Musical Star Journey Progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBarWrap">
+        <div class="star-progress-bar-wrap" title="Musical Star Journey Progress" role="progressbar" aria-valuemin="0"
+          aria-valuemax="100" aria-valuenow="0" id="progressBarWrap">
           <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
         </div>
         <div class="progress-milestones" id="progressMilestones">
@@ -2723,8 +3190,11 @@
         <div class="student-search-row">
           <div class="student-search-wrap">
             <span class="search-icon" aria-hidden="true">🔍</span>
-            <input type="text" id="studentSongSearch" class="student-search-input" placeholder="Search songs by title, lyrics, or emoji..." oninput="handleStudentSearch(this.value)" aria-label="Search songs">
-            <button id="clearSearchBtn" class="clear-search-btn" onclick="clearStudentSearch()" style="display:none;" title="Clear search" aria-label="Clear search">✕</button>
+            <input type="text" id="studentSongSearch" class="student-search-input"
+              placeholder="Search songs by title, lyrics, or emoji..." oninput="handleStudentSearch(this.value)"
+              aria-label="Search songs">
+            <button id="clearSearchBtn" class="clear-search-btn" onclick="clearStudentSearch()" style="display:none;"
+              title="Clear search" aria-label="Clear search">✕</button>
           </div>
           <div class="student-results-badge" id="studentResultsBadge">Showing 10 songs</div>
         </div>
@@ -2732,8 +3202,10 @@
           <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')">🌈 All Songs</button>
           <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')">⭐ Free Starters</button>
           <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')">🐾 Animal Rhymes</button>
-          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')">🌟 Night &amp; Stars</button>
-          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')">👏 Action &amp; Dance</button>
+          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')">🌟 Night &amp;
+            Stars</button>
+          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')">👏 Action &amp;
+            Dance</button>
           <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')">🏆 Mastered</button>
         </div>
       </div>
@@ -2746,7 +3218,8 @@
       <!-- Reset Section -->
       <div class="reset-area-box">
         <p>Want to start your musical star collection from the beginning?</p>
-        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress">🔄 Reset All Stars &amp; Progress</button>
+        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress">🔄 Reset All
+          Stars &amp; Progress</button>
       </div>
 
       <!-- Footer -->
@@ -2775,13 +3248,15 @@
           <span id="breadcrumbActiveMode" style="color:var(--theme-primary-dark); font-weight:800;">🎬 Video</span>
         </div>
 
-        <div style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+        <div
+          style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
           <div class="studio-title-group">
             <span class="studio-emoji-badge" id="moduleEmoji">🎵</span>
             <div class="studio-text-info">
               <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
                 <h2 id="moduleTitle">Song Title</h2>
-                <select id="quickSongSelect" class="quick-song-dropdown" onchange="switchSongFromDropdown(this.value)" title="Quick Switch Song" aria-label="Switch to song"></select>
+                <select id="quickSongSelect" class="quick-song-dropdown" onchange="switchSongFromDropdown(this.value)"
+                  title="Quick Switch Song" aria-label="Switch to song"></select>
               </div>
               <p id="moduleSubtitle">🎵 Sing-Along · Video · Melody · Piano · Rhythm</p>
             </div>
@@ -2789,9 +3264,12 @@
 
           <!-- Studio Navigation Controls -->
           <div class="studio-nav-actions">
-            <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)" title="Previous Song">⏮️ Prev</button>
-            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song">Next ⏭️</button>
-            <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()" title="Listen to lyrics read aloud!">🗣️ Read</button>
+            <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)"
+              title="Previous Song">⏮️ Prev</button>
+            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song">Next
+              ⏭️</button>
+            <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()"
+              title="Listen to lyrics read aloud!">🗣️ Read</button>
             <button class="btn btn-primary btn-sm" onclick="showDashboard()">🏠 Dashboard</button>
           </div>
         </div>
@@ -2804,17 +3282,20 @@
   </div>
 
   <!-- ==================== SECRET TEACHER & PARENT GATE MODAL ==================== -->
-  <div class="teacher-gate-overlay" id="teacherGateModal" role="dialog" aria-modal="true" aria-labelledby="teacherGateTitle" onclick="handleGateOverlayClick(event)">
+  <div class="teacher-gate-overlay" id="teacherGateModal" role="dialog" aria-modal="true"
+    aria-labelledby="teacherGateTitle" onclick="handleGateOverlayClick(event)">
     <div class="teacher-gate-card" id="teacherGateCard" onclick="event.stopPropagation()">
       <div class="gate-lock-icon">🔒</div>
       <h3 class="gate-title" id="teacherGateTitle">Teacher &amp; Parent Portal</h3>
       <p class="gate-desc">
-        This area is reserved for educators and parents. Enter your 4-digit PIN to manage song curriculum, reset progress, or edit library songs.
+        This area is reserved for educators and parents. Enter your 4-digit PIN to manage song curriculum, reset
+        progress, or edit library songs.
       </p>
 
       <!-- PIN Input -->
       <div style="margin-bottom: 8px;">
-        <input type="password" id="teacherGatePinInput" maxlength="6" placeholder="••••" class="pin-input-field" autocomplete="off" onkeydown="handlePinInputKey(event)">
+        <input type="password" id="teacherGatePinInput" maxlength="6" placeholder="••••" class="pin-input-field"
+          autocomplete="off" onkeydown="handlePinInputKey(event)">
       </div>
 
       <!-- Touch Keypad -->
@@ -2837,17 +3318,22 @@
       <div id="gateErrorMsg" class="gate-error-msg"></div>
 
       <!-- Math Challenge / Adult Bypass toggle -->
-      <div id="mathChallengeBox" style="display:none; background:rgba(128,0,50,0.06); padding:12px; border-radius:12px; margin-bottom:14px; border:1px solid var(--theme-card-border);">
-        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;">Adult Verification Challenge:</div>
-        <div style="font-size:1.15rem; font-weight:800; color:#1e1022; margin-bottom:8px;" id="mathQuestionText">7 × 8 = ?</div>
+      <div id="mathChallengeBox"
+        style="display:none; background:rgba(128,0,50,0.06); padding:12px; border-radius:12px; margin-bottom:14px; border:1px solid var(--theme-card-border);">
+        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;">Adult
+          Verification Challenge:</div>
+        <div style="font-size:1.15rem; font-weight:800; color:#1e1022; margin-bottom:8px;" id="mathQuestionText">7 × 8 =
+          ?</div>
         <div style="display:flex; justify-content:center; gap:8px;">
-          <input type="number" id="mathAnswerInput" placeholder="Answer" style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;">
+          <input type="number" id="mathAnswerInput" placeholder="Answer"
+            style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;">
           <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()">Submit</button>
         </div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <button type="button" onclick="toggleMathChallenge()" style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; font-weight:700; text-decoration:underline; cursor:pointer;">
+        <button type="button" onclick="toggleMathChallenge()"
+          style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; font-weight:700; text-decoration:underline; cursor:pointer;">
           <span id="mathToggleLabel">Adult Math Question Instead?</span>
         </button>
         <small style="color:var(--text-muted); font-size:0.8rem;">Default PIN: <strong>1234</strong></small>
@@ -2861,7 +3347,8 @@
   </div>
 
   <!-- Scroll to Top Button -->
-  <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">⬆️</button>
+  <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Scroll to top">⬆️</button>
 
   <!-- ============================================================
      APPLICATION LOGIC & SOUND ENGINE
