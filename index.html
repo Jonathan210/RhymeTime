@@ -304,8 +304,8 @@
       background: linear-gradient(135deg, var(--theme-primary-dark) 0%, var(--theme-primary) 55%, var(--theme-primary-light) 100%);
       border-radius: var(--radius-xl);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 2px 2px rgba(255, 255, 255, 0.25);
-      position: sticky;
-      top: 12px;
+      position: relative;
+      margin-bottom: 22px;
       z-index: 100;
       backdrop-filter: blur(12px);
       transition: var(--transition-theme);
@@ -498,15 +498,33 @@
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.22);
-      color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(8px);
+      background: #ffffff;
+      color: var(--text-dark);
+      border: 2px solid var(--theme-card-border);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+      font-weight: 700;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: #fff5f8;
+      color: var(--theme-primary);
+      border-color: var(--theme-primary);
       transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Inside the top header, secondary buttons use high-contrast frosted glass */
+    .site-header .btn-secondary {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      box-shadow: none;
+    }
+
+    .site-header .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      border-color: #ffffff;
     }
 
     .btn-fun {
@@ -769,28 +787,29 @@
     .progress-milestones {
       display: flex;
       justify-content: space-between;
-      padding: 6px 4px 0;
+      padding: 8px 4px 0;
     }
 
     .progress-milestone {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      opacity: 0.5;
+      gap: 3px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      opacity: 0.75;
       transition: all 0.3s;
     }
 
     .progress-milestone.reached {
       opacity: 1;
-      color: var(--theme-primary);
+      font-weight: 900;
+      color: var(--theme-primary-dark);
     }
 
     .progress-milestone .milestone-emoji {
-      font-size: 1rem;
+      font-size: 1.15rem;
     }
 
     @keyframes rainbowGleam {
@@ -903,37 +922,15 @@
     }
 
     .module-card.locked {
-      opacity: 0.55;
-      cursor: not-allowed;
-      filter: grayscale(0.35);
-      background: rgba(255, 255, 255, 0.55);
+      opacity: 0.92;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(128, 0, 50, 0.15) !important;
     }
 
-    /* Pulsing unlock hint on locked cards */
-    .module-card.locked::after {
-      content: '🔒';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2.5rem;
-      z-index: 5;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-      animation: lockPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes lockPulse {
-
-      0%,
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.7;
-      }
-
-      50% {
-        transform: translate(-50%, -50%) scale(1.15);
-        opacity: 1;
-      }
+    .module-card.locked:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     }
 
     .card-top-header {
@@ -1691,6 +1688,11 @@
       overflow-x: auto;
       padding: 16px 4px 24px;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .piano-scroll-outer::-webkit-scrollbar {
+      display: none;
     }
 
     .piano-keys {
@@ -2152,15 +2154,21 @@
     }
 
     .footer-content {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
       font-family: 'Nunito', sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: #2c102a;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 24px;
+      border-radius: var(--radius-round);
+      border: 1.5px solid var(--theme-card-border);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(8px);
     }
 
     .footer-divider {
@@ -2337,9 +2345,20 @@
         border-radius: var(--radius-lg);
       }
 
+      .student-search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .student-search-wrap {
+        width: 100%;
+        min-width: 0;
+      }
+
       .student-search-input {
-        font-size: 0.92rem;
-        padding: 10px 38px 10px 44px;
+        font-size: 0.95rem;
+        padding: 12px 38px 12px 44px;
       }
 
       .student-category-pills {
@@ -2347,14 +2366,17 @@
       }
 
       .cat-pill {
-        padding: 6px 12px;
-        font-size: 0.82rem;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        min-height: 40px;
       }
 
       .student-results-badge {
-        font-size: 0.78rem;
+        font-size: 0.82rem;
+        font-weight: 800;
         margin-left: 0;
         width: 100%;
+        text-align: right;
       }
 
       /* Song grid: single col */
@@ -2571,6 +2593,24 @@
       .modules-grid {
         grid-template-columns: 1fr;
         gap: 14px;
+      }
+
+      .student-search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .student-search-wrap {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .student-results-badge {
+        width: 100%;
+        text-align: right;
+        margin-left: 0;
+        font-size: 0.82rem;
       }
 
       .student-category-pills {
@@ -4220,7 +4260,7 @@
             <circle class="ring-bg" cx="26" cy="26" r="20"/>
             <circle class="ring-fill" cx="26" cy="26" r="20" style="stroke:${complete ? '#10b981' : (m.color || 'var(--theme-primary)')};stroke-dashoffset:${offset}"/>
           </svg>
-          <div class="ring-label">${actsDone}/4</div>
+          <div class="ring-label">${isUnlocked ? `${actsDone}/4` : '🔒'}</div>
         </div>
       </div>
 
@@ -4395,8 +4435,7 @@
         <div class="video-frame-container">
           <iframe src="https://www.youtube-nocookie.com/embed/${d.youtubeId}?rel=0"
             title="${d.title} Sing-Along Video"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
 
