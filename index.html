@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#800032" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>TuneTots 🎵 – Sing, Play &amp; Music Studio</title>
   <meta name="description"
     content="TuneTots – 100% Sing-Along &amp; Music Experience for kids! Watch sing-along videos, sing melodic karaoke, tap rhythmic drums, and play the rainbow piano!" />
@@ -304,6 +308,25 @@
       z-index: 100;
       backdrop-filter: blur(12px);
       transition: var(--transition-theme);
+      overflow: hidden;
+    }
+
+    /* Animated shimmer effect across header */
+    .site-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      animation: headerShimmer 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes headerShimmer {
+      0%, 100% { left: -100%; }
+      50% { left: 140%; }
     }
 
     .brand-group {
@@ -529,18 +552,20 @@
 
     .view.active {
       display: block;
-      animation: viewFadeIn 0.35s ease-out;
+      animation: viewFadeIn 0.45s var(--ease-bounce);
     }
 
     @keyframes viewFadeIn {
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(24px) scale(0.98);
+        filter: blur(3px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        filter: blur(0);
       }
     }
 
@@ -685,15 +710,20 @@
     }
 
     /* Overall Musical Progress Bar */
+    .progress-section {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
     .star-progress-bar-wrap {
       width: 100%;
-      height: 14px;
+      height: 18px;
       background: rgba(0, 0, 0, 0.06);
       border-radius: var(--radius-round);
-      margin-bottom: 30px;
       overflow: hidden;
       border: 2px solid rgba(255, 255, 255, 0.8);
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
     .star-progress-bar-fill {
@@ -703,6 +733,51 @@
       background-size: 200% 100%;
       animation: rainbowGleam 4s linear infinite;
       transition: width 0.8s var(--ease-smooth);
+      position: relative;
+    }
+
+    /* Progress shimmer overlay */
+    .star-progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: progressShimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes progressShimmer {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+
+    .progress-milestones {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 4px 0;
+    }
+
+    .progress-milestone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: 0.5;
+      transition: all 0.3s;
+    }
+
+    .progress-milestone.reached {
+      opacity: 1;
+      color: var(--theme-primary);
+    }
+
+    .progress-milestone .milestone-emoji {
+      font-size: 1rem;
     }
 
     @keyframes rainbowGleam {
@@ -726,7 +801,7 @@
       margin-bottom: 40px;
     }
 
-    /* Ultra Child-Friendly Song Card */
+    /* Ultra Child-Friendly Song Card with staggered entrance */
     .module-card {
       background: var(--theme-card-bg);
       border: 3px solid var(--card-border-color, var(--theme-card-border));
@@ -741,6 +816,29 @@
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       user-select: none;
+      animation: cardEnter 0.5s var(--ease-bounce) both;
+    }
+
+    .module-card:nth-child(1)  { animation-delay: 0.02s; }
+    .module-card:nth-child(2)  { animation-delay: 0.06s; }
+    .module-card:nth-child(3)  { animation-delay: 0.10s; }
+    .module-card:nth-child(4)  { animation-delay: 0.14s; }
+    .module-card:nth-child(5)  { animation-delay: 0.18s; }
+    .module-card:nth-child(6)  { animation-delay: 0.22s; }
+    .module-card:nth-child(7)  { animation-delay: 0.26s; }
+    .module-card:nth-child(8)  { animation-delay: 0.30s; }
+    .module-card:nth-child(9)  { animation-delay: 0.34s; }
+    .module-card:nth-child(10) { animation-delay: 0.38s; }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(32px) scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Colorful Top Accent Ribbon */
@@ -762,10 +860,28 @@
     }
 
     .module-card.locked {
-      opacity: 0.65;
+      opacity: 0.55;
       cursor: not-allowed;
-      filter: grayscale(0.25);
-      background: rgba(255, 255, 255, 0.65);
+      filter: grayscale(0.35);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    /* Pulsing unlock hint on locked cards */
+    .module-card.locked::after {
+      content: '🔒';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5rem;
+      z-index: 5;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      animation: lockPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes lockPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
 
     .card-top-header {
@@ -1025,6 +1141,186 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Studio Breadcrumb */
+    .studio-breadcrumb {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-link {
+      background: rgba(0, 0, 0, 0.05);
+      border: 1.5px solid var(--theme-card-border);
+      padding: 5px 12px;
+      border-radius: var(--radius-round);
+      color: var(--theme-primary-dark);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .breadcrumb-link:hover {
+      background: rgba(128, 0, 50, 0.12);
+      transform: translateX(-2px);
+    }
+
+    .breadcrumb-sep {
+      opacity: 0.45;
+      font-size: 1rem;
+    }
+
+    .breadcrumb-current {
+      color: var(--text-dark);
+      font-weight: 800;
+    }
+
+    .quick-song-dropdown {
+      padding: 6px 12px;
+      border-radius: var(--radius-round);
+      border: 2px solid var(--theme-card-border);
+      background: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--theme-primary-dark);
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .quick-song-dropdown:focus {
+      border-color: var(--theme-primary);
+    }
+
+    /* Student Song Navigation & Discovery Bar */
+    .student-nav-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+      background: var(--theme-card-bg);
+      border: 2.5px solid var(--theme-card-border);
+      border-radius: var(--radius-xl);
+      padding: 16px 22px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .student-search-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .student-search-wrap {
+      flex: 1;
+      min-width: min(240px, 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .student-search-wrap .search-icon {
+      position: absolute;
+      left: 16px;
+      font-size: 1.2rem;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .student-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 48px;
+      border-radius: var(--radius-round);
+      border: 2px solid var(--theme-card-border);
+      background: #ffffff;
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .student-search-input:focus {
+      border-color: var(--theme-primary);
+      box-shadow: 0 0 0 4px rgba(128, 0, 50, 0.12);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.08);
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .student-category-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .cat-pill {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1.5px solid var(--theme-card-border);
+      border-radius: var(--radius-round);
+      padding: 7px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s var(--ease-bounce);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-pill:hover {
+      background: rgba(128, 0, 50, 0.08);
+      color: var(--theme-primary);
+      transform: translateY(-2px);
+    }
+
+    .cat-pill.active {
+      background: linear-gradient(135deg, var(--theme-primary), var(--theme-primary-light));
+      color: #ffffff;
+      border-color: var(--theme-primary-dark);
+      box-shadow: 0 4px 12px rgba(128, 0, 50, 0.25);
+      transform: scale(1.04);
+    }
+
+    .student-results-badge {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-left: auto;
     }
 
     /* Mode Navigation Tabs (Video, Melody, Piano, Rhythm) */
@@ -1498,6 +1794,27 @@
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25), inset 0 -8px 12px rgba(0, 0, 0, 0.25);
       transition: all 0.12s var(--ease-bounce);
       user-select: none;
+      position: relative;
+    }
+
+    /* Ripple pulse ring on tap */
+    .rhythm-pad-btn::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      border: 4px solid var(--theme-primary-light);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rhythm-pad-btn.pulse::after {
+      animation: drumRipple 0.6s ease-out;
+    }
+
+    @keyframes drumRipple {
+      0% { transform: scale(0.8); opacity: 0.7; }
+      100% { transform: scale(1.5); opacity: 0; }
     }
 
     .rhythm-pad-btn:active {
@@ -1532,6 +1849,13 @@
       transform: scale(1.35);
       box-shadow: 0 0 18px rgba(245, 158, 11, 0.8);
       border-color: #ffffff;
+      animation: dotPop 0.3s var(--ease-bounce);
+    }
+
+    @keyframes dotPop {
+      0% { transform: scale(0.4); }
+      50% { transform: scale(1.5); }
+      100% { transform: scale(1.35); }
     }
 
     /* Fun Fact Box */
@@ -1718,59 +2042,558 @@
       }
     }
 
+    /* Scroll-to-top floating button */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      color: #fff;
+      border: 3px solid rgba(255,255,255,0.5);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transition: all 0.3s var(--ease-bounce);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    .scroll-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-4px) scale(1.1);
+    }
+
+    /* Footer */
+    .app-footer {
+      width: 100%;
+      text-align: center;
+      padding: 32px 20px 16px;
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .footer-divider {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--theme-card-border), transparent);
+      margin-bottom: 16px;
+      border-radius: 2px;
+    }
+
+    .footer-heart {
+      color: var(--theme-primary);
+      display: inline-block;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Karaoke active line sweep */
+    .karaoke-display {
+      position: relative;
+    }
+
+    .karaoke-display::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--theme-primary), var(--theme-accent), var(--theme-primary-light));
+      border-radius: 4px;
+      animation: sweepLine 3s linear infinite;
+      background-size: 200% 100%;
+    }
+
+    @keyframes sweepLine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* Keyboard hint badges on piano */
+    .piano-key-shortcut {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+      background: rgba(0,0,0,0.2);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
     /* ============================================================
-       MOBILE & RESPONSIVE TWEAKS
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
+       Covers: 320px phone → 768px tablet → 1024px laptop → 1440px+ desktop
        ============================================================ */
-    @media (max-width: 768px) {
+
+    /* ---- SMALL PHONES: up to 420px ---- */
+    @media (max-width: 420px) {
+      html { font-size: 14px; }
+
+      #app { padding: 8px 10px 70px; }
+
+      /* Tight header */
+      .site-header {
+        padding: 8px 12px;
+        gap: 8px;
+        border-radius: var(--radius-lg);
+      }
+      .mascot-avatar { font-size: 1.8rem; }
+      .logo-title { font-size: 1.2rem; }
+      .logo-sub { display: none; }
+      .header-actions { gap: 6px; }
+      .header-actions .btn-sm { padding: 7px 10px; font-size: 0.8rem; }
+      .stars-badge { padding: 6px 10px; font-size: 0.82rem; }
+      .streak-badge { padding: 5px 10px; font-size: 0.82rem; }
+
+      /* Hero */
+      .dashboard-hero { padding: 16px 12px; gap: 12px; }
+      .hero-speech h1 { font-size: 1.5rem; }
+      .hero-speech p { font-size: 0.9rem; }
+      .mascot-bubble { font-size: 0.85rem; padding: 8px 12px; }
+      .theme-picker-bar { gap: 6px; }
+      .theme-pill { width: 24px; height: 24px; }
+      .hero-quick-actions { gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+      /* Stats ribbon: 2x2 */
+      .stats-ribbon { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .stat-card { padding: 12px 10px; }
+      .stat-value { font-size: 1.4rem; }
+
+      /* Search bar */
+      .student-nav-bar { padding: 12px 14px; gap: 10px; border-radius: var(--radius-lg); }
+      .student-search-input { font-size: 0.92rem; padding: 10px 38px 10px 44px; }
+      .student-category-pills { gap: 6px; }
+      .cat-pill { padding: 6px 12px; font-size: 0.82rem; }
+      .student-results-badge { font-size: 0.78rem; margin-left: 0; width: 100%; }
+
+      /* Song grid: single col */
+      .modules-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .module-card { padding: 18px 16px 16px; }
+      .card-emoji-bubble { width: 52px; height: 52px; font-size: 2.1rem; }
+      .card-title { font-size: 1.2rem; }
+      .card-topic { font-size: 0.85rem; }
+      .act-badge { font-size: 0.72rem; padding: 4px 9px; }
+
+      /* Mode tabs: 2 columns */
+      .music-mode-tabs { grid-template-columns: repeat(2, 1fr); gap: 7px; padding: 6px; }
+      .mode-tab { padding: 11px 8px; font-size: 0.9rem; gap: 5px; }
+
+      /* Studio header */
+      .studio-nav-header { padding: 14px; gap: 10px; }
+      .studio-title-group { gap: 10px; }
+      .studio-emoji-badge { font-size: 2rem; }
+      .studio-text-info h2 { font-size: 1.2rem; }
+      .studio-text-info p { font-size: 0.82rem; }
+      .studio-nav-actions { gap: 7px; }
+      .studio-nav-actions .btn-sm { padding: 7px 10px; font-size: 0.78rem; }
+      .breadcrumb-link { padding: 4px 10px; font-size: 0.78rem; }
+      .quick-song-dropdown { font-size: 0.82rem; padding: 5px 10px; max-width: 160px; }
+
+      /* Karaoke */
+      .karaoke-display { min-height: 160px; padding: 20px 12px; }
+      .bouncing-ball-indicator { font-size: 2.5rem; }
+      .current-sing-line { font-size: 1.3rem; }
+      .upcoming-sing-line { font-size: 0.9rem; }
+      .karaoke-controls-bar { gap: 8px; }
+      .music-toggles-bar { gap: 10px; padding: 12px 14px; }
+      .music-select-group { font-size: 0.88rem; }
+
+      /* Piano */
+      .piano-key { height: 130px; border-radius: 0 0 12px 12px; }
+      .piano-key-note { font-size: 1rem; }
+      .piano-key-solfege { font-size: 0.7rem; }
+      .piano-key-shortcut { display: none; }
+      .piano-hint-badge { font-size: 0.95rem; padding: 8px 18px; }
+
+      /* Rhythm stage */
+      .scroll-top-btn { bottom: 12px; right: 12px; width: 42px; height: 42px; font-size: 1.2rem; }
+
+      /* Completion card */
+      .completion-card { padding: 24px 14px; }
+      .score-row { gap: 10px; }
+      .score-box { padding: 12px 16px; min-width: 100px; }
+
+      /* Gate modal */
+      .teacher-gate-card { padding: 24px 18px 18px; max-width: 100%; border-radius: var(--radius-lg); }
+      .gate-keypad { gap: 8px; max-width: 240px; }
+      .gate-key { height: 44px; font-size: 1.2rem; }
+      .pin-input-field { width: 180px; font-size: 1.6rem; height: 46px; }
+    }
+
+    /* ---- STANDARD MOBILE: 421px – 640px ---- */
+    @media (max-width: 640px) {
       .site-header {
         padding: 10px 16px;
         border-radius: var(--radius-lg);
       }
 
-      .music-mode-tabs {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .mode-tab {
-        padding: 10px;
-        font-size: 1rem;
-      }
-
-      .dashboard-hero {
-        padding: 20px 16px;
-      }
-
-      .hero-quick-actions {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .piano-key {
-        height: 160px;
-      }
+      .logo-sub { display: none; }
 
       .stats-ribbon {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
       }
+
+      .music-mode-tabs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .mode-tab { padding: 12px 10px; font-size: 1rem; }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .student-category-pills {
+        gap: 6px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .student-category-pills::-webkit-scrollbar { display: none; }
+      .cat-pill { white-space: nowrap; flex-shrink: 0; }
+
+      .piano-key { height: 150px; }
+      .piano-key-shortcut { display: none; }
+
+      .scroll-top-btn { bottom: 14px; right: 14px; width: 44px; height: 44px; }
+
+      .studio-nav-header { padding: 14px 16px; }
+      .studio-nav-actions { gap: 7px; flex-wrap: wrap; }
+      .studio-nav-actions .btn-sm { font-size: 0.82rem; padding: 7px 11px; }
+
+      .karaoke-display { min-height: 180px; }
+      .current-sing-line { font-size: 1.4rem; }
+
+      .music-mode-tabs { border-radius: var(--radius-lg); }
     }
 
-    @media (max-width: 480px) {
-      #app {
-        padding: 10px 10px 60px;
+    /* ---- TABLET: 641px – 900px ---- */
+    @media (min-width: 641px) and (max-width: 900px) {
+      .stats-ribbon { grid-template-columns: repeat(2, 1fr); }
+
+      .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
       }
 
-      .logo-title {
-        font-size: 1.35rem;
+      .student-category-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+      }
+      .student-category-pills::-webkit-scrollbar { display: none; }
+      .cat-pill { white-space: nowrap; flex-shrink: 0; }
+
+      .music-mode-tabs { grid-template-columns: repeat(2, 1fr); }
+      .mode-tab { font-size: 1.05rem; }
+
+      .studio-nav-actions .btn-sm { font-size: 0.85rem; padding: 8px 12px; }
+
+      .karaoke-display { min-height: 200px; }
+    }
+
+    /* ---- LANDSCAPE TABLET / SMALL LAPTOP: 901px – 1024px ---- */
+    @media (min-width: 901px) and (max-width: 1024px) {
+      .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .mascot-avatar {
-        font-size: 1.9rem;
-      }
+      .stats-ribbon { grid-template-columns: repeat(4, 1fr); }
 
-      .btn {
-        padding: 10px 16px;
-        font-size: 0.92rem;
+      .music-mode-tabs { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ---- LARGE DESKTOP: 1440px+ ---- */
+    @media (min-width: 1440px) {
+      #app { padding: 20px 48px 80px; }
+      .modules-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    }
+
+    /* ---- ULTRA WIDE: 1920px+ ---- */
+    @media (min-width: 1920px) {
+      #app { padding: 24px 80px 80px; }
+      .modules-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    }
+
+    /* ---- Touch device optimizations ---- */
+    @media (hover: none) and (pointer: coarse) {
+      /* Remove desktop hover transforms on touch */
+      .module-card:not(.locked):hover { transform: none; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+      .cat-pill:hover { transform: none; }
+      .btn:hover { transform: none; filter: none; }
+
+      /* Confirm taps with active state */
+      .module-card:not(.locked):active { transform: scale(0.97); }
+      .btn:active { transform: translateY(2px); }
+      .cat-pill:active { transform: scale(0.96); }
+      .piano-key:active { transform: translateY(10px) scale(0.97); }
+      .gate-key:active { transform: scale(0.92); background: var(--theme-primary); color: #fff; }
+      .mode-tab:hover { background: transparent; color: var(--text-muted); }
+      .mode-tab:active { background: rgba(255,255,255,0.9); color: var(--theme-primary); }
+
+      /* Larger tap targets */
+      .btn-sm { min-height: 40px; }
+      .cat-pill { min-height: 36px; }
+      .mode-tab { min-height: 44px; }
+      .gate-key { min-height: 48px; }
+    }
+
+    /* ---- Landscape phone ---- */
+    @media (max-width: 900px) and (orientation: landscape) {
+      .site-header { padding: 8px 16px; border-radius: var(--radius-lg); }
+      .dashboard-hero { padding: 14px 16px; }
+      .hero-speech h1 { font-size: 1.5rem; }
+      .stats-ribbon { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .music-mode-tabs { grid-template-columns: repeat(4, 1fr); }
+      .karaoke-display { min-height: 150px; }
+      .piano-key { height: 130px; }
+      .teacher-gate-card { padding: 16px 20px; }
+      .gate-keypad { max-width: 220px; gap: 6px; }
+      .gate-key { height: 40px; }
+    }
+
+    /* ---- Reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.15s !important;
       }
+      .star-progress-bar-fill { animation: none; }
+      .bouncing-ball-indicator { animation: none; }
+      .footer-heart { animation: none; }
+    }
+
+
+
+    /* ============================================================
+       TEACHER & PARENT GATE MODAL (HIDDEN COVERT ACCESS)
+       ============================================================ */
+    .teacher-gate-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 8, 22, 0.78);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .teacher-gate-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .teacher-gate-card {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      max-width: 440px;
+      width: 100%;
+      padding: 32px 28px 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      border: 3px solid var(--theme-card-border);
+      text-align: center;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .teacher-gate-overlay.open .teacher-gate-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .teacher-gate-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, #800032, #f59e0b, #8b5cf6);
+    }
+
+    .gate-lock-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(128, 0, 50, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .gate-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1e1022;
+      margin-bottom: 6px;
+    }
+
+    .gate-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 20px;
+    }
+
+    .pin-input-field {
+      width: 200px;
+      height: 52px;
+      letter-spacing: 14px;
+      font-size: 1.8rem;
+      text-align: center;
+      font-weight: 800;
+      color: #1e1022;
+      border-radius: var(--radius-md);
+      border: 2.5px solid var(--theme-card-border);
+      background: #fdfafd;
+      margin: 0 auto;
+      outline: none;
+      transition: all 0.2s;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .pin-input-field:focus {
+      border-color: var(--theme-primary);
+      box-shadow: 0 0 0 4px rgba(128, 0, 50, 0.12);
+      background: #ffffff;
+    }
+
+    .gate-keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 260px;
+      margin: 18px auto 14px;
+    }
+
+    .gate-key {
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: #f8f5fa;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1e1022;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: all 0.12s var(--ease-bounce);
+    }
+
+    .gate-key:hover {
+      background: #ede6f2;
+      transform: translateY(-2px);
+    }
+
+    .gate-key:active {
+      transform: scale(0.92);
+      background: var(--theme-primary);
+      color: #ffffff;
+    }
+
+    .gate-key-action {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .gate-key-submit {
+      background: linear-gradient(135deg, var(--theme-primary), var(--theme-primary-dark));
+      color: #ffffff;
+      border-color: var(--theme-primary-dark);
+    }
+
+    .gate-key-submit:hover {
+      background: var(--theme-primary-light);
+      color: #ffffff;
+    }
+
+    .gate-error-msg {
+      min-height: 22px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ef4444;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+
+    .gate-card-shake {
+      animation: gateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes gateShake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    .gate-action-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-outline-dark {
+      background: #f5edf7;
+      color: var(--text-dark);
+      border: 2px solid var(--theme-card-border);
+    }
+
+    .btn-outline-dark:hover {
+      background: #e9d9ed;
+      color: var(--theme-primary-dark);
     }
   </style>
 </head>
@@ -1784,32 +2607,38 @@
   <div id="app">
 
     <!-- ==================== HEADER ==================== -->
-    <header class="site-header">
-      <div class="brand-group" onclick="showDashboard()">
-        <span class="mascot-avatar" id="headerMascot">🐥</span>
+    <header class="site-header" role="banner">
+      <div class="brand-group" onclick="showDashboard()" role="button" tabindex="0" aria-label="Go to song dashboard">
+        <span class="mascot-avatar" id="headerMascot" aria-hidden="true"
+          onclick="handleMascotTap(event)"
+          onmousedown="startMascotHold(event)"
+          onmouseup="cancelMascotHold()"
+          onmouseleave="cancelMascotHold()"
+          ontouchstart="startMascotHold(event)"
+          ontouchend="cancelMascotHold()"
+          title="TuneTots Mascot">🐥</span>
         <div class="logo-text-box">
-          <div class="logo-title">TuneTots <span style="font-size:0.6em;">🎵</span></div>
+          <div class="logo-title">TuneTots <span style="font-size:0.6em;" aria-hidden="true">🎵</span></div>
           <div class="logo-sub">Sing &amp; Music Studio for Kids</div>
         </div>
       </div>
 
       <div class="header-actions">
         <!-- Mute/Sound FX Toggle -->
-        <button class="icon-toggle-btn" id="sfxToggleBtn" title="Sound Effects" onclick="toggleSoundFX()">🔊</button>
+        <button class="icon-toggle-btn" id="sfxToggleBtn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects" onclick="toggleSoundFX()">🔊</button>
 
         <!-- Streak Badge -->
-        <div class="streak-badge" id="streakBadge" style="display:none;">
+        <div class="streak-badge" id="streakBadge" style="display:none;" role="status" aria-live="polite">
           🔥 <span id="streakCount">0</span> Streak
         </div>
 
         <!-- Star Counter -->
-        <div class="stars-badge" id="starsBadge" onclick="playCheer()">
+        <div class="stars-badge" id="starsBadge" onclick="playCheer()" role="button" tabindex="0" aria-label="Total stars earned">
           ⭐ <span id="totalStars">0</span> Stars
         </div>
 
-        <!-- Navigation Buttons -->
-        <button class="btn btn-secondary btn-sm" onclick="showDashboard()">🏠 Songs</button>
-        <a href="admin.html" class="btn btn-secondary btn-sm">⚙️ Teacher Admin</a>
+        <!-- Navigation Buttons: Clean kid-friendly layout with NO admin button visible -->
+        <button class="btn btn-secondary btn-sm" onclick="showDashboard()" aria-label="Go to Songs">🏠 Songs</button>
       </div>
     </header>
 
@@ -1846,6 +2675,7 @@
               title="Classic Rainbow"></span>
           </div>
 
+          <button class="btn btn-secondary btn-sm" id="btnResumeSong" onclick="resumeLastSong()" style="display:none;" title="Continue where you left off!">▶ Resume Last</button>
           <button class="btn btn-primary btn-sm" onclick="playRandomSong()">🎲 Surprise Song!</button>
         </div>
       </div>
@@ -1874,9 +2704,38 @@
         </div>
       </div>
 
-      <!-- Global Progress Bar -->
-      <div class="star-progress-bar-wrap" title="Musical Star Journey Progress">
-        <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
+      <!-- Global Progress Bar with Milestones -->
+      <div class="progress-section">
+        <div class="star-progress-bar-wrap" title="Musical Star Journey Progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBarWrap">
+          <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
+        </div>
+        <div class="progress-milestones" id="progressMilestones">
+          <div class="progress-milestone" data-pct="0"><span class="milestone-emoji">🎵</span><span>Start</span></div>
+          <div class="progress-milestone" data-pct="25"><span class="milestone-emoji">🌟</span><span>25%</span></div>
+          <div class="progress-milestone" data-pct="50"><span class="milestone-emoji">🎶</span><span>50%</span></div>
+          <div class="progress-milestone" data-pct="75"><span class="milestone-emoji">🏆</span><span>75%</span></div>
+          <div class="progress-milestone" data-pct="100"><span class="milestone-emoji">👑</span><span>100%</span></div>
+        </div>
+      </div>
+
+      <!-- Student Song Discovery & Navigation Bar -->
+      <div class="student-nav-bar" role="search" aria-label="Song Filter & Search">
+        <div class="student-search-row">
+          <div class="student-search-wrap">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input type="text" id="studentSongSearch" class="student-search-input" placeholder="Search songs by title, lyrics, or emoji..." oninput="handleStudentSearch(this.value)" aria-label="Search songs">
+            <button id="clearSearchBtn" class="clear-search-btn" onclick="clearStudentSearch()" style="display:none;" title="Clear search" aria-label="Clear search">✕</button>
+          </div>
+          <div class="student-results-badge" id="studentResultsBadge">Showing 10 songs</div>
+        </div>
+        <div class="student-category-pills" id="studentCategoryPills" role="tablist" aria-label="Song Categories">
+          <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')">🌈 All Songs</button>
+          <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')">⭐ Free Starters</button>
+          <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')">🐾 Animal Rhymes</button>
+          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')">🌟 Night &amp; Stars</button>
+          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')">👏 Action &amp; Dance</button>
+          <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')">🏆 Mastered</button>
+        </div>
       </div>
 
       <!-- SONGS GRID (Full screen responsive) -->
@@ -1887,26 +2746,54 @@
       <!-- Reset Section -->
       <div class="reset-area-box">
         <p>Want to start your musical star collection from the beginning?</p>
-        <button class="btn btn-danger btn-sm" onclick="resetProgress()">🔄 Reset All Stars &amp; Progress</button>
+        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress">🔄 Reset All Stars &amp; Progress</button>
       </div>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <div class="footer-divider"></div>
+        <div class="footer-content">
+          <span>🎵 TuneTots Music Studio</span>
+          <span>·</span>
+          <span>Made with <span class="footer-heart">❤️</span> for little musicians</span>
+          <span>·</span>
+          <span>🌟 Sing, Play & Learn!</span>
+        </div>
+      </footer>
     </div>
 
     <!-- ==================== STUDIO VIEW ==================== -->
     <div id="moduleView" class="view">
-      <!-- Studio Header -->
+      <!-- Studio Header with Enhanced Navigation -->
       <div class="studio-nav-header">
-        <div class="studio-title-group">
-          <span class="studio-emoji-badge" id="moduleEmoji">🎵</span>
-          <div class="studio-text-info">
-            <h2 id="moduleTitle">Song Title</h2>
-            <p id="moduleSubtitle">🎵 Sing-Along · Video · Melody · Piano · Rhythm</p>
-          </div>
+        <!-- Breadcrumb Bar -->
+        <div class="studio-breadcrumb">
+          <button class="breadcrumb-link" onclick="showDashboard()">← 🏠 All Songs</button>
+          <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current" id="breadcrumbSongTitle">Twinkle Twinkle</span>
+          <span class="breadcrumb-sep">›</span>
+          <span id="breadcrumbActiveMode" style="color:var(--theme-primary-dark); font-weight:800;">🎬 Video</span>
         </div>
-        <div class="studio-nav-actions">
-          <!-- Speak Aloud / Read to Me Button for young kids -->
-          <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()"
-            title="Listen to lyrics read aloud!">🗣️ Read to Me</button>
-          <button class="btn btn-secondary btn-sm" onclick="showDashboard()">← Back to Songs</button>
+
+        <div style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+          <div class="studio-title-group">
+            <span class="studio-emoji-badge" id="moduleEmoji">🎵</span>
+            <div class="studio-text-info">
+              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <h2 id="moduleTitle">Song Title</h2>
+                <select id="quickSongSelect" class="quick-song-dropdown" onchange="switchSongFromDropdown(this.value)" title="Quick Switch Song" aria-label="Switch to song"></select>
+              </div>
+              <p id="moduleSubtitle">🎵 Sing-Along · Video · Melody · Piano · Rhythm</p>
+            </div>
+          </div>
+
+          <!-- Studio Navigation Controls -->
+          <div class="studio-nav-actions">
+            <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)" title="Previous Song">⏮️ Prev</button>
+            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song">Next ⏭️</button>
+            <button class="btn btn-secondary btn-sm" onclick="speakCurrentLyrics()" title="Listen to lyrics read aloud!">🗣️ Read</button>
+            <button class="btn btn-primary btn-sm" onclick="showDashboard()">🏠 Dashboard</button>
+          </div>
         </div>
       </div>
 
@@ -1915,6 +2802,66 @@
     </div>
 
   </div>
+
+  <!-- ==================== SECRET TEACHER & PARENT GATE MODAL ==================== -->
+  <div class="teacher-gate-overlay" id="teacherGateModal" role="dialog" aria-modal="true" aria-labelledby="teacherGateTitle" onclick="handleGateOverlayClick(event)">
+    <div class="teacher-gate-card" id="teacherGateCard" onclick="event.stopPropagation()">
+      <div class="gate-lock-icon">🔒</div>
+      <h3 class="gate-title" id="teacherGateTitle">Teacher &amp; Parent Portal</h3>
+      <p class="gate-desc">
+        This area is reserved for educators and parents. Enter your 4-digit PIN to manage song curriculum, reset progress, or edit library songs.
+      </p>
+
+      <!-- PIN Input -->
+      <div style="margin-bottom: 8px;">
+        <input type="password" id="teacherGatePinInput" maxlength="6" placeholder="••••" class="pin-input-field" autocomplete="off" onkeydown="handlePinInputKey(event)">
+      </div>
+
+      <!-- Touch Keypad -->
+      <div class="gate-keypad">
+        <button type="button" class="gate-key" onclick="appendGatePin('1')">1</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('2')">2</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('3')">3</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('4')">4</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('5')">5</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('6')">6</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('7')">7</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('8')">8</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('9')">9</button>
+        <button type="button" class="gate-key gate-key-action" onclick="clearGatePin()" title="Clear">⌫</button>
+        <button type="button" class="gate-key" onclick="appendGatePin('0')">0</button>
+        <button type="button" class="gate-key gate-key-submit" onclick="submitGatePin()" title="Unlock">✓</button>
+      </div>
+
+      <!-- Error feedback -->
+      <div id="gateErrorMsg" class="gate-error-msg"></div>
+
+      <!-- Math Challenge / Adult Bypass toggle -->
+      <div id="mathChallengeBox" style="display:none; background:rgba(128,0,50,0.06); padding:12px; border-radius:12px; margin-bottom:14px; border:1px solid var(--theme-card-border);">
+        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;">Adult Verification Challenge:</div>
+        <div style="font-size:1.15rem; font-weight:800; color:#1e1022; margin-bottom:8px;" id="mathQuestionText">7 × 8 = ?</div>
+        <div style="display:flex; justify-content:center; gap:8px;">
+          <input type="number" id="mathAnswerInput" placeholder="Answer" style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;">
+          <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()">Submit</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <button type="button" onclick="toggleMathChallenge()" style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; font-weight:700; text-decoration:underline; cursor:pointer;">
+          <span id="mathToggleLabel">Adult Math Question Instead?</span>
+        </button>
+        <small style="color:var(--text-muted); font-size:0.8rem;">Default PIN: <strong>1234</strong></small>
+      </div>
+
+      <div class="gate-action-buttons">
+        <button type="button" class="btn btn-outline-dark btn-sm" onclick="closeTeacherGateModal()">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="submitGatePin()">Enter Teacher Admin ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">⬆️</button>
 
   <!-- ============================================================
      APPLICATION LOGIC & SOUND ENGINE
@@ -2501,6 +3448,14 @@
       const pct = Math.min((progress.totalStars / Math.max(1, maxStars)) * 100, 100);
       const bar = document.getElementById('progressBarFill');
       if (bar) bar.style.width = pct + '%';
+      const wrap = document.getElementById('progressBarWrap');
+      if (wrap) wrap.setAttribute('aria-valuenow', Math.round(pct));
+
+      // Update milestone reached classes
+      document.querySelectorAll('.progress-milestone').forEach(el => {
+        const mPct = parseInt(el.dataset.pct, 10);
+        el.classList.toggle('reached', pct >= mPct);
+      });
     }
 
     function updateStatsRibbon() {
@@ -2564,17 +3519,120 @@
     /* ============================================================
        DASHBOARD VIEW RENDERER
        ============================================================ */
+    let currentStudentCategory = 'all';
+    let currentStudentSearch = '';
+
+    function setStudentCategory(cat) {
+      currentStudentCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+      renderDashboard();
+    }
+
+    function handleStudentSearch(val) {
+      currentStudentSearch = (val || '').toLowerCase().trim();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (clearBtn) clearBtn.style.display = currentStudentSearch ? 'flex' : 'none';
+      renderDashboard();
+    }
+
+    function clearStudentSearch() {
+      const input = document.getElementById('studentSongSearch');
+      if (input) input.value = '';
+      handleStudentSearch('');
+    }
+
+    function updateResumeButton() {
+      const lastId = localStorage.getItem('tunetots_last_played_id');
+      const btn = document.getElementById('btnResumeSong');
+      if (!btn) return;
+      if (lastId) {
+        const id = parseInt(lastId, 10);
+        const song = RHYMES_DATA.find(s => s.id === id);
+        if (song) {
+          btn.style.display = 'inline-flex';
+          btn.innerHTML = `▶ Resume "${song.emoji || '🎵'} ${song.title.slice(0, 16)}..."`;
+          return;
+        }
+      }
+      btn.style.display = 'none';
+    }
+
+    function resumeLastSong() {
+      const lastId = localStorage.getItem('tunetots_last_played_id');
+      if (lastId) {
+        const id = parseInt(lastId, 10);
+        openMusicModule(id);
+      }
+    }
+
+    function updateStudioNavButtons() {
+      if (!currentModuleData) return;
+      const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
+      const curIdx = sorted.findIndex(s => s.id === currentModuleData.id);
+      const prevSong = curIdx > 0 ? sorted[curIdx - 1] : null;
+      const nextSong = curIdx < sorted.length - 1 ? sorted[curIdx + 1] : null;
+      const nextUnlocked = nextSong && isSongUnlocked(nextSong, sorted);
+
+      const btnPrev = document.getElementById('btnPrevSong');
+      if (btnPrev) {
+        btnPrev.disabled = !prevSong;
+        btnPrev.style.opacity = prevSong ? '1' : '0.45';
+        btnPrev.title = prevSong ? `Previous Song: ${prevSong.title}` : 'First song';
+      }
+
+      const btnNext = document.getElementById('btnNextSong');
+      if (btnNext) {
+        btnNext.disabled = !nextSong || !nextUnlocked;
+        btnNext.style.opacity = (nextSong && nextUnlocked) ? '1' : '0.45';
+        btnNext.title = nextSong ? (nextUnlocked ? `Next Song: ${nextSong.title}` : 'Next song locked') : 'Last song!';
+      }
+
+      const sel = document.getElementById('quickSongSelect');
+      if (sel) {
+        sel.innerHTML = sorted.map(s => {
+          const unlocked = isSongUnlocked(s, sorted);
+          return `<option value="${s.id}" ${s.id === currentModuleData.id ? 'selected' : ''} ${!unlocked ? 'disabled' : ''}>
+            ${unlocked ? '' : '🔒 '}${s.emoji || '🎵'} #${s.id} ${s.title}
+          </option>`;
+        }).join('');
+      }
+
+      const bTitle = document.getElementById('breadcrumbSongTitle');
+      if (bTitle) bTitle.textContent = currentModuleData.title;
+      const bMode = document.getElementById('breadcrumbActiveMode');
+      const modeLabels = { video: '🎬 Video', karaoke: '🎵 Melody', piano: '🎹 Piano', rhythm: '🥁 Drum' };
+      if (bMode) bMode.textContent = modeLabels[currentMode] || currentMode;
+    }
+
+    function navigateSong(direction) {
+      if (!currentModuleData) return;
+      const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
+      const curIdx = sorted.findIndex(s => s.id === currentModuleData.id);
+      const targetIdx = curIdx + direction;
+      if (targetIdx >= 0 && targetIdx < sorted.length) {
+        const target = sorted[targetIdx];
+        if (isSongUnlocked(target, sorted)) {
+          openMusicModule(target.id);
+        }
+      }
+    }
+
+    function switchSongFromDropdown(val) {
+      const id = parseInt(val, 10);
+      if (id) openMusicModule(id);
+    }
+
     function showDashboard() {
       stopAllMusic();
-      applySongTheme(null); // Reset to joyful default theme
+      applySongTheme(null);
       RHYMES_DATA = getRhymesData();
       loadProgress();
       updateStarsDisplay();
       updateStatsRibbon();
+      updateResumeButton();
       renderDashboard();
       showView('dashboardView');
 
-      // Random encouraging mascot message
       const msgEl = document.getElementById('mascotMessage');
       if (msgEl) {
         msgEl.textContent = `"${MASCOT_QUOTES[Math.floor(Math.random() * MASCOT_QUOTES.length)]}"`;
@@ -2598,7 +3656,55 @@
 
       const sorted = [...RHYMES_DATA].sort((a, b) => a.id - b.id);
 
-      sorted.forEach(m => {
+      // Filter by search & category
+      const filtered = sorted.filter(m => {
+        if (currentStudentSearch) {
+          const q = currentStudentSearch;
+          const match = m.title.toLowerCase().includes(q) ||
+            (m.topic && m.topic.toLowerCase().includes(q)) ||
+            (m.emoji && m.emoji.includes(q)) ||
+            (m.lyrics && m.lyrics.join(' ').toLowerCase().includes(q));
+          if (!match) return false;
+        }
+
+        if (currentStudentCategory === 'starters') return (m.reqStars || 0) === 0;
+        if (currentStudentCategory === 'animals') {
+          return ['spider', 'sheep', 'farm', 'lamb', 'meadow'].includes(m.theme) ||
+            /spider|sheep|cow|lamb|farm|duck|animal/i.test(m.title + ' ' + (m.topic || ''));
+        }
+        if (currentStudentCategory === 'lullaby') {
+          return ['star', 'boat', 'egg'].includes(m.theme) ||
+            /star|night|boat|sleep|dream/i.test(m.title + ' ' + (m.topic || ''));
+        }
+        if (currentStudentCategory === 'action') {
+          return ['happy', 'hill', 'spider', 'boat'].includes(m.theme) ||
+            /happy|clap|jump|hill|climb|row/i.test(m.title + ' ' + (m.topic || ''));
+        }
+        if (currentStudentCategory === 'mastered') {
+          return isSongComplete(m.id);
+        }
+        return true;
+      });
+
+      // Update badge
+      const badge = document.getElementById('studentResultsBadge');
+      if (badge) {
+        badge.textContent = `Showing ${filtered.length} of ${sorted.length} songs`;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding:48px 20px; background:var(--theme-card-bg); border-radius:var(--radius-xl); border:2.5px dashed var(--theme-card-border);">
+            <div style="font-size:3.2rem; margin-bottom:10px;">🔍</div>
+            <h3 style="color:var(--theme-primary-dark); font-weight:700; font-size:1.4rem;">No songs match your search</h3>
+            <p style="color:var(--text-muted); margin:8px 0 18px; font-weight:600;">Try a different keyword or view all songs!</p>
+            <button class="btn btn-primary btn-sm" onclick="clearStudentSearch(); setStudentCategory('all');">🌈 Show All Songs</button>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(m => {
         const isUnlocked = isSongUnlocked(m, sorted);
         const actsDone = getSongActsDone(m.id);
         const complete = isSongComplete(m.id);
@@ -2670,7 +3776,6 @@
             playUIBlip(600);
             openMusicModule(m.id);
           };
-          // Ambient hover preview
           card.onmouseenter = () => {
             if (m.theme) document.body.setAttribute('data-song-theme', m.theme);
           };
@@ -2699,12 +3804,18 @@
       rhythmTapCount = 0;
       pianoGuideIdx = 0;
 
-      // Apply the dynamic song-specific theme immediately!
+      // Remember last played song for quick resume
+      try { localStorage.setItem('tunetots_last_played_id', String(m.id)); } catch (e) { }
+
+      // Apply dynamic song-specific theme
       applySongTheme(m);
 
       document.getElementById('moduleEmoji').textContent = m.emoji || '🎵';
       document.getElementById('moduleTitle').textContent = `Song ${m.id}: ${m.title}`;
       document.getElementById('moduleSubtitle').textContent = `🎵 ${m.topic || 'Sing-Along & Music'} · Instrument: ${m.instrument || 'glockenspiel'}`;
+
+      // Update studio navigation & controls
+      updateStudioNavButtons();
 
       // Parse flattened melody notes
       flatMelodyNotes = [];
@@ -2770,6 +3881,9 @@
         const modes = ['video', 'karaoke', 'piano', 'rhythm'];
         b.classList.toggle('active', modes[i] === mode);
       });
+      const bMode = document.getElementById('breadcrumbActiveMode');
+      const modeLabels = { video: '🎬 Sing-Along Video', karaoke: '🎵 Melody Karaoke', piano: '🎹 Rainbow Piano', rhythm: '🥁 Rhythm Drum' };
+      if (bMode) bMode.textContent = modeLabels[mode] || mode;
       renderActiveStage();
     }
 
@@ -3149,6 +4263,243 @@
     }
 
     /* ============================================================
+       COVERT TEACHER & PARENT PORTAL ACCESS SYSTEM
+       ============================================================ */
+    const TEACHER_PIN_KEY = 'tunetots_teacher_pin';
+    const TEACHER_AUTH_KEY = 'tunetots_teacher_authenticated';
+    let mascotTapCount = 0;
+    let mascotTapTimer = null;
+    let mascotHoldTimer = null;
+    let currentMathA = 0;
+    let currentMathB = 0;
+    let secretKeyBuffer = '';
+
+    function getTeacherPin() {
+      return localStorage.getItem(TEACHER_PIN_KEY) || '1234';
+    }
+
+    function openTeacherGateModal() {
+      const modal = document.getElementById('teacherGateModal');
+      const input = document.getElementById('teacherGatePinInput');
+      const err = document.getElementById('gateErrorMsg');
+      if (err) err.textContent = '';
+      if (input) input.value = '';
+      if (modal) {
+        modal.classList.add('open');
+        setTimeout(() => { if (input) input.focus(); }, 150);
+      }
+    }
+
+    function closeTeacherGateModal() {
+      const modal = document.getElementById('teacherGateModal');
+      if (modal) modal.classList.remove('open');
+      const mathBox = document.getElementById('mathChallengeBox');
+      if (mathBox) mathBox.style.display = 'none';
+      const label = document.getElementById('mathToggleLabel');
+      if (label) label.textContent = 'Adult Math Question Instead?';
+    }
+
+    function handleGateOverlayClick(e) {
+      if (e.target === document.getElementById('teacherGateModal')) {
+        closeTeacherGateModal();
+      }
+    }
+
+    function appendGatePin(digit) {
+      const input = document.getElementById('teacherGatePinInput');
+      if (!input) return;
+      if (input.value.length < 6) {
+        input.value += digit;
+      }
+      const err = document.getElementById('gateErrorMsg');
+      if (err) err.textContent = '';
+      if (input.value.length === 4) {
+        submitGatePin();
+      }
+    }
+
+    function clearGatePin() {
+      const input = document.getElementById('teacherGatePinInput');
+      if (input) input.value = input.value.slice(0, -1);
+      const err = document.getElementById('gateErrorMsg');
+      if (err) err.textContent = '';
+    }
+
+    function handlePinInputKey(e) {
+      if (e.key === 'Enter') {
+        submitGatePin();
+      }
+    }
+
+    function triggerGateShake() {
+      const card = document.getElementById('teacherGateCard');
+      if (!card) return;
+      card.classList.remove('gate-card-shake');
+      void card.offsetWidth; // re-flow
+      card.classList.add('gate-card-shake');
+    }
+
+    function submitGatePin() {
+      const input = document.getElementById('teacherGatePinInput');
+      const pin = input ? input.value.trim() : '';
+      const correctPin = getTeacherPin();
+      const err = document.getElementById('gateErrorMsg');
+
+      if (pin === correctPin) {
+        sessionStorage.setItem(TEACHER_AUTH_KEY, 'true');
+        if (err) {
+          err.style.color = '#059669';
+          err.textContent = '✅ Access Granted! Redirecting to Teacher Portal...';
+        }
+        setTimeout(() => {
+          window.location.href = 'admin.html';
+        }, 350);
+      } else {
+        triggerGateShake();
+        if (err) {
+          err.style.color = '#ef4444';
+          err.textContent = '❌ Incorrect passcode. Please try again.';
+        }
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+      }
+    }
+
+    function generateMathChallenge() {
+      currentMathA = Math.floor(Math.random() * 6) + 6;
+      currentMathB = Math.floor(Math.random() * 6) + 6;
+      const qText = document.getElementById('mathQuestionText');
+      if (qText) qText.textContent = `${currentMathA} × ${currentMathB} = ?`;
+      const ansInput = document.getElementById('mathAnswerInput');
+      if (ansInput) ansInput.value = '';
+    }
+
+    function toggleMathChallenge() {
+      const box = document.getElementById('mathChallengeBox');
+      const label = document.getElementById('mathToggleLabel');
+      if (!box) return;
+      const isHidden = box.style.display === 'none' || !box.style.display;
+      if (isHidden) {
+        generateMathChallenge();
+        box.style.display = 'block';
+        if (label) label.textContent = 'Switch back to PIN pad';
+        const ans = document.getElementById('mathAnswerInput');
+        if (ans) ans.focus();
+      } else {
+        box.style.display = 'none';
+        if (label) label.textContent = 'Adult Math Question Instead?';
+        const pinInp = document.getElementById('teacherGatePinInput');
+        if (pinInp) pinInp.focus();
+      }
+    }
+
+    function verifyMathAnswer() {
+      const ansInput = document.getElementById('mathAnswerInput');
+      const val = parseInt(ansInput ? ansInput.value : '', 10);
+      const err = document.getElementById('gateErrorMsg');
+      if (val === currentMathA * currentMathB) {
+        sessionStorage.setItem(TEACHER_AUTH_KEY, 'true');
+        if (err) {
+          err.style.color = '#059669';
+          err.textContent = '✅ Verified! Redirecting to Teacher Portal...';
+        }
+        setTimeout(() => {
+          window.location.href = 'admin.html';
+        }, 350);
+      } else {
+        triggerGateShake();
+        if (err) {
+          err.style.color = '#ef4444';
+          err.textContent = '❌ Incorrect answer. Try again.';
+        }
+        generateMathChallenge();
+      }
+    }
+
+    /* Secret mascot click gesture */
+    function handleMascotTap(e) {
+      if (e) e.stopPropagation();
+      mascotTapCount++;
+      clearTimeout(mascotTapTimer);
+      mascotTapTimer = setTimeout(() => { mascotTapCount = 0; }, 4000);
+
+      const mascot = document.getElementById('headerMascot');
+      if (mascot) {
+        mascot.style.transform = `scale(${1 + mascotTapCount * 0.08}) rotate(${mascotTapCount % 2 === 0 ? 8 : -8}deg)`;
+        setTimeout(() => { if (mascot) mascot.style.transform = ''; }, 200);
+      }
+
+      if (mascotTapCount >= 4) {
+        mascotTapCount = 0;
+        openTeacherGateModal();
+      }
+    }
+
+    function startMascotHold(e) {
+      clearTimeout(mascotHoldTimer);
+      mascotHoldTimer = setTimeout(() => {
+        openTeacherGateModal();
+      }, 2200);
+    }
+
+    function cancelMascotHold() {
+      clearTimeout(mascotHoldTimer);
+    }
+
+    /* Global Keyboard Shortcuts for Teachers */
+    window.addEventListener('keydown', (e) => {
+      // Shortcut: Ctrl + Shift + A or Cmd + Shift + A
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        openTeacherGateModal();
+        return;
+      }
+      // Shortcut: Ctrl + Alt + T
+      if (e.ctrlKey && e.altKey && (e.key === 'T' || e.key === 't')) {
+        e.preventDefault();
+        openTeacherGateModal();
+        return;
+      }
+      // Navigation shortcuts
+      if (e.key === 'Escape') {
+        const gate = document.getElementById('teacherGateModal');
+        if (gate && gate.classList.contains('open')) {
+          closeTeacherGateModal();
+        } else {
+          showDashboard();
+        }
+        return;
+      }
+      if (document.getElementById('moduleView')?.classList.contains('active')) {
+        if (e.key === '[' || (e.altKey && e.key === 'ArrowLeft')) {
+          navigateSong(-1);
+          return;
+        }
+        if (e.key === ']' || (e.altKey && e.key === 'ArrowRight')) {
+          navigateSong(1);
+          return;
+        }
+      }
+
+      // Typing secret word: "admin" or "teacher"
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      secretKeyBuffer += e.key.toLowerCase();
+      if (secretKeyBuffer.length > 10) secretKeyBuffer = secretKeyBuffer.slice(-10);
+      if (secretKeyBuffer.endsWith('admin') || secretKeyBuffer.endsWith('teacher')) {
+        secretKeyBuffer = '';
+        openTeacherGateModal();
+      }
+    });
+
+    /* Scroll to Top Button */
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scrollTopBtn');
+      if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    /* ============================================================
        INITIALIZATION
        ============================================================ */
     window.addEventListener('DOMContentLoaded', () => {
@@ -3158,6 +4509,11 @@
       updateStarsDisplay();
       updateStatsRibbon();
       showDashboard();
+
+      // Check covert access via URL hash or query string
+      if (window.location.search.includes('admin') || window.location.hash.includes('admin') || window.location.search.includes('teacher')) {
+        setTimeout(openTeacherGateModal, 300);
+      }
     });
   </script>
 </body>
