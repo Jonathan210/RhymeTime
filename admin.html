@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#800032" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>TuneTots ⚙️ Admin – Song &amp; Music Studio Management</title>
   <meta name="description"
     content="TuneTots Admin Studio — Professional, responsive curriculum and song library management with instant sync to the student player." />
@@ -496,7 +500,7 @@
 
     .search-input-wrap {
       flex: 1;
-      min-width: 260px;
+      min-width: min(260px, 100%);
       position: relative;
     }
 
@@ -1130,10 +1134,528 @@
         max-height: 96vh;
       }
     }
+
+    /* ============================================================
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
+       Covers: 320px phone → 768px tablet → 1024px laptop → 1440px+ desktop
+       ============================================================ */
+
+    /* ---- MOBILE FIRST: Base improvements for all small screens ---- */
+    @media (max-width: 640px) {
+      html { font-size: 15px; }
+
+      #app {
+        padding: 10px 12px 100px;
+      }
+
+      /* Header fully stacks on small phones */
+      .site-header {
+        top: 8px;
+        padding: 10px 14px;
+        gap: 10px;
+        border-radius: var(--radius-lg);
+      }
+
+      .logo-icon { font-size: 1.7rem; }
+      .logo-title { font-size: 1.2rem; }
+      .studio-tag { display: none; } /* hide tag to save space */
+      .header-song-count-pill { font-size: 0.7rem; padding: 2px 8px; }
+
+      /* Nav toolbar wraps into 2 rows on mobile */
+      .header-nav-toolbar {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 7px;
+      }
+
+      .header-nav-toolbar .btn-sm {
+        padding: 7px 11px;
+        font-size: 0.78rem;
+      }
+
+      /* Dashboard heading */
+      .dashboard-heading { margin: 16px 0 14px; }
+      .dashboard-heading h2 { font-size: 1.5rem; }
+      .dashboard-heading p { font-size: 0.9rem; }
+
+      /* Stats row: 2 columns on small mobile */
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .stat-pill { padding: 12px 14px; }
+      .stat-num { font-size: 1.5rem; }
+      .stat-label { font-size: 0.72rem; }
+
+      /* Subnav tabs: horizontal scroll on mobile */
+      .admin-subnav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6px;
+        gap: 6px;
+        scrollbar-width: none;
+        margin-bottom: 14px;
+      }
+      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
+      .subnav-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 6px 12px;
+        font-size: 0.82rem;
+      }
+
+      /* Controls card */
+      .admin-controls-card {
+        padding: 14px;
+        gap: 12px;
+      }
+      .search-input-wrap { min-width: 0; }
+      .filters-wrap { gap: 8px; }
+      .filter-select { font-size: 0.82rem; padding: 9px 12px; }
+
+      /* View switcher */
+      .view-switcher-group { flex-shrink: 0; }
+      .view-mode-btn { padding: 7px 10px; font-size: 0.8rem; }
+
+      /* Song cards: full width */
+      .song-list-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .admin-song-card { padding: 16px 14px; }
+      .card-actions-row { flex-wrap: wrap; gap: 7px; }
+      .card-actions-row .btn-sm { padding: 7px 11px; font-size: 0.8rem; }
+
+      /* Table: horizontally scrollable on mobile */
+      .songs-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: var(--radius-lg);
+      }
+      .admin-data-table { min-width: 720px; }
+
+      /* Modals: full screen on tiny phones */
+      .modal-card {
+        max-width: 100vw;
+        width: 100%;
+        max-height: 100dvh;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+      }
+      .modal-overlay {
+        align-items: flex-end;
+      }
+
+      /* Dropdown menus */
+      .admin-dropdown-menu {
+        right: auto;
+        left: 0;
+        min-width: 200px;
+      }
+
+      /* Floating buttons: smaller on mobile */
+      .floating-admin-actions {
+        bottom: 16px;
+        right: 16px;
+        gap: 8px;
+      }
+      .floating-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+      }
+
+      /* Lock screen */
+      .admin-lock-box {
+        padding: 28px 20px 22px;
+        border-radius: var(--radius-lg);
+      }
+      .admin-lock-title { font-size: 1.25rem; }
+
+      /* Mini piano in modal */
+      .mini-piano { gap: 4px; }
+      .mini-piano-key { padding: 7px 6px; font-size: 0.8rem; }
+
+      /* Progress stat card */
+      .progress-stat-card { flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+
+    /* ---- TABLET: 641px – 1023px ---- */
+    @media (min-width: 641px) and (max-width: 1023px) {
+      #app { padding: 14px 20px 90px; }
+
+      .site-header { padding: 12px 20px; }
+
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+
+      .admin-subnav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+      }
+      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
+      .subnav-tab { white-space: nowrap; flex-shrink: 0; }
+
+      .song-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .songs-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .admin-data-table { min-width: 700px; }
+
+      .modal-card { max-width: 90vw; }
+
+      .header-nav-toolbar { gap: 8px; flex-wrap: wrap; }
+      .header-nav-toolbar .btn-sm { font-size: 0.83rem; padding: 7px 12px; }
+    }
+
+    /* ---- LARGE DESKTOP: 1440px+ ---- */
+    @media (min-width: 1440px) {
+      #app { padding: 20px 48px 80px; }
+
+      .song-list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      }
+
+      .stats-row { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ---- ULTRA WIDE: 1920px+ ---- */
+    @media (min-width: 1920px) {
+      #app { padding: 24px 72px 80px; }
+    }
+
+    /* ---- Touch device optimizations ---- */
+    @media (hover: none) and (pointer: coarse) {
+      .btn:hover, .subnav-tab:hover, .stat-pill:hover,
+      .dropdown-item:hover, .admin-song-card:hover {
+        transform: none;
+        filter: none;
+      }
+      .btn:active { transform: translateY(2px); }
+      .subnav-tab:active { transform: scale(0.97); }
+
+      /* Larger tap targets on touch */
+      .btn-sm { min-height: 40px; }
+      .icon-toggle-btn { width: 44px; height: 44px; }
+      .reorder-btn { min-width: 36px; min-height: 36px; }
+      .dropdown-item { padding: 12px 14px; }
+      .gate-key { min-height: 52px; }
+    }
+
+    /* ---- Landscape phone orientation ---- */
+    @media (max-width: 900px) and (orientation: landscape) {
+      .site-header { top: 6px; padding: 8px 16px; }
+      .admin-subnav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .admin-subnav-tabs::-webkit-scrollbar { display: none; }
+      .modal-card { max-height: 92dvh; }
+      .admin-lock-box { padding: 16px 20px; }
+    }
+
+    /* ---- Reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.15s !important;
+      }
+    }
+
+
+    .header-nav-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-song-count-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.22);
+      padding: 3px 10px;
+      border-radius: var(--radius-round);
+      display: inline-block;
+      margin-top: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Dropdown Menu for Admin Tools */
+    .admin-dropdown-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .admin-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+      border: 2px solid var(--border);
+      padding: 8px;
+      min-width: 210px;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      animation: dropdownPop 0.2s var(--ease-bounce);
+    }
+
+    @keyframes dropdownPop {
+      from { opacity: 0; transform: translateY(-8px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    body.dark-mode .admin-dropdown-menu {
+      background: #231227;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .admin-dropdown-menu.open {
+      display: flex;
+    }
+
+    .dropdown-item {
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(128, 0, 50, 0.08);
+      color: var(--admin-primary);
+    }
+
+    body.dark-mode .dropdown-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fce7f3;
+    }
+
+    .dropdown-item.danger {
+      color: #dc2626;
+    }
+
+    .dropdown-item.danger:hover {
+      background: rgba(220, 38, 38, 0.1);
+      color: #ef4444;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    /* Subnav Quick Filter Tabs */
+    .admin-subnav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .subnav-tab {
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-round);
+      padding: 7px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s var(--ease-bounce);
+    }
+
+    body.dark-mode .subnav-tab {
+      background: rgba(35, 18, 39, 0.8);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+    }
+
+    .subnav-tab:hover {
+      border-color: var(--admin-primary);
+      color: var(--admin-primary);
+      transform: translateY(-2px);
+    }
+
+    .subnav-tab.active {
+      background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-dark));
+      color: #ffffff;
+      border-color: var(--admin-primary-dark);
+      box-shadow: 0 4px 14px rgba(128, 0, 50, 0.25);
+    }
+
+    /* Floating Quick Actions */
+    .floating-admin-actions {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 99;
+    }
+
+    .floating-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s var(--ease-bounce);
+    }
+
+    .floating-btn-add {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #fff;
+    }
+
+    .floating-btn-add:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 12px 30px rgba(234, 88, 12, 0.35);
+    }
+
+    .floating-btn-top {
+      background: var(--admin-primary);
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(15px);
+    }
+
+    .floating-btn-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .floating-btn-top:hover {
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    /* Admin Direct Lock Screen */
+    .admin-lock-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #180a1c 0%, #2e0820 50%, #120615 100%);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(14px);
+      transition: opacity 0.3s ease;
+    }
+
+    .admin-lock-screen.unlocked {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .admin-lock-box {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      max-width: 440px;
+      width: 100%;
+      padding: 36px 30px 28px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      border: 3px solid rgba(128, 0, 50, 0.2);
+      text-align: center;
+      position: relative;
+    }
+
+    body.dark-mode .admin-lock-box {
+      background: #1e1122;
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .admin-lock-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--admin-primary);
+      margin-bottom: 8px;
+    }
+
+    body.dark-mode .admin-lock-title {
+      color: #fce7f3;
+    }
+
+    .admin-lock-box.shake {
+      animation: gateShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes gateShake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- ADMIN AUTH LOCK OVERLAY -->
+  <div id="adminLockOverlay" class="admin-lock-screen">
+    <div id="adminLockBox" class="admin-lock-box">
+      <div style="font-size:3.5rem; margin-bottom:10px;">🔒</div>
+      <h2 class="admin-lock-title">Teacher Admin Authentication</h2>
+      <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:20px; line-height:1.45;">
+        This portal is restricted to authorized educators. Enter your teacher passcode to manage songs, curriculum, and student progress.
+      </p>
+
+      <div style="margin-bottom:12px;">
+        <input type="password" id="adminLockPinInput" maxlength="6" placeholder="••••"
+          style="letter-spacing:12px; font-size:1.8rem; text-align:center; width:200px; padding:10px; border-radius:var(--radius-md); border:2.5px solid var(--border); font-weight:800;"
+          onkeydown="if(event.key==='Enter') unlockAdminPage()">
+      </div>
+
+      <div id="adminLockError" style="min-height:22px; font-size:0.88rem; font-weight:700; color:#ef4444; margin-bottom:16px;"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <span style="font-size:0.82rem; color:var(--text-muted);">Default passcode: <strong>1234</strong></span>
+        <button class="btn btn-outline-dark btn-sm" onclick="window.location.href='index.html'">← Return to Student Player</button>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;" onclick="unlockAdminPage()">
+        Unlock Teacher Dashboard ↗
+      </button>
+    </div>
+  </div>
 
   <canvas id="particleCanvas"></canvas>
 
@@ -1146,26 +1668,37 @@
         <span class="logo-icon">🎵</span>
         <div class="logo-text-box">
           <div class="logo-title">TuneTots <span class="studio-tag">Teacher Admin</span></div>
+          <div class="header-song-count-pill" id="headerSongCountBadge">10 Songs</div>
         </div>
       </div>
 
-      <div class="header-actions">
-        <!-- Dark / Light Mode Toggle Button -->
-        <button class="icon-toggle-btn" id="themeModeToggleBtn" onclick="toggleThemeMode()"
-          title="Toggle Dark/Light Mode">🌙</button>
+      <!-- Structured Navigation Toolbar -->
+      <nav class="header-nav-toolbar" aria-label="Admin Navigation Actions">
+        <!-- Main Actions -->
+        <button class="btn btn-primary btn-sm" onclick="openCreateModal()">➕ Add Song</button>
+        <button class="btn btn-danger btn-sm" onclick="openProgressModal()">📊 Student Progress</button>
 
-        <a href="index.html" class="btn btn-secondary btn-sm">🎵 Student Player</a>
-        <a href="index.html" target="_blank" class="btn btn-secondary btn-sm">👁️ Live Student View ↗</a>
-
-        <!-- Progress Reset / Management Button -->
-        <button class="btn btn-danger btn-sm" onclick="openProgressModal()">🔄 Student Progress</button>
-
-        <button class="btn btn-primary btn-sm" onclick="openCreateModal()">➕ Add New Song</button>
-        <button class="btn btn-secondary btn-sm" onclick="exportSongsJSON()">💾 Export Library</button>
-        <button class="btn btn-secondary btn-sm" onclick="triggerImportJSON()">📂 Import JSON</button>
-        <button class="btn btn-secondary btn-sm" onclick="resetAllSongs()">🔄 Reset Defaults</button>
+        <!-- Data & Backup Dropdown Menu -->
+        <div class="admin-dropdown-wrap">
+          <button class="btn btn-secondary btn-sm" id="btnLibraryTools" onclick="toggleLibraryMenu(event)">💾 Tools ▾</button>
+          <div class="admin-dropdown-menu" id="libraryToolsMenu">
+            <button class="dropdown-item" onclick="exportSongsJSON()">💾 Export Library (JSON)</button>
+            <button class="dropdown-item" onclick="triggerImportJSON()">📂 Import JSON File</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" onclick="resetAllSongs()">🔄 Reset Defaults</button>
+          </div>
+        </div>
         <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImportFile(event)">
-      </div>
+
+        <!-- Student Views -->
+        <a href="index.html" class="btn btn-secondary btn-sm" title="Go to Student Player">🎵 Player</a>
+        <a href="index.html" target="_blank" class="btn btn-secondary btn-sm" title="Open student view in new tab">👁️ Live ↗</a>
+
+        <!-- Security & Dark Mode -->
+        <button class="btn btn-outline-dark btn-sm" onclick="openChangePinModal()" title="Change Teacher Passcode">🔑 PIN</button>
+        <button class="btn btn-secondary btn-sm" onclick="adminLockAndExit()" title="Lock session & return to student player">🔒 Exit</button>
+        <button class="icon-toggle-btn" id="themeModeToggleBtn" onclick="toggleThemeMode()" title="Toggle Dark/Light Mode">🌙</button>
+      </nav>
     </header>
 
     <!-- Title & Sync Status -->
@@ -1194,6 +1727,31 @@
         <div class="stat-num" id="statInstruments">0</div>
         <div class="stat-label">Instruments Used</div>
       </div>
+    </div>
+
+    <!-- Quick Subnav Filter Tabs -->
+    <div class="admin-subnav-tabs" role="tablist" aria-label="Curriculum Filter Tabs">
+      <button class="subnav-tab active" data-tab="all" onclick="setAdminSubnav('all')">
+        🗂️ All Songs (<span id="tabCountAll">0</span>)
+      </button>
+      <button class="subnav-tab" data-tab="starter" onclick="setAdminSubnav('starter')">
+        ⭐ Free / Starter (<span id="tabCountStarter">0</span>)
+      </button>
+      <button class="subnav-tab" data-tab="locked" onclick="setAdminSubnav('locked')">
+        🔒 Star-Locked (<span id="tabCountLocked">0</span>)
+      </button>
+      <button class="subnav-tab" data-tab="glockenspiel" onclick="setAdminSubnav('glockenspiel')">
+        🔔 Glockenspiel
+      </button>
+      <button class="subnav-tab" data-tab="piano" onclick="setAdminSubnav('piano')">
+        🎹 Grand Piano
+      </button>
+      <button class="subnav-tab" data-tab="marimba" onclick="setAdminSubnav('marimba')">
+        🪵 Marimba
+      </button>
+      <button class="subnav-tab" data-tab="musicbox" onclick="setAdminSubnav('musicbox')">
+        🎶 Music Box
+      </button>
     </div>
 
     <!-- Search & View Controls -->
@@ -1296,6 +1854,42 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" onclick="closeProgressModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHANGE TEACHER PIN MODAL ==================== -->
+  <div class="modal-overlay" id="changePinModal">
+    <div class="modal-card" style="max-width:440px;">
+      <div class="modal-header">
+        <h3>🔑 Change Teacher PIN</h3>
+        <button class="modal-close-btn" onclick="closeChangePinModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.45;">
+          Choose a new 4 to 6 digit passcode for accessing the hidden Teacher Admin portal from the student player.
+        </p>
+
+        <div class="form-group">
+          <label>Current PIN *</label>
+          <input type="password" id="currentPinInput" maxlength="6" placeholder="Default is 1234">
+        </div>
+
+        <div class="form-group">
+          <label>New 4-Digit PIN *</label>
+          <input type="password" id="newPinInput" maxlength="6" placeholder="e.g. 5678">
+        </div>
+
+        <div class="form-group">
+          <label>Confirm New PIN *</label>
+          <input type="password" id="confirmPinInput" maxlength="6" placeholder="Re-enter new PIN">
+        </div>
+
+        <div id="pinChangeError" style="min-height:20px; font-size:0.88rem; font-weight:700; color:#ef4444;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-dark" onclick="closeChangePinModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveNewPin()">Save New PIN</button>
       </div>
     </div>
   </div>
@@ -1703,6 +2297,7 @@
 
     let songsList = getRhymesData();
     let currentAdminView = 'cards';
+    let currentAdminSubnav = 'all';
     let audioCtx = null;
     let previewTimer = null;
     let isPreviewPlaying = false;
@@ -1777,7 +2372,89 @@
       showToast(isDark ? 'Switched to Dark Mode 🌙' : 'Switched to Light Mode ☀️', 'info');
     }
 
+    /* Teacher Auth System */
+    const TEACHER_PIN_KEY = 'tunetots_teacher_pin';
+    const TEACHER_AUTH_KEY = 'tunetots_teacher_authenticated';
+
+    function getTeacherPin() {
+      return localStorage.getItem(TEACHER_PIN_KEY) || '1234';
+    }
+
+    function checkAdminAuth() {
+      const isAuth = sessionStorage.getItem(TEACHER_AUTH_KEY) === 'true';
+      const overlay = document.getElementById('adminLockOverlay');
+      if (overlay) {
+        overlay.classList.toggle('unlocked', isAuth);
+        if (!isAuth) {
+          const pinInp = document.getElementById('adminLockPinInput');
+          if (pinInp) { pinInp.value = ''; setTimeout(() => pinInp.focus(), 150); }
+        }
+      }
+    }
+
+    function unlockAdminPage() {
+      const inp = document.getElementById('adminLockPinInput');
+      const pin = inp ? inp.value.trim() : '';
+      const err = document.getElementById('adminLockError');
+      if (pin === getTeacherPin()) {
+        sessionStorage.setItem(TEACHER_AUTH_KEY, 'true');
+        checkAdminAuth();
+        showToast('Welcome back, Teacher! 🎵', 'success');
+      } else {
+        if (err) err.textContent = '❌ Incorrect PIN. Please try again.';
+        const box = document.getElementById('adminLockBox');
+        if (box) {
+          box.classList.remove('shake');
+          void box.offsetWidth;
+          box.classList.add('shake');
+        }
+        if (inp) { inp.value = ''; inp.focus(); }
+      }
+    }
+
+    function adminLockAndExit() {
+      sessionStorage.removeItem(TEACHER_AUTH_KEY);
+      window.location.href = 'index.html';
+    }
+
+    function openChangePinModal() {
+      document.getElementById('currentPinInput').value = '';
+      document.getElementById('newPinInput').value = '';
+      document.getElementById('confirmPinInput').value = '';
+      document.getElementById('pinChangeError').textContent = '';
+      document.getElementById('changePinModal').classList.add('open');
+    }
+
+    function closeChangePinModal() {
+      document.getElementById('changePinModal').classList.remove('open');
+    }
+
+    function saveNewPin() {
+      const cur = document.getElementById('currentPinInput').value.trim();
+      const n1 = document.getElementById('newPinInput').value.trim();
+      const n2 = document.getElementById('confirmPinInput').value.trim();
+      const err = document.getElementById('pinChangeError');
+
+      if (cur !== getTeacherPin()) {
+        if (err) err.textContent = '❌ Current PIN is incorrect.';
+        return;
+      }
+      if (!/^\d{4,6}$/.test(n1)) {
+        if (err) err.textContent = '❌ New PIN must be 4 to 6 digits.';
+        return;
+      }
+      if (n1 !== n2) {
+        if (err) err.textContent = '❌ New PINs do not match.';
+        return;
+      }
+
+      localStorage.setItem(TEACHER_PIN_KEY, n1);
+      closeChangePinModal();
+      showToast('✅ Teacher PIN successfully changed!', 'success');
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      checkAdminAuth();
       initThemeMode();
       initParticles();
       renderAdminView();
@@ -1813,13 +2490,60 @@
     }
 
     function updateStats() {
-      document.getElementById('statTotalSongs').textContent = songsList.length;
-      document.getElementById('statStarterSongs').textContent = songsList.filter(s => (s.reqStars || 0) === 0).length;
+      const total = songsList.length;
+      const starters = songsList.filter(s => (s.reqStars || 0) === 0).length;
+      const locked = songsList.filter(s => (s.reqStars || 0) > 0).length;
       const maxStars = songsList.reduce((max, s) => Math.max(max, s.reqStars || 0), 0);
-      document.getElementById('statMaxStars').textContent = maxStars;
       const instruments = new Set(songsList.map(s => s.instrument || 'glockenspiel'));
-      document.getElementById('statInstruments').textContent = instruments.size;
+
+      const totalEl = document.getElementById('statTotalSongs');
+      if (totalEl) totalEl.textContent = total;
+      const starterEl = document.getElementById('statStarterSongs');
+      if (starterEl) starterEl.textContent = starters;
+      const maxStarsEl = document.getElementById('statMaxStars');
+      if (maxStarsEl) maxStarsEl.textContent = maxStars;
+      const instEl = document.getElementById('statInstruments');
+      if (instEl) instEl.textContent = instruments.size;
+
+      // Header and Subnav Badges
+      const headerBadge = document.getElementById('headerSongCountBadge');
+      if (headerBadge) headerBadge.textContent = `${total} Songs`;
+      const tabAll = document.getElementById('tabCountAll');
+      if (tabAll) tabAll.textContent = total;
+      const tabStarter = document.getElementById('tabCountStarter');
+      if (tabStarter) tabStarter.textContent = starters;
+      const tabLocked = document.getElementById('tabCountLocked');
+      if (tabLocked) tabLocked.textContent = locked;
     }
+
+    function setAdminSubnav(tab) {
+      currentAdminSubnav = tab;
+      document.querySelectorAll('.subnav-tab').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+      });
+      renderSongList();
+    }
+
+    function toggleLibraryMenu(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('libraryToolsMenu');
+      if (menu) menu.classList.toggle('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.querySelector('.admin-dropdown-wrap');
+      if (!wrap || !wrap.contains(e.target) || e.target.closest('.dropdown-item')) {
+        const menu = document.getElementById('libraryToolsMenu');
+        if (menu) menu.classList.remove('open');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      const topBtn = document.getElementById('adminScrollTopBtn');
+      if (topBtn) {
+        topBtn.classList.toggle('visible', window.scrollY > 280);
+      }
+    });
 
     function handleSearchFilter() {
       renderSongList();
@@ -1837,7 +2561,23 @@
           (s.funFact && s.funFact.toLowerCase().includes(query)) ||
           (s.lyrics && s.lyrics.join(' ').toLowerCase().includes(query));
         const matchInst = instFilter === 'all' || s.instrument === instFilter;
-        return matchQuery && matchInst;
+
+        let matchSubnav = true;
+        if (currentAdminSubnav === 'starter') {
+          matchSubnav = (s.reqStars || 0) === 0;
+        } else if (currentAdminSubnav === 'locked') {
+          matchSubnav = (s.reqStars || 0) > 0;
+        } else if (currentAdminSubnav === 'glockenspiel') {
+          matchSubnav = s.instrument === 'glockenspiel';
+        } else if (currentAdminSubnav === 'piano') {
+          matchSubnav = s.instrument === 'piano';
+        } else if (currentAdminSubnav === 'marimba') {
+          matchSubnav = s.instrument === 'marimba';
+        } else if (currentAdminSubnav === 'musicbox') {
+          matchSubnav = s.instrument === 'musicbox';
+        }
+
+        return matchQuery && matchInst && matchSubnav;
       });
 
       filtered.sort((a, b) => {
@@ -2472,6 +3212,11 @@
       })();
     }
   </script>
+  <!-- Floating Quick Actions for Easy Navigation -->
+  <div class="floating-admin-actions">
+    <button class="floating-btn floating-btn-add" onclick="openCreateModal()" title="Add New Song">➕</button>
+    <button class="floating-btn floating-btn-top" id="adminScrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to Top">⬆️</button>
+  </div>
 </body>
 
 </html>
