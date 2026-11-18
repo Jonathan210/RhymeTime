@@ -327,8 +327,15 @@
     }
 
     @keyframes headerShimmer {
-      0%, 100% { left: -100%; }
-      50% { left: 140%; }
+
+      0%,
+      100% {
+        left: -100%;
+      }
+
+      50% {
+        left: 140%;
+      }
     }
 
     .brand-group {
@@ -379,13 +386,25 @@
     }
 
     @keyframes popFloat {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-3px); }
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-3px);
+      }
     }
 
     @keyframes mascotBounce {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(6deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-6px) rotate(6deg);
+      }
     }
 
     .logo-text-box {
@@ -413,8 +432,15 @@
     }
 
     @keyframes noteSpin {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(18deg) scale(1.1); }
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(18deg) scale(1.1);
+      }
     }
 
     .logo-sub {
@@ -529,6 +555,7 @@
         transform: scale(1);
         filter: drop-shadow(0 0 4px #f59e0b);
       }
+
       100% {
         transform: scale(1.05);
         filter: drop-shadow(0 0 12px #f97316);
@@ -3330,7 +3357,8 @@
             <span id="mascotMessage" data-i18n="mascotMessage">"Pick a song to sing, play piano, and earn stars!"</span>
           </div>
           <h1 data-i18n="heroTitle">🎵 Let's Sing &amp; Play Music!</h1>
-          <p data-i18n="heroDesc">100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody, play the rainbow
+          <p data-i18n="heroDesc">100% kid-friendly sing-alongs: watch colorful videos, sing with the bouncing melody,
+            play the rainbow
             piano, and drum the beat!</p>
         </div>
 
@@ -3338,23 +3366,24 @@
           <!-- Interactive Theme / Mood Picker -->
           <div class="theme-picker-bar" title="Change the background theme mood!">
             <span class="theme-picker-label" data-i18n="moodLabel">🎨 Mood:</span>
-            <span class="theme-pill" style="background:#7c3aed;" onclick="setManualTheme('star')"
-              title="Cosmic Star" data-i18n-title="moodCosmic"></span>
+            <span class="theme-pill" style="background:#7c3aed;" onclick="setManualTheme('star')" title="Cosmic Star"
+              data-i18n-title="moodCosmic"></span>
             <span class="theme-pill" style="background:#059669;" onclick="setManualTheme('spider')"
               title="Rainforest Dew" data-i18n-title="moodDew"></span>
-            <span class="theme-pill" style="background:#ea580c;" onclick="setManualTheme('egg')"
-              title="Sunny Amber" data-i18n-title="moodAmber"></span>
-            <span class="theme-pill" style="background:#0284c7;" onclick="setManualTheme('boat')"
-              title="Ocean Blue" data-i18n-title="moodOcean"></span>
-            <span class="theme-pill" style="background:#db2777;" onclick="setManualTheme('lamb')"
-              title="Pastel Blossom" data-i18n-title="moodBlossom"></span>
+            <span class="theme-pill" style="background:#ea580c;" onclick="setManualTheme('egg')" title="Sunny Amber"
+              data-i18n-title="moodAmber"></span>
+            <span class="theme-pill" style="background:#0284c7;" onclick="setManualTheme('boat')" title="Ocean Blue"
+              data-i18n-title="moodOcean"></span>
+            <span class="theme-pill" style="background:#db2777;" onclick="setManualTheme('lamb')" title="Pastel Blossom"
+              data-i18n-title="moodBlossom"></span>
             <span class="theme-pill" style="background:#800032;" onclick="setManualTheme('default')"
               title="Classic Rainbow" data-i18n-title="moodClassic"></span>
           </div>
 
           <button class="btn btn-secondary btn-sm" id="btnResumeSong" onclick="resumeLastSong()" style="display:none;"
             title="Continue where you left off!" data-i18n="resumeSong">▶ Resume Last</button>
-          <button class="btn btn-primary btn-sm" onclick="playRandomSong()" data-i18n="surpriseSong">🎲 Surprise Song!</button>
+          <button class="btn btn-primary btn-sm" onclick="playRandomSong()" data-i18n="surpriseSong">🎲 Surprise
+            Song!</button>
         </div>
       </div>
 
@@ -3389,7 +3418,8 @@
           <div class="star-progress-bar-fill" id="progressBarFill" style="width:0%"></div>
         </div>
         <div class="progress-milestones" id="progressMilestones">
-          <div class="progress-milestone" data-pct="0"><span class="milestone-emoji">🎵</span><span data-i18n="milestoneStart">Start</span></div>
+          <div class="progress-milestone" data-pct="0"><span class="milestone-emoji">🎵</span><span
+              data-i18n="milestoneStart">Start</span></div>
           <div class="progress-milestone" data-pct="25"><span class="milestone-emoji">🌟</span><span>25%</span></div>
           <div class="progress-milestone" data-pct="50"><span class="milestone-emoji">🎶</span><span>50%</span></div>
           <div class="progress-milestone" data-pct="75"><span class="milestone-emoji">🏆</span><span>75%</span></div>
@@ -3411,12 +3441,18 @@
           <div class="student-results-badge" id="studentResultsBadge">Showing 10 songs</div>
         </div>
         <div class="student-category-pills" id="studentCategoryPills" role="tablist" aria-label="Song Categories">
-          <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')" data-i18n="catAll">🌈 All Songs</button>
-          <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')" data-i18n="catStarters">⭐ Free Starters</button>
-          <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')" data-i18n="catAnimals">🐾 Animal Rhymes</button>
-          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')" data-i18n="catLullaby">🌟 Night &amp; Stars</button>
-          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')" data-i18n="catAction">👏 Action &amp; Dance</button>
-          <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')" data-i18n="catMastered">🏆 Mastered</button>
+          <button class="cat-pill active" data-cat="all" onclick="setStudentCategory('all')" data-i18n="catAll">🌈 All
+            Songs</button>
+          <button class="cat-pill" data-cat="starters" onclick="setStudentCategory('starters')"
+            data-i18n="catStarters">⭐ Free Starters</button>
+          <button class="cat-pill" data-cat="animals" onclick="setStudentCategory('animals')" data-i18n="catAnimals">🐾
+            Animal Rhymes</button>
+          <button class="cat-pill" data-cat="lullaby" onclick="setStudentCategory('lullaby')" data-i18n="catLullaby">🌟
+            Night &amp; Stars</button>
+          <button class="cat-pill" data-cat="action" onclick="setStudentCategory('action')" data-i18n="catAction">👏
+            Action &amp; Dance</button>
+          <button class="cat-pill" data-cat="mastered" onclick="setStudentCategory('mastered')"
+            data-i18n="catMastered">🏆 Mastered</button>
         </div>
       </div>
 
@@ -3428,7 +3464,8 @@
       <!-- Reset Section -->
       <div class="reset-area-box">
         <p data-i18n="resetTitle">Want to start your musical star collection from the beginning?</p>
-        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress" data-i18n="resetBtn">🔄 Reset All
+        <button class="btn btn-danger btn-sm" onclick="resetProgress()" aria-label="Reset all progress"
+          data-i18n="resetBtn">🔄 Reset All
           Stars &amp; Progress</button>
       </div>
 
@@ -3451,7 +3488,8 @@
       <div class="studio-nav-header">
         <!-- Breadcrumb Bar -->
         <div class="studio-breadcrumb">
-          <button class="breadcrumb-link" onclick="showDashboard()" id="breadcrumbBackBtn" data-i18n="allSongsBreadcrumb">← 🏠 All Songs</button>
+          <button class="breadcrumb-link" onclick="showDashboard()" id="breadcrumbBackBtn"
+            data-i18n="allSongsBreadcrumb">← 🏠 All Songs</button>
           <span class="breadcrumb-sep">›</span>
           <span class="breadcrumb-current" id="breadcrumbSongTitle">Twinkle Twinkle</span>
           <span class="breadcrumb-sep">›</span>
@@ -3474,13 +3512,15 @@
 
           <!-- Studio Navigation Controls -->
           <div class="studio-nav-actions">
-            <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)"
-              title="Previous Song" data-i18n="prevBtn">⏮️ Prev</button>
-            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song" data-i18n="nextBtn">Next
+            <button class="btn btn-secondary btn-sm" id="btnPrevSong" onclick="navigateSong(-1)" title="Previous Song"
+              data-i18n="prevBtn">⏮️ Prev</button>
+            <button class="btn btn-secondary btn-sm" id="btnNextSong" onclick="navigateSong(1)" title="Next Song"
+              data-i18n="nextBtn">Next
               ⏭️</button>
             <button class="btn btn-secondary btn-sm" id="btnReadLyricsStudio" onclick="speakCurrentLyrics()"
               title="Listen to lyrics read aloud!" data-i18n="readBtn">🗣️ Read</button>
-            <button class="btn btn-primary btn-sm" onclick="showDashboard()" data-i18n="dashboardBtn">🏠 Dashboard</button>
+            <button class="btn btn-primary btn-sm" onclick="showDashboard()" data-i18n="dashboardBtn">🏠
+              Dashboard</button>
           </div>
         </div>
       </div>
@@ -3530,7 +3570,8 @@
       <!-- Math Challenge / Adult Bypass toggle -->
       <div id="mathChallengeBox"
         style="display:none; background:rgba(128,0,50,0.06); padding:12px; border-radius:12px; margin-bottom:14px; border:1px solid var(--theme-card-border);">
-        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;" data-i18n="gateAdultChallenge">Adult
+        <div style="font-weight:700; font-size:0.92rem; color:var(--theme-primary-dark); margin-bottom:6px;"
+          data-i18n="gateAdultChallenge">Adult
           Verification Challenge:</div>
         <div style="font-size:1.15rem; font-weight:800; color:#1e1022; margin-bottom:8px;" id="mathQuestionText">7 × 8 =
           ?</div>
@@ -3538,7 +3579,8 @@
           <input type="number" id="mathAnswerInput" placeholder="Answer"
             style="width:100px; padding:6px 10px; border-radius:8px; border:2px solid var(--theme-card-border); font-size:1rem; text-align:center;"
             data-i18n-ph="mathAnswerPh">
-          <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()" data-i18n="mathSubmit">Submit</button>
+          <button type="button" class="btn btn-primary btn-sm" onclick="verifyMathAnswer()"
+            data-i18n="mathSubmit">Submit</button>
         </div>
       </div>
 
@@ -3547,12 +3589,15 @@
           style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; font-weight:700; text-decoration:underline; cursor:pointer;">
           <span id="mathToggleLabel" data-i18n="gateAdultToggle">Adult Math Question Instead?</span>
         </button>
-        <small style="color:var(--text-muted); font-size:0.8rem;" id="defaultPinLabel" data-i18n="gateDefaultPin">Default PIN: 1234</small>
+        <small style="color:var(--text-muted); font-size:0.8rem;" id="defaultPinLabel"
+          data-i18n="gateDefaultPin">Default PIN: 1234</small>
       </div>
 
       <div class="gate-action-buttons">
-        <button type="button" class="btn btn-outline-dark btn-sm" onclick="closeTeacherGateModal()" data-i18n="gateCancel">Cancel</button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="submitGatePin()" data-i18n="gateSubmit">Enter Teacher Admin ↗</button>
+        <button type="button" class="btn btn-outline-dark btn-sm" onclick="closeTeacherGateModal()"
+          data-i18n="gateCancel">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="submitGatePin()" data-i18n="gateSubmit">Enter
+          Teacher Admin ↗</button>
       </div>
     </div>
   </div>
@@ -3976,7 +4021,7 @@
         topic: "Sing-Along & Spider Rhythm",
         tagalogTopic: "Kantahan at Ritmo ng Gagamba",
         emoji: "🕷️", color: "#059669", reqStars: 1,
-        theme: "spider", youtubeId: "w_lCi8U49mY", bpm: 110, instrument: "marimba",
+        theme: "spider", youtubeId: "TbKI-jjpPx8", bpm: 110, instrument: "marimba",
         funFact: "Spiders have 8 legs and spin silky webs that shimmer in the rain!",
         tagalogFunFact: "Ang mga gagamba ay may 8 paa at humahabi ng malasutlang sapot na kumikinang sa ulan!",
         lyrics: [
@@ -4004,7 +4049,7 @@
         topic: "Sing-Along & Bouncing Chimes",
         tagalogTopic: "Kantahan at Tumatalbog na Tunog",
         emoji: "🥚", color: "#ea580c", reqStars: 3,
-        theme: "egg", youtubeId: "nrv495corBc", bpm: 105, instrument: "musicbox",
+        theme: "egg", youtubeId: "0n_J2z-ILXo", bpm: 105, instrument: "musicbox",
         funFact: "Humpty Dumpty was originally an English riddle before becoming a nursery rhyme!",
         tagalogFunFact: "Si Humpty Dumpty ay orihinal na isang bugtong sa Inglatera bago naging tanyag na awit!",
         lyrics: [
@@ -4032,7 +4077,7 @@
         topic: "Sing-Along & Pastoral Bells",
         tagalogTopic: "Kantahan at Kampana sa Parang",
         emoji: "🐑", color: "#0284c7", reqStars: 5,
-        theme: "sheep", youtubeId: "03X0bf_eUj8", bpm: 100, instrument: "glockenspiel",
+        theme: "sheep", youtubeId: "fd-WjDVZ4sU", bpm: 100, instrument: "glockenspiel",
         funFact: "Sheep wool is sheared gently in spring and spun into cozy sweaters and blankets!",
         tagalogFunFact: "Ang balahibo ng tupa ay marahang ginugupit sa tagsibol at hinahabi bilang maiinit na damit!",
         lyrics: [
@@ -4060,7 +4105,7 @@
         topic: "Sing-Along & Hillside Harmony",
         tagalogTopic: "Kantahan at Himig sa Burol",
         emoji: "🪣", color: "#db2777", reqStars: 7,
-        theme: "hill", youtubeId: "tmgmR2D0_2A", bpm: 108, instrument: "piano",
+        theme: "hill", youtubeId: "ANChOA4SyL0", bpm: 108, instrument: "piano",
         funFact: "Pails were wooden buckets historically used to carry water from hilltop springs!",
         tagalogFunFact: "Ang mga timba noon ay gawa sa kahoy at ginagamit para mag-igib ng tubig sa bukal!",
         lyrics: [
@@ -4119,7 +4164,7 @@
         topic: "Sing-Along & Gentle Piano",
         tagalogTopic: "Kantahan at Malumanay na Piyano",
         emoji: "🐏", color: "#ec4899", reqStars: 11,
-        theme: "lamb", youtubeId: "7otAJa3jui8", bpm: 105, instrument: "piano",
+        theme: "lamb", youtubeId: "YE7PiTwhTQk", bpm: 105, instrument: "piano",
         funFact: "This was the very first recorded song in human history by Thomas Edison in 1877!",
         tagalogFunFact: "Ito ang kauna-unahang kantang nai-record sa kasaysayan ng tao ni Thomas Edison noong 1877!",
         lyrics: [
@@ -4147,7 +4192,7 @@
         topic: "Sing-Along & Meadow Chimes",
         tagalogTopic: "Kantahan at Tunog sa Halamanan",
         emoji: "🌿", color: "#16a34a", reqStars: 13,
-        theme: "meadow", youtubeId: "kM2V8dM7r3U", bpm: 105, instrument: "musicbox",
+        theme: "meadow", youtubeId: "2B2Tpvu49eQ", bpm: 105, instrument: "musicbox",
         funFact: "Bo Peep carried a shepherd's crook with a rounded hook to guide gentle sheep!",
         tagalogFunFact: "May dalang tungkod na pabilog ang pastol upang marahang alagaan ang mga tupa!",
         lyrics: [
@@ -4175,7 +4220,7 @@
         topic: "Sing-Along & Stream Symphony",
         tagalogTopic: "Kantahan at Simponya sa Ilog",
         emoji: "🚣", color: "#0891b2", reqStars: 15,
-        theme: "boat", youtubeId: "k4f7y1qGj2Y", bpm: 105, instrument: "glockenspiel",
+        theme: "boat", youtubeId: "78QWbLw_zFg", bpm: 105, instrument: "glockenspiel",
         funFact: "This song can be sung as a 'round' or canon, where voices start at different times!",
         tagalogFunFact: "Maaaring kantahin ang awiting ito nang sabay-sabay o sunud-sunod sa iba-ibang oras!",
         lyrics: [
